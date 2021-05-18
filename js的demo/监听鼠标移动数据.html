@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 1000px;
+        }
+
+        #box {
+            width: 500px;
+            height: 500px;
+            background-color: brown;
+            margin: 0 auto;
+            margin-top: 500px;
+        }
+
+        p {
+            font-size: larger;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <p id="op"></p>
+    <script>
+        var box = document.getElementById('box');
+        var op = document.getElementById('op');
+        var body = document.getElementsByClassName('body');
+        box.onmousemove = function (e) {
+            op.innerText = '距离盒子的距离：X:' + e.offsetX + 'Y:' + e.offsetY + '距离浏览器边缘：X:' + e.clientX + 'Y:' + e
+                .clientY + '距离整个网页边缘的距离为：X：' + e.pageX + 'Y:' + e.pageY;
+        }
+
+        body[0].onmousemove = function (e) {
+            op.innerText = '距离整个网页边缘的距离为：X：' + e.pageX + 'Y:' + e.pageY;
+        }
+    </script>
+</body>
+
+</html>

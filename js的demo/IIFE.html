@@ -1,0 +1,22 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var name = 'chen';
+        var sex = '男';
+        var sir = (function () {
+            if (sex == '男')
+                return name + '先生';
+        })(); // IIFE十分方便还不需要写函数名，使用匿名函数就能很方便的去立即得到相关操作，还不需要去手动编写执行，nice 
+        console.log('我是' + sir);
+    </script>
+</body>
+
+</html>

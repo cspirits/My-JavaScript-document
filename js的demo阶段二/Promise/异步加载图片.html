@@ -1,0 +1,69 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript:当你在加载第一张图片的时候，就可以在后台对其他图片进行加载，这样就能很好的提升用户体验
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <img src="//img3.mukewang.com/609e0f920001a10317920764.jpg" alt="" id="img">
+    <script>
+        // 异步加载图片
+
+        // 获取DOM元素
+        const ImgDom = document.getElementById('img');
+
+        // 设置异步函数
+        const loadImgAsync = url => {
+            // 生成一个Promise对象
+            return new Promise((resolve, reject) => {
+                // 使用生成图片对象的方法
+                const img = new Image();
+                // 加载成功之后运行的resolve的函数，传值为img对象
+                img.onload = () => {
+                    resolve(img);
+                };
+                // 加载错误之后运行的是错误处理函数， 显示一定的错误信息
+                img.onerror = () => {
+                    reject(new Error(console.log(`在${url}中没有加载到你想要的图片`)))
+                }; //这个地方是指控制台上面对图片资源的加载情况的错误处理
+                img.src = url;
+            });
+        };
+
+
+        // 调用函数
+        loadImgAsync(
+            "//img.mukewang.com/609c8d9400019d4217920764.jpg"
+        ).then(img => {
+
+            setInterval(() => {
+                // 输出img对象的src属性，查看是否获取到图片信息
+                console.log(img.src);
+                // 将img对象的src属性添加到dom元素中
+                imgDom.src = img.src;
+            }, 5000); //定时器起效果了
+        }).catch(err => {
+            console.log(err); //一般这个错误是由公司决定的，但是一般由再次加载一遍，或者从其他备用图片源进行加载，或者其他
+        }) //这个地方的错误处理是指图片加载未完成
+
+        // 几个慕课网上面的链接图片， 用于测试不同情况的浏览器显示情况
+        //	//img2.mukewang.com/609ddf990001ec4117920764.jpg
+        //	//img.mukewang.com/609c8d9400019d4217920764.jpg
+
+        // 问题:那怎么实现批量异步加载,我感觉可以理解为后台加载最好？ 设置大量的图片 ,然后对每个img标签的src属性进行循环调用函数， 这样就能实现图片的异步加载了。异步加载的好处：首先我们只需要在页面加载的时候对第一张或者直接显示在页面上面的图片进行加载，这样就能确保了首次显示的流畅性，然后在后台对其他图片进行加载，这样就能实现页面的流畅度和图片的加载两不误了
+    </script>
+</body>
+
+</html>

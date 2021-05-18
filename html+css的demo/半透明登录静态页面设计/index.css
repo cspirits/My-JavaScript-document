@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* 此demo中使用了子绝父相定位方式、透明度设置opacity可以简写为op即可、强行设置了input中的值，但是出现了一些意外，所以明白了div来代替input进行按钮的重要性、class类名设置还是有一些的问题，可以使用更加聪明的办法来设置公共样式，即class来设置，不要轻易使用元素名称来设置css样式，除非你确定你不在更换元素了 */
+
+.box {
+    width: 100%;
+    height: 600px;
+    margin: 100px 0;
+    border: 1px solid #000;
+    position: relative;
+
+}
+
+.box img {
+    width: 100%;
+    height: 600px;
+}
+
+.box .inner {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 504px;
+    height: 600px;
+    /* border: 1px solid #000; */
+}
+
+.box .inner input {
+    display: block;
+    height: 40px;
+    width: 100%;
+    margin-top: 20px;
+    margin: 20px auto;
+    opacity: 0.5;
+}
+
+.box .inner .one {
+    margin-top: 100px;
+}
+
+.box .inner textarea {
+    width: 100%;
+    height: 110px;
+    opacity: 0.5;
+
+}
+
+.box .inner .submit {
+    width: 200px;
+    height: 40px;
+
+}

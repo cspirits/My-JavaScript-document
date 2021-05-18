@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box img {
+            width: 100px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script>
+        var box = document.getElementById('box');
+        // 定义红绿灯类
+        function TrafficLight() {
+            // 颜色属性,红黄蓝为123
+            this.color = 1;
+            // 调用自己的初始化方法
+            this.init();
+            // 调用自己的换颜色方法
+            this.changeColor();
+            // 调用自己的绑定监听方法
+            this.BindEvent();
+        }
+
+        //初始化方法，创建自己的dom
+        TrafficLight.prototype.init = function () {
+            this.dom = document.createElement('img');
+            this.dom.src = './imgs/' + this.color + '.jpg';
+            box.appendChild(this.dom);
+        };
+
+        TrafficLight.prototype.BindEvent = function () {
+            // 当自己的dom被点击的时候，应该切换颜色
+            // 备份上下文,这个地方还没有理解透彻
+            // 解决：因为是在onclick的函数中，如果直接写this的话，this会指代到到this.dom.onclick上面去，但是self进行保存上下文的话，就会将调用changeColor方法的就是TrafficLight.prototype.BindEvent对象
+            var self = this;
+            this.dom.onclick = function () {
+                self.changeColor();
+            }
+        }
+
+        TrafficLight.prototype.changeColor = function () {
+            this.color++;
+            if (this.color == 4) this.color = 1;
+            this.dom.src = './imgs/' + this.color + '.jpg';
+        }
+
+
+        var num = 100;
+        while (num--) {
+            new TrafficLight();
+        }
+    </script>
+</body>
+
+</html>

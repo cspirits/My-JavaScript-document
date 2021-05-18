@@ -1,0 +1,92 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+
+        #box2 {
+            width: 80px;
+            height: 80px;
+            background-color: blue;
+        }
+
+        #box3 {
+            width: 50px;
+            height: 50px;
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <div id="box2">
+            <div id="box3"></div>
+        </div>
+    </div>
+    <script>
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+
+
+        // 事件传播从内到外，事件传播和代码顺序无关
+        // 不成熟的实验
+        box1.onclick = function () {
+            console.log('box1');
+        }
+        box2.onclick = function () {
+            console.log('box2');
+        }
+
+        //同名之后。dom0级会覆盖前面的函数
+        box3.onclick = function () {
+            console.log('box3');
+        }
+        box3.onclick = function () {
+            console.log('box4');
+        }
+
+        // 增加捕获阶段监听
+
+        box1.addEventListener('click', function () {
+            console.log('box1的冒泡阶段');
+        }, false);
+
+        box2.addEventListener('click', function () {
+            console.log('box2的冒泡阶段');
+        }, false);
+
+        box1.addEventListener('click', function () {
+            console.log('box1的捕获阶段');
+        }, true);
+
+        box2.addEventListener('click', function () {
+            console.log('box2的捕获阶段');
+        }, true);
+
+        box3.addEventListener('click', function () {
+            console.log('box3的捕获阶段');
+        }, true);
+
+
+        //同名按顺序执行
+        box3.addEventListener('click', function () {
+            console.log('box3的冒泡阶段');
+        }, false);
+
+        box3.addEventListener('click', function () {
+            console.log('box3的冒泡阶段');
+        }, false);
+    </script>
+</body>
+
+</html>

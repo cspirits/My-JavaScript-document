@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 这个项目我用到了阿里普惠体、左右浮动、消除列表的默认样式、使用rgb来设置颜色、根据提供的数值来设置盒子的大小、文本的垂直水平居中、按照标准实战设置class类名、设置列表中单个元素的外边距问题等 */
+
+/* 拓展设置导航栏为固定定位设置在上方，无论怎么滑动都是一直显示在上方 */
+
+
+@font-face {
+    font-family: 'webfont';
+    font-display: swap;
+    src: url('//at.alicdn.com/t/webfont_l13s1sz84ur.eot');
+    /* IE9*/
+    src: url('//at.alicdn.com/t/webfont_l13s1sz84ur.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('//at.alicdn.com/t/webfont_l13s1sz84ur.woff2') format('woff2'),
+        url('//at.alicdn.com/t/webfont_l13s1sz84ur.woff') format('woff'),
+        /* chrome、firefox */
+        url('//at.alicdn.com/t/webfont_l13s1sz84ur.ttf') format('truetype'),
+        /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+        url('//at.alicdn.com/t/webfont_l13s1sz84ur.svg#AlibabaPuHuiTiL') format('svg');
+    /* iOS 4.1- */
+}
+
+header {
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    /* left: 50px; */
+    /* margin-left: 25%; */
+
+
+
+}
+
+
+/* 像是导航栏这种想要使其居中显示，最好的办法就是大盒子包着一个小盒子，然后进行小盒子居中，大盒子进行定位定位即可 */
+header .logo-and-nav {
+    width: 1000px;
+    height: 80px;
+    margin: 0 auto;
+    /* border: 1px solid #000;  */
+    background-color: rgb(7, 203, 201);
+
+}
+
+header .logo-and-nav .logo {
+    float: left;
+    width: 300px;
+    height: 48px;
+    padding: 16px 0;
+    line-height: 48px;
+
+    font-size: 40px;
+    font-family: webfont;
+    text-align: center;
+    color: rgb(255, 254, 254);
+}
+
+header .logo-and-nav nav {
+    float: right;
+    width: 600px;
+    height: 80px;
+}
+
+header .logo-and-nav nav ul {
+    list-style: none;
+}
+
+header .logo-and-nav nav ul li {
+    float: left;
+    font-size: 16px;
+    width: 80px;
+    height: 48px;
+    padding: 16px 0;
+    line-height: 48px;
+    color: rgb(255, 254, 254);
+    margin-left: 20px;
+
+}

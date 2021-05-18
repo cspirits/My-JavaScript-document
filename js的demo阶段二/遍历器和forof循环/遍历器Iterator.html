@@ -1,0 +1,107 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 找到Iterator
+        let it = [1, 2][Symbol.iterator]();
+        console.log(it);
+        console.log(it.next()); //{value: 1, done: false}
+        console.log(it.next()); //{value: 2, done: false}
+        console.log(it.next()); //{value: undefined, done: true}
+
+        // it:可遍历对象
+        // Symbol.iterator：可遍历对象的生成方法
+        // 什么是Iterator???
+        // Symbol.iterator可遍历对象的生成方法 ->it可遍历对象 ->it.next() -> it.next()->直到done为止，{value: undefined, done: true}
+
+        // Itetator遍历器是一个统一遍历方式
+        // 一般不直接使用Iterator去遍历，一般使用for...of循环
+
+
+        // Iterator自动化函数封装,一般不会使用这个了，但是遍历流程还是需要知道的，可能面试的时候需要考
+        function autoIt(arr) {
+            let it = arr[Symbol.iterator]();
+            let next = it.next();
+            while (!next.done) {
+                console.log(next.value)
+                next = it.next();
+            }
+        }
+        autoIt([1, 2, 3, 4, 5, 6, 7])
+
+        // 这个过程就是为了隐藏Iterator的细节，推出了for...of循环
+        console.log('for...of循环');
+        for (const i of [1, 2, 3, 4]) {
+            console.log(i);
+        }
+        //for...of只会遍历出那些done为false的值，不会遍历出多余后面undefined的值，这个很不错哦
+        // 可以和break,continue一起使用
+
+        // 在for of中取得索引？？?
+        console.log(' 在for of中取得索引？？?');
+        const arr1 = [1, 3, 4, 5];
+        // keys() 得到的是索引的可遍历对象，可以遍历出索引值
+        console.log(arr1.keys());
+        // values()得到的是可遍历的值，可以得到遍历出的值
+        console.log(arr1.values());
+        // entries()可以得到值和索引的一个数组 [索引 值]
+        for (const i of arr1.entries()) {
+            console.log(i);
+        }
+        // 直接解构出来
+        for (const [index, value] of arr1.entries()) {
+            console.log(index, value);
+        }
+        // 注意：数组对象的forEach()是不能和break还有continue一起使用的
+
+        // 什么是可遍历的？
+        // 只要有Symbol.iterator方法， 并且这个方法可以生成可遍历对象，那么就是可便利的
+        // 只要可遍历，那么就可以使用for...of进行统一循环
+        // 原生可遍历的：数组，字符串，Set，Map，arguments，NodeList
+
+
+        // 非原生可遍历的： 一般的对象，
+        // for (const iterator of {
+        //         name: 'xiaochen',
+        //         age: 123
+        //     }) {
+        //     console.log(iterator);
+        // } //{(intermediate value)(intermediate value)} is not iterable
+        // 为什么？
+
+        // console.log({
+        //     name: 'xiaochen'
+        // } [Symbol.iterator]());
+
+        //{(intermediate value)}[Symbol.iterator] is not a function出错是正确的显示
+        // 遍历对象的方法：1使用for...in进行遍历2添加Symbol.iterator，使其变成可遍历的（一般只会使用第一种方法，第二种加深理解）我tm直接不使用第二种方法
+
+        // 使用iterator的场合？？？
+        // 数组的展开运算
+        // 怪不得数组和类数组的情况下可以直接使用...进行展开，但是对象必须使用{...obj}的方式进行展开，因为底层就是使用iterator进行计算的
+
+        // 数组的解构赋值也是使用iterator
+        // const [a, b] = 'hi'; => const [a,b] = [...'hi']
+
+        // Set和Map的构造函数
+        // new Set(iterator);
+        // new Map(iterator); //但是只能使用二维数组，因为要体现出来kv对的属性出来
+    </script>
+</body>
+
+</html>

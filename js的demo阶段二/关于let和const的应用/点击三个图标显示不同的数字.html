@@ -1,0 +1,88 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            float: left;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 50px;
+        }
+
+        main {
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="one">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </main>
+    <main class="two">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </main>
+    <main class="three">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </main>
+    <script>
+        // 按照我现在会的进行编写
+        let divs = document.querySelectorAll('.one div');
+        let divs1 = document.querySelectorAll('.two div');
+        let divs2 = document.querySelectorAll('.three div');
+        // console.log(divs);
+        // console.log(divs1);
+
+        //我自己写的使用let进行编写的
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].addEventListener('click', function () {
+                console.log(i);
+            }, false);
+        }
+
+        // 使用var进行编写的
+        // 全局i = 3，循环三遍之后就得到了3
+        for (var i = 0; i < divs1.length; i++) {
+            divs1[i].addEventListener('click', function () {
+                console.log(i);
+            }, false);
+        }
+
+        // 由此可见let和const的重要性， 居然还能闭包的相关工功能，牛逼啊
+        // 使用闭包的形式
+        for (var i = 0; i < divs2.length; i++) {
+            (function (index) {
+                divs2[index].addEventListener('click', function () {
+                    console.log(index);
+                }, false)
+            })(i);
+
+        }
+    </script>
+</body>
+
+</html>

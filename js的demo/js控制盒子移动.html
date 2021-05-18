@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: chartreuse;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box');
+        // 全局变量设置盒子初始的top值和left值
+        var t = 100;
+        var l = 100;
+        document.onkeydown = function (e) {
+            switch (e.keyCode) {
+                case 37:
+                    l -= 10;
+                    break;
+                case 38:
+                    t -= 10;
+                    break;
+                case 39:
+                    l += 10;
+                    break;
+                case 40:
+                    t += 10;
+                    break;
+            }
+
+            // 更改样式
+            box.style.left = l + 'px';
+            box.style.top = t + 'px';
+        }
+        // TODO 理解一下这个为什么我第一次写的出现了很多问题
+    </script>
+</body>
+
+</html>

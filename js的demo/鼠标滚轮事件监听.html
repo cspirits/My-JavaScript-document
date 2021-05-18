@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 300px;
+            height: 300px;
+            background-color: aqua;
+        }
+
+        body {
+            height: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 制作鼠标滚轮事件，当鼠标在盒子中进行滚动的时候，显示数字+1，反之，显示数字-1； -->
+    <div id="box"></div>
+    <p id="p">0</p>
+    <script>
+        var box = document.getElementById('box');
+        var p = document.getElementById('p');
+        var a = 0;
+
+        box.onmousewheel = function (e) {
+            // 阻止浏览器滚动条的时候，可以在盒子进行阻止浏览器的滚动条进行滚动
+            e.preventDefault();
+            if (e.deltaY > 0) {
+                a--;
+            } else {
+                a++;
+            }
+            p.innerText = a;
+        }
+    </script>
+</body>
+
+</html>

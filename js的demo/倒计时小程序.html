@@ -1,0 +1,40 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>2022年考研倒计时：</h1>
+    <h1 id="xs"></h1>
+    <script>
+        var xs = document.getElementById('xs');
+        setInterval(function () {
+            var nd = new Date();
+            var td = new Date('2022-12-26'); //目标日期
+
+            var diff = td - nd; //我们得到了两个日期之间相差的毫秒数
+            // 毫秒*1000得秒
+            // 毫秒*1000*60得分
+            // 毫秒*1000*60*60得时
+            // 毫秒*1000*60*60*24得天
+            var day = parseInt(diff / (1000 * 60 * 60 * 24));
+            console.log(day);
+            // 零多少小时
+            var hour = parseInt((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            // console.log(hour);
+            // 零多少分
+            var minute = parseInt(((diff % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) / (1000 * 60));
+            // console.log(minute);
+            // 零多少秒
+            var second = parseInt((((diff % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) % (1000 * 60)) / (1000));
+            // console.log(second);
+            xs.innerHTML = '还剩：' + day + '天' + hour + '小时' + minute + '分钟' + second + '秒';
+        }, 1000)
+    </script>
+</body>
+
+</html>

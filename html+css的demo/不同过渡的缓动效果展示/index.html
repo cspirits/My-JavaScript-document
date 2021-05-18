@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100%;
+            /* height: 500px; */
+            border: 1px solid #000;
+        }
+
+        .box p {
+            width: 80px;
+            height: 80px;
+            background-color: aqua;
+            margin-bottom: 20px;
+            /* 这个地方使用相对定位实际上就是为了设置left这个初始值 */
+            position: relative;
+            left: 0;
+        }
+
+        .box p:nth-child(1) {
+            transition: left 10s linear 0s;
+        }
+
+        .box p:nth-child(2) {
+            transition: left 10s ease-out 0s;
+        }
+
+        .box p:nth-child(3) {
+            transition: left 10s ease 0s;
+        }
+
+        .box p:nth-child(4) {
+            transition: left 10s ease-in 0s;
+        }
+
+        .box p:nth-child(5) {
+            transition: left 10s ease-in-out 0s;
+        }
+        .box p:nth-child(6) {
+            transition: left 10s cubic-bezier(.3,1.73,.95,-1.35) 0s;
+        }
+
+        .box p:nth-child(7) {
+            transition: left 10s cubic-bezier(.09,-1.49,.6,2.11) 0s;
+        }
+
+        .box p:nth-child(8) {
+            transition: left 10s cubic-bezier(1,0,0,1) 0s;
+        }
+
+        .box:hover p {
+            left: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 直接创建Date对象
+        var rq = new Date();
+        console.log(rq); //什么都不写将创建当前日期和时间
+
+
+        // 创建2021年5月4号日期对象
+        var rq1 = new Date(2021, 04, 04);
+        console.log(rq1);
+
+        var rq2 = new Date('2021-05-04');
+        var rq3 = new Date('2021-05-05');
+        console.log(rq2);
+        console.log(rq3); //会产生时区问题，一般直接生成早上8点时间
+
+
+        // 使用第一个当前日期的date对象进行日期对象方法的测试,需要记忆
+        console.log(rq.getDate());
+        console.log(rq.getDay());
+        console.log(rq.getFullYear());
+        console.log(rq.getHours());
+        console.log(rq.getMinutes());
+        console.log(rq.getMonth());
+        console.log(rq.getSeconds());
+
+
+        // 时间戳问题，使用当前日期
+        var timeStamp1 = Date.parse(rq);
+        var timeStamp2 = rq.getTime();
+        console.log(timeStamp1); //两个还是有一定区别的，精确到秒,也是毫秒数，只不过最后三位只是000而已
+        console.log(timeStamp2); //精确到毫秒
+
+        // 将时间戳变回日期对象
+        var rq4 = new Date(191291212923);
+        console.log(rq4);
+        console.log(rq4.getDay());
+    </script>
+</body>
+
+</html>

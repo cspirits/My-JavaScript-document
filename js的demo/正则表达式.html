@@ -1,0 +1,114 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建一个只包含六个数字的正则表达式
+        var regexp1 = /^\d{6}$/;
+        var regexp2 = new RegExp('^\\d{6}$'); //由于在引号中\d表示转义的意思，所以需要添加多个斜杠来保持原来的意思
+
+        var test = 123456;
+
+        console.log(regexp1.test(test));
+        console.log(regexp2.test(test)); //因为两个正则表达式表示的都是一样的含义
+
+        console.log(typeof regexp1); //object
+        console.log(typeof regexp2); //object
+        // 由此可以判断正则表达式的类型为对象类型，引用类型值，
+
+        console.log(/asd/ == /asd/); //false
+        console.log(/asd/ === /asd/); //false
+        // 说明了引用类型的值比较的是内存中的地址是否相同
+
+
+        // 某快递公司运单号是123-4567-890形式，请写出正则表达式
+
+        var yundanhaoguizhe = /^\d{3}-\d{4}-\d{3}$/;
+        var yundanhao = '123-4567-890';
+
+        console.log(yundanhaoguizhe.test(yundanhao));
+
+        // 某产品的秘钥格式为 xxx-xxxx-xxx,其中x表示字母数字或下划线，请写出正则表达式
+        var miyaoguizhe = /^\w{3}-\w{4}-\w{3}$/;
+        var miyao = 'asd-wq_1-___';
+
+        console.log(miyaoguizhe.test(miyao));
+
+
+        // 某产品批号形式为:123.45^67#89，请使用正则表达式检查某字符串是否符合此格式
+        var pihaoguizhe = /^\d{3}\.\d{2}\^\d{2}\#\d{2}$/;
+        var pihao = '123.45^67#89';
+
+        console.log(pihaoguizhe.test(pihao));
+
+        // 方括号表示法题目：
+        // 验证：字符串是否是五位字母，大小写均可
+        var yz1 = /^[a-zA-Z]{5}$/;
+        var yzs1 = 'asdAA';
+        console.log(yz1.test(yzs1));
+
+        // 验证：字符串是否为五位，且仅为小写字母，点构成
+        var yz2 = /^[a-z\.]{5}$/; //在方括号中表示转义也是需要的
+        var yzs2 = 'aa.aa'
+        console.log(yz2.test(yzs2));
+
+        // 验证：字符串是否是4位小写字母，且最后一位不能是m字母
+        var yz3 = /^[a-z]{3}[a-ln-z]$/; //sb写法，肯定有简写,挖槽，居然还被老师说成了聪明的办法，我以为是sb想法呢
+        var yzs3 = 'asdm';
+        console.log(yz3.test(yzs3));
+
+        // 量词小题目：
+        // 验证：字符串是否符合手机号码的规则：11位数字，并且肯定以1开头
+        var lc1 = /^1\d{10}$/;
+        var lcs1 = '18555045779';
+        console.log(lc1.test(lcs1));
+
+        // 验证：字符串是否是这样的：以字母开头，中间是任意位数字(最少一位)构成，并以字母结尾
+        var lc2 = /^[a-zA-Z]{1}\d+[a-zA-Z]$/;
+        var lcs2 = 'a123123123q';
+        console.log(lc2.test(lcs2));
+
+        // 验证:某字符串是否符合网址规则：以www.开头,中间是任意位的字符（字母下划线数字），最后以.com结尾,也可以以.com.cn结尾
+        var lc3 = /^www\.\w+\.com(\.cn)?$/; //原来是这样的
+        var lcs3 = 'www.baidu.com.cn';
+        console.log(lc3.test(lcs3));
+
+
+        // exec()测试
+        var execNum = '123asd213123234342sasdadas1233312sadas23134432sdasda231231231';
+        var execs = /\d+/g; //千万不要忘记这个g,这个g不写就无法实现功能了 使用+/g术语上面叫贪婪的，尽可能多的去寻找
+        var result = [];
+        var nadao;
+        while (nadao = execs.exec(execNum)) {
+            result.push(nadao);
+        }
+        console.log(result);
+        // 由此可见，如果这个循环到地方已经被查找到了，那就不会在寻找了 
+
+
+        // 字符串使用正则表达式的相关方法
+        var str = 'aaaa23123da23123s2223123d';
+
+        // search()
+        console.log(str.search(/\d+/g)); //居然不是从0开始的，什么情况，我错了，还是从0开始算的，在第几就是显示第几遇到的
+
+        // match()
+        console.log(str.match(/\d+/g)); //这个感觉很好用
+
+        // replace()
+        var strNew1 = str.replace(/[a-zA-Z]/g, '*'); //加上+之后就会贪婪匹配，这样将匹配到全部替换为*,不加的话就会一个一个匹配，按数量进行替换为*
+        console.log(strNew1);
+
+        // split()
+        var strNew2 = str.split(/[a-zA-Z]/g);
+        console.log(strNew2); 
+    </script>
+</body>
+
+</html>

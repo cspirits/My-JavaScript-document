@@ -1,0 +1,68 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const fun = (a, y, ...argns) => console.log(argns); //...一个参数名称
+        fun(1, 2, 3, 4, 5, 6, 7, 8);
+        fun(1, 2); //Array(0)剩余参数永远是一个数组，即使是没有值的，也会产生一个空的数组
+        // console.log(argns);在全局是用不了的，函数内部设定的变量，还是let/const设定的语句绑定了函数了
+
+        // 注意事项
+        // 注意事项
+        // 注意事项
+        // 使用剩余函数的时候，箭头函数中就算只有剩余函数也不能省略圆括号
+        let fuck = (...nums) => console.log(nums.length);
+        fuck(1, 2, 3, 4, 5, 6, 76, 87, 9);
+        // 使用剩余参数替代arguments来获取实际的参数
+        // 上面的例子就完美替代了arguments,来获取参数数组还是参数的个数都是可以的，而且箭头函数中还没有arguments，使用剩余函数反而还方便一点，不需要特定去记忆了，直接使用即可
+
+        // 剩余参数只能放在最后，后面不能再有新的参数了，前面可以不写，代表全部都是剩余参数，但是不能前面部分是剩余参数，最后还多一个参数，这样是不被允许的，而且浏览器也不好控制啊
+        // 错误案例：
+        // let funs = (...args, a, b) => args.length;这样写是错误的，是不被允许的
+
+        // 剩余参数的应用
+        // 实现一个不定参数的加法函数
+        let add = (...args) => {
+            let sum = 0;
+            for (let i = 0; i < args.length; i++) {
+                sum += args[i];
+            }
+            return sum;
+        }
+        console.log(add(1, 21, 1, 1, 1, 1, 1, 1));
+
+        // 剩余参数与解构赋值之间的搭配使用
+        // 我想得到一个数组的第一个元素和后面所有的元素怎么办？
+        const [num1, ...nums] = [1, 2, 3, 3, 4, 5, 6];
+        console.log(`${num1}后面是${nums}`);
+        // 对象的剩余参数获取情况
+        let {
+            a,
+            d,
+            ...args
+        } = {
+            a: 1,
+            b: 2,
+            c: 3,
+            d: 4
+        }
+        console.log(args); //这个时候获取到的是一个对象，使用对象属性方法进行操作
+    </script>
+</body>
+
+</html>

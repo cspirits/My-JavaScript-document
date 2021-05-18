@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+
+        /* 这个地方的项目被我删除了，此代码只是进行演示使用，代码使用均正确 */
+        /* 因项目删除的原因，导致图标无法显示 */
+        /* 阿里普惠体引用 */
+        @font-face {
+            font-family: '阿里巴巴-普惠体-Light';
+            font-display: swap;
+            src: url('//at.alicdn.com/t/webfont_my50jo2rtif.eot');
+            /* IE9*/
+            src: url('//at.alicdn.com/t/webfont_my50jo2rtif.eot?#iefix') format('embedded-opentype'),
+                /* IE6-IE8 */
+                url('//at.alicdn.com/t/webfont_my50jo2rtif.woff2') format('woff2'),
+                url('//at.alicdn.com/t/webfont_my50jo2rtif.woff') format('woff'),
+                /* chrome、firefox */
+                url('//at.alicdn.com/t/webfont_my50jo2rtif.ttf') format('truetype'),
+                /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+                url('//at.alicdn.com/t/webfont_my50jo2rtif.svg#AlibabaPuHuiTiL') format('svg');
+            /* iOS 4.1- */
+        }
+
+        @font-face {
+            font-family: '阿里巴巴-普惠体-Bold';
+            font-display: swap;
+            src: url('//at.alicdn.com/t/webfont_eme1bk0rhzg.eot');
+            /* IE9*/
+            src: url('//at.alicdn.com/t/webfont_eme1bk0rhzg.eot?#iefix') format('embedded-opentype'),
+                /* IE6-IE8 */
+                url('//at.alicdn.com/t/webfont_eme1bk0rhzg.woff2') format('woff2'),
+                url('//at.alicdn.com/t/webfont_eme1bk0rhzg.woff') format('woff'),
+                /* chrome、firefox */
+                url('//at.alicdn.com/t/webfont_eme1bk0rhzg.ttf') format('truetype'),
+                /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+                url('//at.alicdn.com/t/webfont_eme1bk0rhzg.svg#Alibaba-PuHuiTi-Bold') format('svg');
+            /* iOS 4.1- */
+        }
+
+        /* unicode引用 */
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 2410164 */
+            src: url('//at.alicdn.com/t/font_2410164_zopcqzr2hjg.eot');
+            src: url('//at.alicdn.com/t/font_2410164_zopcqzr2hjg.eot?#iefix') format('embedded-opentype'),
+                url('//at.alicdn.com/t/font_2410164_zopcqzr2hjg.woff2') format('woff2'),
+                url('//at.alicdn.com/t/font_2410164_zopcqzr2hjg.woff') format('woff'),
+                url('//at.alicdn.com/t/font_2410164_zopcqzr2hjg.ttf') format('truetype'),
+                url('//at.alicdn.com/t/font_2410164_zopcqzr2hjg.svg#iconfont') format('svg');
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* symbol引用 */
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+
+
+    <!-- font-class引用 -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2410164_zopcqzr2hjg.css">
+
+    <!-- symbol引用 -->
+    <script src="//at.alicdn.com/t/font_2410164_zopcqzr2hjg.js"></script>
+
+</head>
+
+<body>
+
+    <span style="font-family: '阿里巴巴-普惠体-Light';">我爱你就像山爱水一样</span>
+    <span style="font-family: '阿里巴巴-普惠体-Bold';">我爱你就像山爱水一样</span>
+
+    <hr>
+
+    <span class="iconfont">&#xe600;</span>
+    <span class="iconfont">&#xe683;</span>
+
+    <span class="iconfont icon-004-nurse" style="color: aqua;font-size: large;"></span>
+
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-004-nurse"></use>
+        <!-- 这个地方的#不可缺少 -->
+    </svg>
+
+
+</body>
+
+</html>

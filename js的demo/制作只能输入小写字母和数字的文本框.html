@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <input type="text" id="field">
+    </p>
+    <script>
+        var field = document.getElementById('field');
+        field.onkeypress = function (e) {
+            // 根据onkeypress进行判断
+            // 数字是0~9，字符码是48~57
+            // 小写字母是a~z,字符码是98~122
+            if (!(e.charCode > 48 && e.charCode <= 57 || e.charCode >= 98 && e.charCode <= 122)) {
+                e.preventDefault();
+                // 对不符合条件的charCode进行阻止了
+                // preventDefault阻止浏览器的默认行为
+            }
+        }
+    </script>
+</body>
+
+</html>

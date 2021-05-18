@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- 这个项目的角度设置没看懂，很疑惑 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        section {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            /* margin: 50px auto; */
+            perspective: 4000px;
+            position: relative;
+
+            /* 设置这个元素既是舞台，又是演员 */
+            transform-style: preserve-3d;
+            transition: all 5s linear 0s;
+        }
+
+        section:hover .box {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+
+        .box p {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* 前面 */
+        .box p:nth-child(1) {
+            background-color: blue;
+            transform: translateZ(100px);
+        }
+
+        /* 顶面 */
+        .box p:nth-child(2) {
+            background-color: red;
+            transform: rotateX(90deg) translateZ(100px);
+
+        }
+
+        /* 背面 */
+        .box p:nth-child(3) {
+            background-color: pink;
+            transform: rotateX(180deg) translateZ(100px);
+        }
+
+        /* 底面 */
+        .box p:nth-child(4) {
+            background-color: gray;
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        .box p:nth-child(5) {
+            background-color: green;
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .box p:nth-child(6) {
+            background-color: greenyellow;
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="box">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+    </section>
+</body>
+
+</html>

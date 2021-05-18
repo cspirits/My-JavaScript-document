@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        outer: for (var i = 2; i <= 100; i++) {
+            for (var j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    // 外层循环加上laber，这样表示立即开始迭代外层循环，而不是continue本身的内层循环
+                    continue outer;
+                }
+            }
+            // 能够遇见这条语句的数字i，一定是质数，否则就被continue略过了
+            console.log(i);
+        }
+    </script>
+</body>
+
+</html>

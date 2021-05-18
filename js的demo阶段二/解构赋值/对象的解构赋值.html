@@ -1,0 +1,112 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象的解构赋值
+        // 对象的解构赋值
+        // 对象的解构赋值
+
+
+        const obj = {
+            username: 'xiaochen',
+            age: 12
+        };
+        const {
+            username,
+            age
+        } = obj;
+        console.log(username, age);
+
+        // 起别名，使用:进行分隔完成对别名的使用
+        const {
+            username: uname,
+            age: howOld,
+            change = '我是设定的默认值'
+        } = obj;
+        console.log(uname, howOld, change); //这个地方我故意多写了一个量，获取到了undefined
+        // 默认值，只有当对象的属性值严格===undefined的时候，默认值才会生效
+
+        // 默认值表达式
+        function cons() {
+            console.log('我是被调用的默认值表达式');
+        }
+        const {
+            school = cons
+        } = obj;
+        console.log(school);
+
+        // 将一个已经声明的变量用于解构赋值
+        let x = 2;
+        // 对于一个声明过的变量的时候，浏览器会认为{x}是代码块，里面的x的需要声明，({}={})的方式完成浏览器对对象解构赋值的理解，整个赋值过程在()中进行
+        ({
+            x
+        } = {
+            x: 3
+        })
+        console.log(x);
+
+        // 可以取到继承的属性,这个很重要的我以为，这个地方对变量命名有了一定的要求，不然就会出现问题
+
+        const {
+            toString
+        } = {}
+        // 因为toString属于object对象中的toString方法。{}会不断去向上去找，找到了相同的变量或者方法名称
+        console.log(toString);
+
+        // 对象解构的应用
+        // 对象解构的应用
+        // 对象解构的应用
+        // 函数参数的解构赋值
+
+        var logPersonInfo = ({
+            age,
+            name
+        }) => console.log(age, name);
+        logPersonInfo({
+            name: 'xiaochen',
+            age: 123
+        });
+        // 在传值的过程中，隐含了一个过程   {age.name} = {name:'xiaochen',age:123}
+
+
+        // 复杂的嵌套，实际开发中不会使用，但是对理解这个解构赋值很有用
+        // 一个较为复杂的对象中含有不同的结构。我只想要其中部分数值，用这个案例来获取一下
+        // 对于数组和对象匹配是可以的。函数应该是不能匹配的吧？肯定不能
+        var obb = {
+            name: 1,
+            arr: [1, 2, 3, 4, 5, 6],
+            objs: {
+                s: 1,
+                w: 2,
+                r: 2
+            }
+        };
+        // 这个时候我想得到数值中的3, 5, 6,对象中的对象的s，w的值，怎么完成？
+        let {
+            arr: [, , a, , b, c],
+            objs: {
+                s: ss = 's不存在', //我设置了默认值，如果没找到就显示这个
+                w: ww = 'w不存在'
+            }
+        } = obb;
+        console.log(a, b, c, ss, ww);
+    </script>
+
+</body>
+
+</html>

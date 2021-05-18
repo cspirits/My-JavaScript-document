@@ -1,0 +1,65 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // includes()判断数组中是否含有某个成员的
+        console.log([1, 2, 3, 4].includes(2));
+        console.log([1, 2, 3, 4, NaN].includes(NaN)); //也是遵循NaN相同的判断标准的
+        console.log([1, 2, 3, 4].includes(2, 4)); //也有第二参数的，从索引第几开始判断，我从4开始判断，自然是找不到前面的2的
+
+        // Array.from()将其他类型转换为数组
+        console.log(Array.from('123123123123'));
+        // 哪些可以通过此方法进行转换为数组？
+        // 所有可遍历的？ 数组， Set， Map， arguments， NodeList，字符串，但是还是推荐使用...展开运算符的方式进行，方便快捷
+
+        // 拥有length属性的任意对象
+        const obj = {
+            1: '1',
+            2: '2',
+            3: '3',
+            name: 'xiaochen ',
+            length: 7
+        };
+        // console.log(...obj); //Uncaught TypeError: Found non-callable @@iterator对象是不可遍历的，所以不能使用...进行展开。除非{...obj}
+        console.log(Array.from(obj)); //从0开始的
+        // 这些都不好用啊，我发现啊
+
+        // 第二参数： 作用类似于数组中的map方法， 用来对数组中每个元素进行处理，将处理后的元素添加到数组中去
+        console.log([1, 2].map((value) => {
+            return value * 10;
+        }));
+        // Array.from()就能实现上面所写的回调函数中的功能,这个倒是对数组中数值的集体改变倒是很不错的办法，这个有点用啊
+        console.log(Array.from([1, 2, 3], (value) => value * 2));
+        // 第三个参数就是修改this指向的
+
+        // find():用来找到满足条件的一个
+        // findIndex()：用来找到满足条件的一个的那个索引
+        console.log([1, 2, 34, 5, 5, 6, 6].find((value, index, arr) => {
+            // console.log(value, index, arr);
+            return value % 2 == 0 || index > 3;
+        })); //只返回一个，这个容易忽视
+        console.log([1, 2311, 2, 5, 5, 6, 6].findIndex((value, index, arr) => {
+            // console.log(value, index, arr);
+            return value % 2 == 0 || index > 3;
+        })); //只返回一个，这个容易忽视
+        // 第二参数的修改this指向
+    </script>
+
+</body>
+
+</html>

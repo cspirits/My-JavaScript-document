@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+
+        }
+
+        div {
+            width: 800px;
+            height: 50px;
+            margin: 40px auto;
+            border: 1px solid #000;
+        }
+
+        div ul li {
+            display: block;
+            float: left;
+            width: 100px;
+            line-height: 50px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        /* 这个赋值颜色语句必须写在hover之前，像是这样显示不同状态的样式编写，应该在这种固定样式之前，不然会出现覆盖的情况出现 */
+
+        div ul li:nth-of-type(2n+1) {
+            background-color: blanchedalmond;
+        }
+
+        div ul li:hover {
+            background-color: red;
+            border-top: 3px solid pink;
+            /* 实现在鼠标放上去的时候显示在上面有一个颜色横杠 */
+            position: relative;
+            top: -3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>导航</li>
+            <li>导航</li>
+            <li>导航</li>
+            <li>导航</li>
+            <li>导航</li>
+            <li>导航</li>
+            <li>导航</li>
+            <li>导航</li>
+        </ul>
+    </div>
+</body>
+
+</html>

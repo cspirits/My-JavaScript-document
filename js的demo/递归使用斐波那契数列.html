@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 1 2 3 5 8 13 21 
+
+        function fb(num) {
+            if (num == 1 || num == 0) return 1;
+            return fb(num - 1) + fb(num - 2)
+        }
+        console.log(fb(6 - 1)); //这个地方有了出一错误，但是不是我的递归思想的错误
+    </script>
+</body>
+
+</html>

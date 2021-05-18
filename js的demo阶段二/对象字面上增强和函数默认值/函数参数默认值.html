@@ -1,0 +1,73 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原来去判断如果没有参数传递的判断
+        let add = (x, y) => {
+            if (typeof y == "undefined") { //这个地方undefined需要打上双引号才能进行判断
+                y = 1;
+            }
+            console.log(x + y);
+        }
+        add(1);
+
+        // ES6提供了默认值的简写
+        let add1 = (x = 1, y = 2) => x + y;
+        console.log(add1());
+
+        // 默认值生效条件
+        let add2 = (x = '我是x的默认值', y = '我是y的默认值') => console.log(x, y);
+        add2(undefined);
+        add2('undefined')
+        // add2(,12);这样写是报错的，看来js是不支持跳过前面的进行传参的
+        // 如果默认值是表达式，那么表达式是惰性求值的
+
+        // 设置默认值的小技巧
+        // 就是在给参数设置默认值的时候,最好是从右边开始设置,这样设置出来就会很方便,怎么方便的自己去感受吧
+
+
+        // 函数默认值在开发中的应用
+        // 问题:原来我们写函数需要按照函数的格式顺序一点一点要求进行编写,使用对象进行传参就很方便了,指定了属性名就可以不用看位置了
+        // 定义函数
+        let fun = ({
+            name = 'chenshiyu', //在这里设置的是解构赋值的默认值
+            age = 12,
+            school = '清华大学'
+        } = {}) => {
+            console.log(name, age, school);
+        }
+        // 进行调用
+        fun({
+            name: 'xiaochen',
+            age: 12,
+            school: 'huainanshifanxueyuan'
+        })
+        // 那如果我们传参失败了或者用户的愚蠢行为导致我们对参数的把控不足怎么办？
+        // 解决：我们通过给对象中每个属性设置解构赋值过程中的默认值，还要给函数参数默认值设置为{}即可，当你设置为{}，找到里面与继承来的属性不同的属性名之后，就会使用对象解构赋值中的默认值了
+        fun({
+            name: 'xiaoli'
+        });
+        fun({
+            age: 333
+        });
+        fun({});
+        fun();
+    </script>
+</body>
+
+</html>

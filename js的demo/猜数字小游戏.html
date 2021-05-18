@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 随机生成一个2到99的数字，让用户猜测这个数字是几，用户输入自己的猜测之后，提示“输入的数字太大了”或“输入的数字太小了”，不断重复这个过程，直到用户准确猜到这个数字
+
+        var rom = parseInt(Math.random() * 98) + 2;
+        // 设置答案透题
+        document.write(rom);
+
+        var min = 1,
+            max = 100;
+
+
+        while (true) {
+            var num = Number(prompt('请输入你的猜测的数值:' + min + '~' + max));
+            // 数据验证
+            if (num <= min || num >= max) {
+                alert('输入的数值不在范围内！！！');
+                continue;
+            }
+            if (num == rom) {
+                alert('对滴，答案就是：' + num);
+                break;
+            } else if (num > rom) {
+                alert('你输入的数字太大了');
+                max = num;
+
+            } else {
+                alert('你输入的数字太小了');
+                min = num;
+
+            }
+        }
+    </script>
+</body>
+
+</html>

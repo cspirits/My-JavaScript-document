@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function People(name, age, sex) {
+            this.name = name,
+                this.age = age,
+                this.sex = sex,
+                // 函数中添加this的时候借添加到变量名前面即可
+                this.sayHello = function () {
+                    console.log('名字：' + this.name + '年龄为：' + this.age + '性别：' + this.sex);
+                };
+        }
+
+        var xiaoqiang = new People('小强', '12', '男');
+        var xiaohong = new People('小红', '23', '女');
+        xiaoqiang.sayHello();
+        xiaohong.sayHello();
+    </script>
+</body>
+
+</html>

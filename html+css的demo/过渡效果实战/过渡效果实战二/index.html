@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+            position: relative;
+
+
+        }
+
+        div .img {
+            width: 500px;
+            height: 500px;
+            transform: rotate(0deg);
+            transition: transform 0.5s linear 0s;
+        }
+
+        div .imgs {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            margin-top: -50px;
+            left: 50%;
+            margin-left: -50px;
+            transform: rotate(0deg);
+            opacity: 0;
+            transition: all 0.5s linear 0s;
+        }
+
+        div:hover .img {
+            transform: rotate(360deg);
+        }
+
+        div:hover .imgs {
+            opacity: 1;
+            transform: rotate(-360deg) scale(1.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div><img class="img" src="./xz.jpg" alt="">
+        <img class="imgs" src="./xz.jpg" alt="">
+    </div>
+</body>
+
+</html>

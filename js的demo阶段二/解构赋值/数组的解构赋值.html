@@ -1,0 +1,94 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <script>
+        // 完成对[1,[2,3,4,5,67,1],1223]中3,4,5的取值
+        let [, [, a, b, c]] = [1, [2, 3, 4, 5, 67, 1],
+            1223
+        ]; //我先开始以为不想要的直接把数值写上去即可，后来发现用,进行标记即可，这样反而还方便一些，不得不说，这些创建js的人很聪明，不取值的直接用逗号进行跳过即可
+        console.log(a, b, c);
+
+        // 默认值
+        // 默认值
+        // 默认值
+        let [a1, b1] = [];
+        console.log(a1, b1); //undefined undefined
+        let [a2 = 1, b2 = 1] = []
+        console.log(a2, b2); //1 1
+        // 默认值生效的条件： 只有当一个数组成员严格等于 === undefined时，对应的默认值就会生效
+
+        // 默认值表达式
+        // 如果默认值是表达式的话，是惰性求值
+        function fun() {
+            console.log('我被执行了');
+            return 2;
+        }
+        let [x = fun()] = []; //如果里面有值的话就用不到默认值了，这样默认值中的函数就会执行一遍，返回的值通过打印可以查看
+        // console.log(x);
+
+        // 常见的类数组的解构赋值
+        // 常见的类数组的解构赋值
+        // 常见的类数组的解构赋值
+        // arguments的使用
+        function add(a, b) {
+            console.log(arguments);
+            let [c, d] = arguments;
+            console.log(c, d)
+        }
+        add(1, 2);
+
+
+        // nodeList的使用
+        var ps = document.querySelectorAll('p');
+        console.log(ps); //NodeList(4) [p, p, p, p]
+        let [z1, z2, z3, z4, z5] = ps;
+        console.log(z1, z2, z3, z4, z5); //前面正常输出标签。最后一个undefined值
+
+        // 函数参数的解构赋值,如果传进去是一个数组
+        // 老版本的写法
+        let arr = [1, 2, 3, 4];
+        let addd = arr => console.log(arr[0] + arr[1] + arr[2] + arr[3]);
+        addd(arr); // 我这个地方因为在函数中写了arr，变量arr就会传进去，天真了
+
+        let adddd = ([a, b, c, d]) => console.log(a + b + c + d);
+        addd(arr);
+
+        // 两个值进行互换
+        // 老办法
+        var p = 1,
+            l = 2;
+        var tmp;
+        tmp = p;
+        p = l;
+        l = tmp;
+        console.log(p, l)
+
+        // 使用解构赋值即可，配合数组即可
+        p = 1;
+        l = 2;
+        [l, p] = [p, l];
+        console.log(p, l);
+    </script>
+</body>
+
+</html>

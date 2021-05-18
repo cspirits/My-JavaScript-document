@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr1 = [1, 2, 3, 2, 4, [1, 2, 3],
+            [123, 2, 3, [122, 213, [2222, [123123, [123, 123]]]]]
+        ];
+
+        function deepClone(arr) {
+            var result = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (Array.isArray(arr[i])) {
+                    result.push(deepClone(arr[i]));
+                } else {
+                    result.push(arr[i]);
+                }
+            }
+            return result;
+        }
+
+        console.log(deepClone(arr1));
+    </script>
+</body>
+
+</html>

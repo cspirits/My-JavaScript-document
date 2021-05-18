@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+            position: relative;
+            perspective: 500px;
+        }
+
+        div img {
+            width: 500px;
+            height: 500px;
+        }
+
+        div img.cs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: 0 0;
+            transform: rotateY(0deg);
+            transition: transform 1s linear 0s;
+        }
+
+        div:hover img.cs {
+            transform: rotateY(-180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="./小猫.jpg" alt="" class="cat">
+        <img src="./xz.jpg" alt="" class="cs">
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* main */
+
+.box {
+    width: 100%;
+    height: 380px;
+}
+
+.box div {
+    width: 25%;
+    height: 380px;
+    float: left;
+    /* 这个项目的问题就出现在这里，我设置了所有的div，然后给div设置了 */
+    border: 0.1px solid rgb(102, 190, 0);
+}
+
+/* 图片部分 */
+.box .img-box img {
+    display: block;
+    width: 100%;
+    height: 380px;
+}
+
+/* 文字部分 */
+
+.box .article {
+    /* width: 25%; */
+    background-color: rgb(7, 203, 201);
+    padding-left: 20px;
+    /* position: relative; */
+}
+
+.box .article p:first-child {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+}
+
+.box .article p:nth-child(2),
+p:nth-child(3) {
+    font-size: 16px;
+    line-height: 10px;
+    margin-bottom: 15px;
+    color: rgb(255, 255, 255);
+}
+
+.box .article p:nth-child(4) {
+    font-size: 14px;
+    color: gray;
+    line-height: 20px;
+
+}
+
+/* 使用相对定位实现 */
+/* .box .article .btn {
+    width: 138px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background-color: #000;
+    line-height: 40px;
+    position: absolute;
+    left: 50%;
+    margin-left: -79px;
+    bottom: 100px;
+
+    为什么使用了div居中方式不可行？
+} */
+/* 以下是设置margin的情况，但是失效了 */
+/* 解决了，问题出在前面我设置了main中所有的div的float的属性，导致出现了错误 */
+.box .article .btn {
+    /* display: block; */
+    width: 138px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background-color: #000;
+    line-height: 40px;
+    margin: 30px auto;
+    float: none;
+    /* 使用这个属性来取消浮动也是可以的 */
+
+
+}

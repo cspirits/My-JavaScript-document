@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // TODO
+        // 这个题目主要是我没找到这个规律，挖槽了,那我怎么验证自己是对的呢？按照这个算法的话？
+        // 借鉴思路；1元   1瓶      
+        //			2元  5瓶  		
+        //			3元  11瓶		
+        //			4元  17瓶		
+        //			5元   23瓶	
+        function water(n) {
+            if (n == 1) {
+                return 1; //第一位与后面的数字没有规律  当计算一元钱时     直接return
+            } else if (n == 2) {
+                return 5;
+            }
+            return water(n - 1) + 6;
+        }
+        console.log(water(20));
+    </script>
+</body>
+
+</html>

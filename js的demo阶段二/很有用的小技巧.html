@@ -1,0 +1,66 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ##########################################################
+        // 创建一个构造函数 Calculator，它创建的对象中有三个方法：
+
+        // read() 使用 prompt 请求两个值并把它们记录在对象的属性中。
+        // sum() 返回这些属性的总和。
+        // mul() 返回这些属性的乘积。
+        // function Calculator() {
+
+        //     this.read = function () {
+        //         this.num1 = Number(prompt('num1'));
+        //         this.num2 = Number(prompt('num2'));
+        //     };
+        //     this.sum = function () {
+        //         return this.num1 + this.num2;
+        //     };
+        //     this.mul = function () {
+        //         return this.num1 * this.num2;
+        //     };
+        // }
+
+        let calculator = new Calculator();
+        calculator.read();
+
+        alert("Sum=" + calculator.sum());
+        alert("Mul=" + calculator.mul());
+
+        // ##########################################################
+        // ?.一个很神奇的符号,这个符号好像在vscode中不是支持的很好啊，我一使用就分成两部分了
+
+        // 小技巧：想要一个数字最快变成字符串的方式 ''+123123即可，一个空字符串+即可，包括布尔值，null，undefined都可以这些使用
+        // (''+123123)===((123123).toString()) // true 神奇吧，哈哈哈哈哈
+        // 又有一个小技巧，我擦了，在一个字符串前面添加+直接转换为number类型
+        // typeof (+'123') //"number"
+        // +true //1
+        // +undefined //NaN
+
+
+        // 最快清空数组的方式：arr.length = 0;
+
+        // 快速将数组转换为字符串，原本的方式:
+        // [1,2,3].toString()
+        // 试试这个
+        // [1,2,3]+''
+    </script>
+</body>
+
+</html>

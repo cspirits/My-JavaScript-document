@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* 此项目显示出大概效果，但是不是理想状态，写法有待提升  */
+/* 书写header部分 */
+
+.header {
+    font-size: 32px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.wenzi {
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    color: gray;
+    font-size: 14px;
+}
+
+.fgl {
+    width: 60px;
+    height: 3px;
+    background-color: rgb(7, 203, 201);
+    margin: 10px auto;
+}
+
+/* 书写main部分 */
+
+.box {
+    border: 1px solid #000;
+    position: relative;
+    width: 1201px;
+    height: 464px;
+    margin: 0 auto;
+}
+
+.box::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+/* 第一部分 */
+
+main .jinru {
+    width: 300px;
+    /* overflow: hidden; */
+}
+
+main .jinru:first-child {
+    margin-top: 20px;
+}
+
+main .jinru .xianshi {
+    font-family: serif;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+/* 为什么这个地方选不中啊 */
+/* 因为我没有写p这个标签名，导致浏览器不知道进入这个父元素之后要查找哪个标签，这个就是错误之处 */
+main .box .jinru p:nth-child(2) {
+    margin-bottom: 20px;
+    /* background-color: green; */
+}
+
+
+main .box .jinru .explore-box {
+    border: 1px solid #000;
+    width: 300px;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    z-index: 999;
+
+}
+
+main .box .jinru .explore-box .explore {
+    border: 1px solid #000;
+    width: 140px;
+    height: 40px;
+    margin: 20px;
+    margin-left: 0;
+
+}
+
+
+/* 第二部分 */
+
+.img {
+
+    width: 650px;
+    height: 435px;
+    position: absolute;
+    top: 30px;
+    left: 250px;
+    z-index: 99;
+
+}
+
+
+/* 第三部分 */
+
+.num-box {
+    float: right;
+    /* border: 1px solid rgb(7, 203, 201); */
+    margin-top: -150px;
+}
+
+.num-box .num {
+    width: 260px;
+    height: 200px;
+    border: 1px solid rgb(7, 203, 201);
+    margin-top: 10px;
+}
+
+.num-box .num p {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.num-box .num>:first-child {
+    margin-top: 40px;
+}
+
+
+.num-box .num .small {
+    font-size: 20px;
+}

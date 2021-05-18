@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 水仙花数是这样的一个3位数:它的每个数位的数字的立方和等于它本身。 -->
+    <script>
+        // 得到用户输入的数值，不进行转换数值
+        var num = prompt('请输入想要查询的三位数值是否为水仙花数：');
+
+        // 进行拆位，使用字符串法
+        var ge = Number(num.charAt(2)),
+            shi = Number(num.charAt(1)),
+            bai = Number(num.charAt(0));
+
+
+
+        // 将输入值进行转换为数值类型
+        num = Number(num);
+
+        // 进行拆位，使用数学法
+        // var bai = Math.floor(num / 100);
+        // var shi = Math.floor(num / 10) % 10;
+        // var ge = num % 10;
+
+
+
+        // 写算法的时候按照剥洋葱一样一层一层进行
+        // 对数值进行三位数验证
+        if (!isNaN(num) && num >= 100 && num <= 999) {
+            // 进行判断
+            if (num == Math.pow(ge, 3) + Math.pow(shi, 3) + Math.pow(bai, 3)) {
+                alert('你输入的是水仙花数');
+            } else {
+                alert('你输入的数字不是水仙花数');
+            }
+        } else {
+            alert('你输入的不是三位数！！！');
+        }
+    </script>
+</body>
+
+</html>

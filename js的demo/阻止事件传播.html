@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="box1"></div>
+    </div>
+    <script>
+        var box = document.getElementById('box');
+        var box1 = document.getElementById('box1');
+
+        box.onclick = function (e) {
+            console.log("我是外盒");
+        }
+        box1.onclick = function (e) {
+            // 使用此方法就阻止了内部盒子的冒泡事件进行传播，捕获事件一样可行，但是一般写在内部事件中，捕获一般写在外部中，就是传播方向的选择上面
+            e.stopPropagation()
+            console.log("我是内盒");
+        }
+    </script>
+</body>
+
+</html>

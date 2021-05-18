@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p,
+        span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: aqua;
+            margin-top: 10px;
+        }
+
+        /* 选不中 */
+        div p:nth-child(3) {
+            background-color: azure;
+        }
+
+
+        /* 选中 */
+        div p:nth-child(5) {
+            background-color: black;
+        }
+
+
+        /* 选中第三个span */
+        div span:nth-of-type(3) {
+            background-color: cornflowerblue;
+        }
+
+
+        /* 选中第4个p */
+        div p:nth-of-type(4) {
+            background-color: red;
+        }
+
+        /* 这个地方从0开始算，4*0+1=1,4*1+1=5，以此类推 */
+        main p:nth-child(4n+1) {
+            background-color: crimson;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p></p>
+        <p></p>
+        <span></span>
+        <span></span>
+        <p></p>
+        <p></p>
+        <span></span>
+    </div>
+
+    <hr>
+
+    <main>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </main>
+</body>
+
+</html>

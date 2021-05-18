@@ -1,0 +1,58 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 点击开始，在div中不断显示content文本，点击关闭立即关闭即可
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button id="start">开始</button>
+    <button id="end">结束</button>
+    <div id="box"></div>
+    <script>
+        const startBtn = document.getElementById('start');
+        const endBtn = document.getElementById('end');
+        const box = document.getElementById('box');
+        // console.log(startBtn)
+
+        var show = {
+            content: 'Hello World',
+            timer: null,
+            start: function () {
+                startBtn.onclick = () => {
+                    clearInterval(this.timer);
+                    console.log(this.timer);
+                    this.timer = setInterval(() => {
+                        box.innerHTML += `${this.content}`;
+                        // console.log(this.content)
+                        // console.log('122')
+                    }, 1000);
+                }
+            },
+            end: function () {
+                // TODO
+                //这个地方我先开始设置为了箭头函数，导致函数本身也没了this，就会去全局？什么是全局啊？
+                endBtn.onclick = () => {
+                    console.log(this.timer);
+                    clearInterval(this.timer)
+                }
+            }
+        }
+
+        show.start();
+        show.end();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            name: 'xiaochen',
+            age: '12',
+            hobbits: ['bootball', 'pb', 'read'],
+            saySomething: function () {
+                alert('hello');
+            }
+        };
+
+
+        // 克隆的错误理解，这个是不进行克隆的
+        var obj1 = obj;
+        console.log(obj1 == obj); //true,因为只是将变量进行单纯的指向，并没有产生新的副本
+
+        // 浅克隆，使用for...in...,但是内部如果存在引用类型值的话，就会藕断丝连，只能针对部分数据全为基本类型值的时候，十分好用
+        var obj2 = {};
+        for (var k in obj) {
+            obj2[k] = obj[k];
+        }
+        console.log(obj2 == obj);
+
+        // 深克隆，将所有的键值对都进行克隆，完全克隆，两个完全不同的副本，和数组一样使用递归进行克隆
+
+        function deepClone(o) {
+            if (Array.isArray(o)) {
+                // 数组,这个地方的数组和对象的位置不能更换，为什么？因为数组的类型判断也是object，所以数组属于假对象，先判断数组之后再去判断真对象，这样就不会出现错误了
+                var result = [];
+                for (var i = 0; i < o.length; i++) {
+                    result.push(deepClone(o[i]));
+                }
+            } else if (typeof o == 'object') {
+                // 对象
+                var result = {};
+                for (var k in o) {
+                    result[k] = deepClone(o[k]);
+                }
+            } else {
+                // 基本类型值
+                var result;
+                result = o
+            }
+            return result;
+        }
+
+        var obj3 = {};
+        obj3 = deepClone(obj);
+        console.log(obj3);
+        console.log(obj3 == obj); //obj3和obj已经是完全不同的两个对象了，因为不存在藕断丝连的现象了
+    </script>
+</body>
+
+</html>

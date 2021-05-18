@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = new Number(123);
+        var b = new String('123');
+        var c = new Boolean(true);
+
+        console.log(a);
+        console.log(typeof a);
+        console.log(b);
+        // 我们得到的字符串中的对象object中对每个字符编了号码，这样我们就能明白为什么字符串可以使用b[num]进行访问，而不需要转换成数组了吧
+        console.log(typeof b);
+        console.log(c);
+        console.log(typeof c);
+
+
+        // 由此可见，数字基本类型值的原型链也是Number的原型
+        var d = 123;
+        console.log(d.__proto__ === Number.prototype);
+        console.log(String.prototype);
+        console.log(String.prototype.hasOwnProperty('sub')); //true
+        console.log(String.prototype.hasOwnProperty('substring')); //true
+        console.log(String.prototype.hasOwnProperty('substr')); //true
+        console.log(String.prototype.hasOwnProperty('slice')); //true
+
+    </script>
+</body>
+
+</html>

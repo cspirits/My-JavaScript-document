@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">按我创建一个新的列表项</button>
+    <ol id="list">
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+        <li>啦啦啦啦</li>
+    </ol>
+    <script>
+        var btn = document.getElementById('btn');
+        var list = document.getElementById('list');
+
+        btn.onclick = function () {
+            var li = document.createElement('li');
+            li.innerText = '我是新来的';
+            list.appendChild(li);
+        }
+
+        // 第一，相比于循环，内存消耗变少了，第二就是实现同样功能，代码量还少了
+        list.onclick = function (e) {
+            e.target.style.color = 'red';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <script>
+        // 数组的展开运算符
+        // 我想计算[1,2,3,4,5,222,-1]这个数值中最小值或者最大值
+        let arr = [1, 2, 3, 4, 5, 222, -1];
+        console.log(Math.max(...arr));
+        console.log(Math.min(...arr));
+        // 上面这两种写法完成了一种过程的实现就是将 [1,2,3]=>1,2,3  完成了这个过程，这个就是数组的展开运算符
+
+
+        // 区分剩余参数和展开运算符
+        // 剩余参数过程：1,2,3=>[1,2,4]
+        // 展开运算符：[1,2,3]=>1,2,3
+        // 经典问题：
+        let fun = (...args) => console.log(...args); //第一个三点是表示剩余参数的意义，后面三点表示的是将剩余参数得到的数组进行展开显示
+        fun(1, 2, 3);
+
+        // 将二维数组转换为一维数组，然后在将一维数组转换为列表的形式
+        console.log(...[...[1, 3, ...[1, 2], 3]]); //这个思想是很重要的
+
+
+        // 数组展开运算符的应用
+        // 实现数组的复制
+        let a = [1, 2, 3];
+        let b = [...a];
+        console.log(b); //[1, 2, 3]
+        // 测试两个数组的相关性是否存在
+        a[0] = 0;
+        console.log(a); //[0, 2, 3]
+        console.log(b); //[1, 2, 3]
+        // 直接使用展开运算符就直接完成了数组的复制
+
+        // 合并数组
+        let arr1 = [1, 2, 3, 4];
+        let arr2 = [5, 6, 7, 8];
+        let arr3 = [...arr1, ...arr2];
+        console.log(`合并之后的数组为${arr3}`);
+
+        // 字符串转换为数组
+        let str = '我爱你';
+        let strArr = [...str];
+        console.log(strArr);
+
+        // 常见的类数组转换为数组
+        // argumants类数组的操作
+        function qqq() {
+            console.log([...arguments]);
+        }
+        qqq(1, 2, 3, 4)
+
+        // NodeList类数组的操作
+
+        const ps = document.querySelectorAll('p');
+        console.log([...ps]); //就那么简单就将节点放进了数组之中
+    </script>
+</body>
+
+</html>

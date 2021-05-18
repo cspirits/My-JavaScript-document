@@ -1,0 +1,126 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <script>
+        // 创建set，不能使用简单的方式，必须使用new对象的方式
+        const ss = new Set();
+        // 使用add()来给set添加成员
+        ss.add(1);
+        ss.add(2);
+        ss.add(1); //这个地方并没有添加两个1，由此可见，set是不允许重复值的
+        console.log(ss);
+
+        // set没有下标去表示每一个值， 所以set是无序的， 也不能像数组那样使用下标去访问里面的值
+
+        // 方法：
+        // add()添加成员
+        // 可以使用连续打点的方式进行不断添加
+        ss.add(1).add(2).add(3);
+        console.log(ss);
+        // has()判断成员是否在set中
+        console.log(ss.has(1));
+        // delete()删除指定成员
+        ss.delete(2);
+        console.log(ss);
+        // 使用delete删除一个不存在的值，既不会报错，也不会有任何操作
+        // clear()删除全部成员
+        ss.clear(); //全部删除之后
+        console.log(ss); //再去查看set中的情况
+
+        // forEach()
+        // 我先给set添加成员
+        ss.add(1).add(2).add(3).add(4).add('char');
+        ss.forEach(function (value, key, set) {
+            console.log(value);
+            console.log(this);
+        }, document); //后面还可以添加一个参数，就是关于this指向的
+
+        // 我改成了箭头函数之后， 最后一个参数的变化情况
+        ss.forEach((value, key, set) => {
+            console.log(value);
+            console.log(this);
+        }, document); //我将其中的函数改变为箭头函数之后，里面的this马上就指向了window对象，后面参数就失去了意义，所以在set的forEach方法中不可以使用箭头函数
+
+        // set的属性
+        // size
+        console.log(`ss这个set的长度为${ss.size}`);
+
+        // set构造函数中的参数
+        // set构造函数中的参数
+        // set构造函数中的参数
+        // 使用数组来传递参数
+        let s = new Set([1, 2, 3, 4, 5, 6, 7, 1]);
+        console.log(s);
+        // 使用字符串来传递参数
+        console.log(new Set('我爱你'));
+        // 使用函数中的arguments来传递参数
+        function s1() {
+            console.log(new Set(arguments));
+        }
+        s1(1, 2, 3, 4)
+        // 使用NodeList来传递参数
+        const ps = document.querySelectorAll('p');
+        console.log(new Set(ps));
+        // 使用一个set来作为另一个set的参数，这个也相当于复制了一个新的set
+        console.log(new Set(ss));
+        console.log(new Set(ss) === ss); //两个是不相同的
+
+        // set中判断重复的方式
+        // set对于重复值的判断基本遵循===严格相等
+        // 但是在前面学习中， 我们知道NaN是不自等的， 但在set中NaN是相同的， 只会添加一次
+        console.log(new Set([NaN, NaN, 1, 2, 3]));
+        console.log(new Set([{}, {}, {}])); //添加三个空对象，是否成功？Set(3) {{…}, {…}, {…}}，成功的，因为引用类型中，空对象并不相等
+
+        // 什么时候使用set？
+        // 1 给数组或者字符串去重的时候
+        let arr = [1, 2, 3, 4, 1, 1];
+        console.log(new Set(arr));
+        // 2 不需要通过下标进行访问的时候，只需要遍历的时候，但是使用数组好像也没什么问题
+        // 3想要使用set提供的方法和属相的时候
+
+        // 数组和set之间的互相转换
+        // 数组=>set
+        let arrr = [1, 2, 3, 4, 5];
+        let ssss = new Set(arrr);
+        console.log(ssss);
+        // set=>数组
+        let arrrr1 = new Array(...ssss); //使用展开运算符对set进行展开
+        console.log(arrrr1);
+
+
+        // 字符串去重
+        // 给'asdasdsaghasbdhgashdugyuwqgaesugdysgdhavhsahgdga'去重
+        let str = 'asdasdsaghasbdhga123123123123shdu12312312312gyuwqgaesugdysgdhavhsahgdga';
+        let quchongSet = new Set(str);
+        console.log([...quchongSet].join(''));
+
+        // 批量操作dom
+        new Set(document.querySelectorAll('p')).forEach(function (elem) {
+            elem.style.color = 'red';
+            elem.style.backgroundColor = 'green';
+        });
+    </script>
+
+</body>
+
+</html>

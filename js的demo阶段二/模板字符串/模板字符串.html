@@ -1,0 +1,64 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const person = {
+            name: 'xioachen',
+            sex: '男',
+            age: 12,
+            school: 'huainanshifanxueyuan'
+        };
+
+        // 使用普通字符串进行对象的输出
+        console.log('我叫' + person.name + '性别为:' + person.sex + ',今年' + person.age + '了，我在' + person.school + '上学');
+
+        // 使用模板字符串进行对象的输出,明显输出和逻辑上面都比第一个要好写很多
+        console.log(`我叫${person.name},性别为：${person.sex},今年${person.age}了，我在${person.school}上学`);
+
+        //关于多行文本输出
+        // 普通字符串
+        const rows1 = '第一行 第二行' //查看是否有中间的空格
+        const rows2 = '第一行\n第二行' //普通字符串进行了换行
+        // 模板字符串
+        const rows3 = `第一行\n第二行` //完美继承了普通字符串
+        const rows4 = `第一行
+        第二行`
+        console.log(rows1);
+        console.log(rows2);
+        console.log(rows3);
+        console.log(rows4);
+
+        // 关于转义字符\
+        // 这个时候我想要输出一个字符串包含  `'\'\|><
+        console.log(`  \`'\\'\\|><`); //你可以尝试输出，然后哪一个少了，给哪一个添加转义符号即可
+
+        // 模板字符串的注入
+        // 模板的注入可以是任何形式，只要最终能得到一个值即可
+        const test = {
+            name: 'chen',
+            sex: 'male',
+            getSex: function () {
+                return this.sex === 'male' ? '男' : '女';
+            }
+        };
+
+        console.log(`${test.name},sex:${test.sex},性别:${test.getSex()}`); //模板有点吊啊，真就什么都可以注入，这样写就很方便了
+    </script>
+</body>
+
+</html>

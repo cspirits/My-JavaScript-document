@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .box .box1{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background-color: aqua;
+            position: absolute;
+            /* 使用绝对定位的方式先选择高度的50%，然后往上margin一下高度的一半即可 */
+            top: 50%;
+            margin-top: -50px;
+            /* 想要实现绝对定位的水平居中，选择左边距的50%，然后往左margin一下左边距的一半即可 */
+            left: 50%;
+            margin-left: -50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box1">
+
+        </div>
+    </div>
+</body>
+
+</html>

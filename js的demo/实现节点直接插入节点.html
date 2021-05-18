@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="box"></div>
+    <script>
+        // 实现节点直接插入到父节点之后，不需要挂载操作
+        function guazai(father, ele, eleInnerHTML) {
+            var ele = document.createElement(ele);
+            ele.innerHTML = eleInnerHTML;
+            father.appendChild(ele);
+        }
+
+        var box = document.getElementById('box');
+
+        // 测试：一个div中添加一个p节点
+        guazai(box, 'p', '我是一个小垃圾');
+        guazai(box, 'div', '我是一个div');
+    </script>
+</body>
+
+</html>

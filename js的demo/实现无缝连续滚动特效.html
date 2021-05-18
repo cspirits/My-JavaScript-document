@@ -1,0 +1,106 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            border: 1px solid #000;
+            width: 600px;
+            height: 100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #ul {
+            width: 1320px;
+            height: 100px;
+            position: relative;
+
+        }
+
+        #li {
+            height: 100px;
+            width: 100px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        #li>img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #li:nth-child(odd) {
+            background-color: aqua;
+        }
+
+        #li:nth-child(even) {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <ul id="ul">
+            <li id="li"><img src="../../../../个人信息/我的爱情/写给方璐的情书邮件（2021年1月11日）/我和方璐的作品 (1).jpg" alt=""></li>
+            <li id="li"><img src="../../../../个人信息/我的爱情/写给方璐的情书邮件（2021年1月11日）/我和方璐的作品 (2).jpg" alt=""></li>
+            <li id="li"><img src="../../../../个人信息/我的爱情/写给方璐的情书邮件（2021年1月11日）/我和方璐的作品 (3).jpg" alt=""></li>
+            <li id="li"><img src="../../../../个人信息/我的爱情/写给方璐的情书邮件（2021年1月11日）/我和方璐的作品 (4).jpg" alt=""></li>
+            <li id="li"><img src="../../../../个人信息/我的爱情/写给方璐的情书邮件（2021年1月11日）/我和方璐的作品 (5).jpg" alt=""></li>
+            <li id="li"><img src="../../../../个人信息/我的爱情/写给方璐的情书邮件（2021年1月11日）/我和方璐的作品 (6).jpg" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        var obox = document.getElementById('box');
+        var oul = document.getElementById('ul');
+        var oil = document.getElementById('li');
+
+        oul.innerHTML += oul.innerHTML;
+
+        // 设置全局变量
+        var left = 0;
+        var timer;
+
+
+        move();
+
+        function move() {
+            // 想要设置定时器之前先要关闭定时器
+            clearInterval(timer);
+            // 这个变量为什么可以先使用
+            // 解决：这个地方第一次拿到的时候undefined的，然后设置定时器之后，当定时器被设置成功之后再次进行设置的时候，那么就会先清除，然后再次设置定时器
+            timer = setInterval(function () {
+                left -= 2;
+                // 验收
+                if (left <= -660) {
+                    // 这地方的验收的具体数据我好像不会算啊
+                    // 解决：就是使用每个li加上边距的总和，但是为什么我会感觉oh之后是无缝的，但是不oh之后却是显示为连续不上啊
+                    left = 0;
+                }
+                oul.style.left = left;
+            }, 20);
+        }
+
+
+        obox.onmouseenter = function () {
+            clearInterval(timer);
+        }
+
+        obox.onmouseleave = function () {
+            move();
+        }
+    </script>
+</body>
+
+</html>

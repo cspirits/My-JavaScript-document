@@ -1,0 +1,230 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript:小陈家具项目，实现原生js基本功能，轮播图等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小陈家具城主页</title>
+    <meta name="Keywords" content="小陈家具,小陈,家具，蜡笔小陈，LaBiXiaoChen">
+    <meta name="Descript" content="小陈家具你值得拥有">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
+</head>
+
+<body>
+    <!-- 顶部区 -->
+    <header class="header">
+        <div class="center">
+            <!-- 服务热线区域 -->
+            <div class="tel">服务热线：185-5504-5779</div>
+        </div>
+    </header>
+    <!-- 导航区 -->
+    <nav class="nav-part">
+        <div class="center">
+            <h1>陈家居</h1>
+            <ul class="nav-part-logo">
+                <li>
+                    <img src="./imgs/small-logo1.png" alt="网站首页">
+                    <p>网站首页</p>
+                </li>
+                <li>
+                    <img src="./imgs/small-logo(2).png" alt="关于我们">
+                    <p>关于我们</p>
+                </li>
+                <li>
+                    <img src="./imgs/small-logo(3).png" alt="服务建设">
+                    <p>服务建设</p>
+                </li>
+                <li>
+                    <img src="./imgs/small-logo(4).png" alt="产品中心">
+                    <p>产品中心</p>
+                </li>
+                <li>
+                    <img src="./imgs/small-logo(5).png" alt="服务大厅">
+                    <p>服务大厅</p>
+                </li>
+            </ul>
+
+            <div class="nav-part-search">
+                <input type="text" placeholder="请输入搜索内容">
+                <div><img src="./imgs/search.png" alt="搜索标志"></div>
+            </div>
+        </div>
+    </nav>
+    <!-- banner区 -->
+    <div class="slide" id="slide">
+        <ul class="slide-group">
+            <li class="slide-item red"><a href="">
+                    <img src="./imgs/banner01-banner01.png" alt="">
+                    <!-- <p>这是第一张</p> -->
+                </a></li>
+            <li class="slide-item blue"><a href="">
+                    <img src="./imgs//banner02-banner02.png" alt="">
+                    <!-- <p>这是第二张</p> -->
+                </a></li>
+            <li class="slide-item pink"><a href="">
+                    <img src="./imgs/banner03-banner03.png" alt="">
+                    <!-- <p>这是第三张</p> -->
+                </a></li>
+        </ul>
+        <div class="arrow prev" id="btn-prev"></div>
+        <div class="arrow next" id="btn-next"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+    <!-- 商品区和了解我们区 -->
+    <section class="goods-and-understand-part">
+        <div class="center">
+            <!-- 商品区 -->
+            <section class="goods">
+                <div class="btn-l btn" id="btn-l">
+                    <img src="./imgs/箭头按钮-prev_active-箭头按钮-prev_active.png" alt="向左图标">
+                </div>
+                <div class="goods-show" id="goods-show">
+                    <ul class="goods-ul" id="goods-ul">
+                        <li>
+                            <img src="./imgs/product01-product01.png" alt="">
+                            <p>时尚卫生间墙面颜色
+                                2029装饰设计</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product02-product02.png" alt="">
+                            <p>现代北欧风格厨房装
+                                2029饰效果图</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product03-product03.png" alt="">
+                            <p>现代时尚北欧风格卧
+                                2029室装饰画</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product04-product04.png" alt="">
+                            <p>130平简约现代北欧
+                                2029风格装修</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product05-product05.png" alt="">
+                            <p>现代北欧风格小客厅
+                                2029装修设计</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product06-product06.png" alt="">
+                            <p>时尚卫生间墙面颜色
+                                2029装饰设计</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product07-product07.png" alt="">
+                            <p>现代北欧风格小客厅
+                                2029装修设计</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product08-product08.png" alt="">
+                            <p>时尚卫生间墙面颜色
+                                2029装饰设计</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product09-product09.png" alt="">
+                            <p>现代北欧风格小客厅
+                                2029装修设计</p>
+                        </li>
+                        <li>
+                            <img src="./imgs/product10-product10.png" alt="">
+                            <p>时尚卫生间墙面颜色
+                                2029装饰设计</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-r btn" id="btn-r">
+                    <img src="./imgs/箭头按钮-next_active-箭头按钮-next_active.png" alt="向右图标">
+                </div>
+            </section>
+            <!-- 与商品区的中间的显示部分 -->
+            <div class="font-descript">
+                <p>了解我们</p>
+                <p>about us</p>
+            </div>
+            <!-- 了解我们区 -->
+            <section class="understand-part">
+                <!-- 左边文字部分 -->
+                <aside class="font">
+                    <p>关于我们</p>
+                    <p>慕家居装饰材料有限公司</p>
+                    <div></div>
+                    <p>慕家居家居装修网北欧风格家<br>
+                        具图片专区,是国内海量全面的<br>
+                        高质量北欧风格家具图片库…</p>
+                    <div>了解更多</div>
+                </aside>
+                <!-- 中间图片展示部分 -->
+                <div class="pic-show">
+                    <img src="./imgs/kownUs.png" alt="">
+                </div>
+                <!-- 右边按钮链接部分 -->
+                <aside class="btn-links">
+                    <ul>
+                        <li>
+                            <img src="./imgs/了解我们-guanggao-icon-了解我们-guanggao-icon.png" alt="">
+                            <div>
+                                <p>在线留言</p>
+                                <p>on-line message</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="./imgs/了解我们-liuyan-icon-了解我们-liuyan-icon.png" alt="">
+                            <div>
+                                <p>广告经营</p>
+                                <p>Advertising management</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="./imgs/了解我们-wangluo-icon-了解我们-wangluo-icon.png" alt="">
+                            <div>
+                                <p>网络咨询</p>
+                                <p>Network consultation</p>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+        </div>
+    </section>
+
+    <!-- 联系信息区和版权区 -->
+    <footer class="footer">
+
+        <!-- 联系信息区 -->
+        <section class="information-part">
+            <div class="center">
+                <p>陈家居</p>
+                <div>
+                    <p>咨询电话：010-88888888</p>
+                    <p>公司网址：www.imooc.com</p>
+                    <p>邮箱：KEFU@IMOOC.com</p>
+                </div>
+            </div>
+        </section>
+        <!-- 版权区 -->
+        <section class="copyright-part">
+            <div class="center">
+                <p>Copyright © 2020 imooc.com All Rights Reserved | 京ICP备 </p>
+            </div>
+        </section>
+
+    </footer>
+    <script src="./js/goods.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

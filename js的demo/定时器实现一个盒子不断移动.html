@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: absolute;
+            top: 100px;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="start">开始</button>
+    <button id="stop">结束</button>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box');
+        var ostart = document.getElementById('start');
+        var ostop = document.getElementById('stop');
+        var topx = 100;
+        var left = 0;
+        var timer;
+
+        ostart.onclick = function () {
+            // 设表先关
+            clearInterval(timer);
+            timer = setInterval(yidong, 500);
+        }
+
+        ostop.onclick = function () {
+            clearInterval(timer);
+        }
+
+
+
+
+        function yidong() {
+            // 这个地方为什么top值不会随着定时器改变啊
+            // 使用了保留字或者关键字作为变量名导致了错误，输出的window对象，下回明白了吧，以后js中最好使用这个老师的习惯，使用o开头代表对象的变量，比如otop这样的变量
+            topx += 20;
+            box.style.top = topx + 'px';
+            left += 20;
+            console.log(left);
+            box.style.left = left + 'px';
+        }
+    </script>
+</body>
+
+</html>

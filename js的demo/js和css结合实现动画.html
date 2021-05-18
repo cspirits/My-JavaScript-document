@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: absolute;
+            top: 100px;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn">按我进行运行</button>
+    <div id="box"></div>
+    <script>
+        // 这种写法存在一个问题：就是我连续点击这个按钮，就会导致这个div不断在两种状态来回切换
+        // 我点击按钮来回进行移动
+        var obox = document.getElementById('box');
+        var btn = document.getElementById('btn');
+        var left = 0;
+
+        // 设置标识变量
+        var pos = 1;
+        btn.onclick = function () {
+
+            if (pos == 1) {
+
+                obox.style.left = 800 + 'px';
+                obox.style.backgroundColor = 'blue';
+                obox.style.borderRadius = '50px';
+                obox.style.transition = 'all 2s linear 0s';
+                pos = 0;
+            } else if (pos == 0) {
+                obox.style.left = 0 + 'px';
+                obox.style.borderRadius = '0px';
+                obox.style.backgroundColor = 'red';
+                obox.style.transition = 'all 2s linear 0s';
+                pos = 1;
+            }
+        }
+
+
+        // 使用函数节流写法进行编写，控制时长
+        var obox = document.getElementById('box');
+        var btn = document.getElementById('btn');
+        var left = 0;
+
+        // 设置标识变量
+        var pos = 1;
+        var lock = true; //这个必须设置成全局变量才能使用函数节流
+        btn.onclick = function () {
+            if (!lock) return;
+            if (pos == 1) {
+
+                obox.style.left = 800 + 'px';
+                obox.style.backgroundColor = 'blue';
+                obox.style.borderRadius = '50px';
+                obox.style.transition = 'all 2s linear 0s';
+                pos = 0;
+            } else if (pos == 0) {
+                obox.style.left = 0 + 'px';
+                obox.style.borderRadius = '0px';
+                obox.style.backgroundColor = 'red';
+                obox.style.transition = 'all 2s linear 0s';
+                pos = 1;
+            }
+            // 关锁
+            lock = false;
+            // 指定时间来进行开锁
+            setTimeout(function () {
+                lock = true;
+            }, 2000);
+        }
+    </script>
+
+</body>
+
+</html>

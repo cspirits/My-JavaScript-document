@@ -1,0 +1,313 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 类名一般首字母大写，类名后不需要加小括号，最后也不需要加上;分号的
+        class Person {
+            // 实例化时，一般执行构造方法，所以必须要有构造方法，但是可以不写出来，就像java里面的构造函数一样，就算不写，编译器都会给你加上的
+            constructor(name, age, sex) {
+
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+                console.log(name, age, sex);
+                // 构造方法中一般只定义属性，方法一般不在构造方法中写，为什么因为设置在构造方法里面就会造成每个对象都会产生自己的单独的方法
+            }
+
+            // 方法一般在构造方法外面和构造方法是同等级的关系
+            // 各实例共享的方法
+            speak() {
+                console.log(`我是${this.name}哈哈哈`)
+            }
+        }
+
+        let xiaochen = new Person('xiaochen', 20, '男');
+        let xiaoli = new Person('xiaoli', 12, '女');
+        xiaochen.speak();
+        xiaoli.speak();
+        // 我们查看下两个方法是否使用的是同一份
+        console.log(xiaochen.speak() === xiaoli.speak()); //true在构造函数外面进行方法的编写，确实使其变成了各实例共享的方法
+
+
+        // class和构造函数之间的区别
+        // class和构造函数之间的区别
+        // class和构造函数之间的区别
+        // function Person(name, age, sex) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // 构造函数的方法添加在prototype上面
+        // Person.prototype.speak = function() {
+        //     // something
+        // }
+
+        // 由此可见，js前期是没有类的语法的 所以使用构造函数进行模拟类，现在有了类class就很少使用构造函数来进行编写了，而且class类的写法要比构造函数好写很多（虽然也差不多啊）
+
+        // 本质上面构造函数和class是一样的
+        console.log(typeof Person) //function可见就是构造函数
+        console.log(Person.prototype.speak);
+        // 输出为：
+        // ƒ speak() {
+        //     console.log(`我是${this.name}哈哈哈`)
+        // }
+        // 所以我们可以知道es6中只是将构造函数模拟类的方式单独拿出来进行了一个套壳产生了class
+        Person.prototype.run = function () {
+            console.log(`${this.name}跑起来了`);
+        }
+        xiaochen.run();
+        //我们通过在prototype中给class中添加了一个run方法，但是一样可以使用class的实例进行调用，本质上面这两个是没有区别的
+        console.log(Person.prototype.run);
+        // 使用prototype的好处是可以在任意位置添加你想要的方法，但是这样会造成阅读上面的困难，一般不建议那么做。这两个完全可以互相创建调用等都无所谓的
+
+        // class两种写法
+        // class两种写法
+        // class两种写法
+        // class的声明形式：上面所写的就是声明形式
+        // class的表达式形式：了解即可，一般使用的都是声明的形式
+        // const Person = class {};
+
+        // 立即执行的类
+        new(class {
+            constructor() {
+                console.log('我是立即执行的类中的显示')
+            }
+        })()
+
+        // 实例属性、静态方法和静态属性
+        // 实例属性、静态方法和静态属性
+        // 实例属性、静态方法和静态属性
+        // 实例属性
+        class Human {
+            // 这个地方设置属性， 实际上面是默认值的理解， 注意事项： 不需要前面的let / const之类的声明， 不是使用冒号：, 后面建议带上分号
+            // 实例属性
+            name = 'xiaochen';
+            age = 12;
+            sex = 'man';
+
+            // 实例方法,方法就是值为函数的特殊属性
+            getSex = function () {
+                return this.sex;
+            };
+
+            // 构造函数传输用户输入的值来改变其中的变量值
+            constructor(name, age, sex) {
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+            }
+
+            // 静态方法:类的方法，不需要通过实例化对象就能调用的方法
+            static sayNo = function () {
+                // console.log(`${this.name}说不`)
+                console.log(this.prototype);
+                //这里的this指向的是class本身
+            }
+
+            // 静态属性，不建议那么写，目前只是提案，有兼容性的问题，想要写就老办法，写在外面去
+            static version = 1.1;
+
+            // 放在外面会影响原则，放在里面有兼容性问题，写成没有兼容性问题的静态方法就好啦，这个老师的这个点子很聪明,推荐写成这种方法
+            static getVersion = function () {
+                return 1.3
+            }
+
+        }
+
+        // 通过在外面添加的方式来解决可能存在的兼容性问题，不得不说一句，js真的自由，但是这种写法违背了class封装的原则
+        Human.version = 1.2; //会直接修改
+        console.log(Human.getVersion());
+
+        const xiaowang = new Human('xiaowang', 2, 'feman');
+        console.log(xiaowang);
+        console.log(xiaowang.getSex());
+        Human.sayNo();
+        // 还可以通过直接给class添加方法创建类的方法
+        Human.goToSchool = function () {
+            console.log('我去上学啦');
+        }
+        Human.goToSchool();
+
+        // 访问类的静态属性
+        console.log(Human.version);
+
+        // 私有属性和方法
+        // 私有属性和方法
+        // 私有属性和方法
+        // 为什么需要私有属性和方法？
+        // 解决： 一般情况来说， 属性和方法都是公开的， 可以在class的外部进行访问和调用， 但是有些属性和方法， 我们希望不被其他人使用或者修改，公有的属性和方法会在外部被人为修改，这样就会造成意想不到的错误
+        // 因为es6中并没有私有属性和方法的定义或者其他的形式，但是我们可以模拟
+        // 方法1：我们使用下划线_开头表示私有，整个行业约定好的，通过设置一个约定俗成的习惯来保证属性和方法的私有，虽然外部依然是可以访问的，但是这样我们通过脚本判断你是否是刻意还是非刻意的。可以一定程度上面避免非专业人士的误访问,但是不具备很强的约束力
+        class Human1 {
+            static _name = 'xiaochen';
+            static name = 'xiaoli'; //这种静态属性的写法是不建议的哦，兼容性问题哦
+            _speak() {}
+        }
+        console.log(`我是可以访问你所谓的公有属性的哦${Human1.name}`);
+        console.log(`我是可以访问你所谓的私有属性的哦${Human1._name}`);
+
+        // 方法2：将私有属性和方法移出类，具有很强的约束力，这种是对私有有较要求的情况下使用
+        // 两个点：一个是使用IIFE形成封闭的作用域，然后将class暴露道歉全局，在全局或者另一个IIFE中进行访问或者调用，第二就是对this的使用，一定要确保不能使用this来破坏作用域的封闭性
+        (function () {
+            //神来之笔就在这个地方，将类添加到外部去
+            let name = '';
+            // 方法也是类似的
+            function getYourName() {
+                console.log(name);
+            }
+            class Person2 {
+                constructor(userName) {
+                    name = userName; //这个地方不能写成this.name不然就能访问函数的作用域了
+                }
+                // 我设置了一个访问到你传进来的name值的方法
+                getName() {
+                    console.log(name);
+                }
+            }
+
+
+            // 将IIFE中的Person2添加到全局作用域中， 这样就能访问到这个类了，将这个类暴露出去，这一步也是必须的
+            window.Person2 = Person2;
+        })(); //不要小看了这个分号，两个IIFE在一起的时候必须之间使用分号进行分割
+
+        // 这个之所以也写成一个IIFE的方式就是为了模块化
+        (function () {
+            let p = new Person2('xiaolaji');
+            console.log(p.name); //直接访问name是不可访问的
+            p.getName(); //可以使用class中自己设定的获取name的方法，而不能想访问class中属性和方法就能得到其中的属性和方法了
+            // p.getYourName(); //直接报错 p.getYourName is not a function
+        })()
+
+        // extends子类继承父类
+        // extends子类继承父类
+        // extends子类继承父类
+        console.log('extends子类继承父类');
+        // 先写一个父类
+        class Man {
+            constructor(name) {
+                this.name = name;
+                this.sayName = function () {
+                    console.log(`父类的sayName调用成功`);
+                }
+            }
+            speak() {
+                console.log(`父类的speak调用成功`);
+            }
+
+            static speak() {
+                console.log('父类的静态speak调用成功')
+            }
+        }
+        Man.version = 1.12; //完成了基本的父类属性和方法的定义
+
+        class Programmer extends Man {
+            constructor(name, sex) {
+                super(name);
+                // 添加子类自己的属性和方法
+                // 一个需要注意的点：this操作是不能在super前面的，否则是会报错的
+                this.sex = sex;
+            }
+            // 同名覆盖：子类中和父类中有相同的函数或者属性就会自动覆盖掉，调用的时候只会显示子类自己都独有的
+            speak() {
+                console.log('子类的speak调用成功');
+            }
+        }
+        Programmer.version = 1.3;
+
+        const zs = new Programmer('zs', '男');
+        // 我们查看一下这个子类继承了哪些东西？
+        console.log(zs.name); //成功
+        zs.sayName(); //成功
+        zs.speak(); //调用子类的speak()成功
+        console.log(Man.version); //成功
+        console.log(Programmer.version); //继承成功,也能单独显示自己的
+        Programmer.speak(); //调用成功
+
+        // 改写继承的属性和方法
+        // 访问子类自己的属性
+        console.log(zs.sex);
+
+        // super
+        // super
+        // super
+        // 1.作为函数调用，只能在子类的构造函数中使用，用在其他地方就会报错
+        class Parent {
+            constructor(name) {
+                this.name = name;
+                console.log(this); //super虽然代表父类的构造方法，但是内部的this还是代表子类的实例的//输出的是Son类
+            }
+        }
+        class Son extends Parent {
+            constructor(sex) {
+                super(name); //在子类中调用super()，相当于调用的父类的构造方法
+                this.sex = sex;
+            }
+        }
+        new Son();
+        // 2.作为对象来使用
+        // super作为对象使用的时候指代就是父类的prototype,此处指代的就是Parent.prototype
+        // 定义在实例中方法和属性(定义在this中)是无法通过super来调用的，只能通过类的实例来进行调用
+        // 通过super调用父类的方法时，内部的this指向的还是当前的子类实例
+        class Parent1 {
+            constructor(name) {
+                this.name = name;
+                console.log(this);
+            }
+            speak() {
+                console.log('我是父类的speak方法')
+            }
+            static speak() {
+                console.log('我是父类的静态方法')
+            }
+        }
+        class Son1 extends Parent1 {
+            constructor(sex) {
+                super(name);
+                this.sex = sex;
+
+                //下面两句话的意义是相同的，可见确实是super是指代了父类的prototype
+                super.speak();
+                Parent1.prototype.speak();
+
+                console.log(super.name); //undefined，这个属性在实例中，不在原型中
+            }
+            // 我们在子类中定义的同名方法，但是希望里面含有父类定义的方法，又有子类独有的代码
+            speak() {
+                super.speak();
+                console.log('我是子类的独有的语句');
+            }
+            // 在静态方法中调用父类
+            // 当在静态方法中调用父类的时候，super指代的是父类，而不是父类的原型
+            static speak() {
+                super.speak();
+                console.log('我是子类的静态方法中的调用');
+                // console.log(super);//不能直接输出，报错
+                console.log(this); //通过super调用父类的方法时，方法内部的this指向当前的子类，而不是子类的实例
+            }
+        }
+        let son1 = new Son1();
+        son1.speak(); //我是父类的speak方法  我是子类的独有的语句//不仅调用了子类独有的代码块，也调用了父类的代码块，没有被同名函数覆盖掉
+        Son1.speak(); //我是父类的静态方法  我是子类的静态方法中的调用//调用了父类的静态方法，但是super指代就是父类了，不是父类的原型
+        // 使用super的注意事项：1.使用super的时候，必须显式指定是作为函数还是作为对象使用，否则会报错
+        // console.log(super)//Uncaught SyntaxError: 'super' keyword unexpected here
+        //你除非直接输出super()，或者super.speak,这样就不会报错了
+        //这样使用super是错误的，因为浏览器不知道你的想用super做什么，就无法打印了(必须显式指定)
+    </script>
+</body>
+
+</html>

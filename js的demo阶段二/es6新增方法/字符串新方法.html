@@ -1,0 +1,85 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inp">
+    <button id="btn">提交</button>
+    <script>
+        // includes()判断字符串是否包含某些字符串
+        console.log('asdqwesd'.includes('asd'));
+        console.log('asdqwesd'.includes('123'));
+        console.log('asdqwesd'.includes('ad'));
+        // 第二个参数
+        console.log('asdqwesd'.includes('ad', 1)); //false
+
+        // includes()的应用
+        let url = 'https://www.bilibili.com/';
+        const addURL = (url, name, value) => {
+            url += url.includes('?') ? '&' : '?';
+            url += `${name}=${value}`;
+            return url;
+        }
+        console.log(addURL(url, 'c', 'fe'));
+
+        // padStart()和padEnd()补全字符串长度
+        // 原字符串是老大，并不会因为你的全部而又任何的改变
+        console.log('x'.padStart(5, 'ad')); //adadx
+        console.log('x'.padStart(4, 'ad')); //adax按照顺序进行重复补位，如果补不上去的话，就会补到哪位就写到哪位
+        console.log('x'.padStart(4, ' ')); //'   x'
+        // 注意事项
+        console.log('xxxx'.padStart(2, 'ad')); //如果原字符串的长度，等于或者大于最大长度的话，就会直接返回原字符串，并不会消减字符串，字符串补全不生效
+        console.log('xxx'.padStart(10, '012344555')); //用来补全的字符串与原字符串之和超过了最大长度，截去超出位数补全字符串，原字符串是不变的
+        console.log('x'.padStart(5)); //如果写了最大位数，但是后面没写用什么来进行填充的话，就会默认使用空格进行填充
+        console.log('x'.padEnd(5, 'ad')); //padStart()和padEnd()所有的功能基本类似
+
+        //padStart()和padEnd()应用：
+        // 还记得原来你写的自动倒计时的程序吗？那时候为了能自动给少于两位的日期进行补0操作，你是不是写了三个if判断，现在通过padStart()和padEnd()就可以很好的进行方便的补0操作了
+        // 将2020-01-02进行补位的思路
+        let timeObj = new Date();
+        let date = (timeObj.getDate()).toString();
+        let month = (timeObj.getMonth() + 1).toString();
+        let year = (timeObj.getFullYear()).toString();
+        console.log(`${year}-${month.padStart(2,0)}-${date.padStart(2,0)}`); //先开我没有对数据格式进行转换导致的错误
+
+        // trimStrat()和trimEnd()清除字符串的首或尾空格，中间的空格不会被清除
+        console.log('清除字符串的首或尾空格，中间的空格不会被清除');
+        const str = '  a    b   c  ';
+        console.log(str);
+        let strNew = str.trimEnd().trimStart(); //可以连写
+        console.log(strNew);
+        // trim()等于同时写trimStrat()和trimEnd()，首尾一起去
+        let str1 = '   123   ';
+        console.log(str1);
+        str1 = str1.trim();
+        console.log(str1);
+
+        // 应用：对用户提交的文本进行验证使用
+        const inp = document.getElementById('inp');
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', () => {
+            // console.log(inp.value);
+            if (inp.value.trim() == '') {
+                console.log('不能提交空');
+            } else {
+                console.log('可以提交');
+            }
+        }, false);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box');
+        box.style.width = "100px";
+        box.style.height = "100px"; //这个地方为什么不能出现空格啊，一旦出现空格就会显示不出来
+        box.style.backgroundColor = "red";
+
+        // box.onclick = function () {
+        //     box.style.width = "200px";
+        //     box.style.height = "200px";
+        //     box.style.backgroundColor = "blue";
+
+        // }
+
+        box.ondblclick = function () {
+            alert('你他妈点两下什么意思，你再点一次试试');
+        }
+
+        // box.onmousedown = function () {
+        //     alert('你妈的还敢点？挖槽了');
+        // }
+
+
+        box.onmouseup = function () {
+            alert('点了居然还敢松开，我揍你信不信');
+        }
+
+        box.onmouseenter = function () {
+            box.innerText = '你居然敢过来，fuck you';
+        }
+
+        box.onmouseleave = function () {
+            box.innerText = '你居然敢离开我';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建数组
+        var arr = [11, 222, 2, 2, -33, 24, 4, 4, 213, 4, 5, 43, 5, 345, 3];
+        // 数组的长度是从1开始的
+        // 数组的下标最大的是数组的长度 - 1
+
+
+        // 创建累加器
+        var sum = 0;
+        // 遍历数组
+        for (var i = 0; i < arr.length; i++) {
+            // 这个地方设置的时候是 < 数组的长度， <= 数组的长度 - 1
+            sum += arr[i];
+        }
+
+        // 打印输出
+        console.log(sum);
+
+        // 求数组的平均值
+        var avge = sum / arr.length;
+        console.log(avge);
+
+
+        // 求数字的最大值
+        var max = arr[0];
+        // 这个地方设置为数组的第一项效果最好，不要设置为0，这样就不能比较符号了，这样你也无法确定这个值最好设置为多少了
+        for (var i = 1; i < arr.length; i++) { //从1开始进行遍历，因为你的0项已经设置好了
+            if (arr[i] >= max) {
+                max = arr[i];
+            }
+        }
+        console.log('数组的最小值：' + max);
+
+        // 求数字的最小值
+        var min = arr[0];
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] <= min) {
+                min = arr[i];
+            }
+        }
+        console.log('数组的最小值：' + min);
+
+        // 数组去重
+        // 创建空数组，然后将原数组的值和新的数组的中值进行循环比较，如果不等，那就将这个数值推入到新的数值中，第一个值是必然要输入进去的
+        // 这个代码片段为什么和我预期不一样啊,先开始的错误是因为我设置j的范围的时候设置错误，从0开始，但是范围却是小于0，这样就整个代码块不会允许
+        // 创建空数组arrNew
+        // 将原数组arr[0]推入到arrNew中
+        // 用arr的第一个项去比较所有的arrNew的每一项
+        // 如果存在的话就下一个，不存在的话就推入进去
+        // 然后是arr的第二项，以此类推
+        // 输出arrNew数组
+        // var arr = [11, 222, 2, 2, -33, 24, 4, 4, 213, 4, 5, 43, 5, 345, 3];
+        // var arrNew = [];
+        // arrNew.push(arr[0]);
+        // var panduan = 0;
+        // // 显示当前数组的项
+        // console.log(arrNew);
+        // for (var i = 1; i < arr.length; i++) {
+        //     for (var j = 0; j < arrNew.length; j++) {
+        //         // 我只进行了单个值的判断，造成了输入了很多值进去
+        //         if (arr[i] == arrNew[j]) {
+        //             panduan = 1;
+        //         }
+        //         if (panduan == 0) {
+        //             arrNew.push(arr[i]);
+        //         }
+        //     }
+        // }
+        // console.log('去重方法一为：' + arrNew);
+        // TODO 这个地方有点进展，但是还是写不出来
+
+
+        // 思路：创建一个空数组，遍历原数组，如果遍历到原数组的值不在此空数组中，那么就就值推入空数组中，好思路啊，聪明
+        var arrNew = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (!arrNew.includes(arr[i])) {
+                arrNew.push(arr[i]);
+            }
+        }
+        console.log('去重使用判断最好：' + arrNew);
+
+        // 随机从原数组中取三项（不包含重复项）
+        // 思路:首先将数组进行去重，准备一个空结果数组，遍历原数组，随机选择一项，推入结果数组，并且将这项删除
+        var arrNew = [];
+        for (var i = 0; i < 3; i++) {
+            // 随机选择一项的下标， 数组的下标从0~到arr.length - 1
+            // rondom公式 parseInt(Math.random() * (b - a + 1)) + a
+            // 所以可得 parseInt(Math.random() * arr.length)
+            var n = parseInt(Math.random() * arr.length);
+            // 把这项推入到新的数组中去
+            arrNew.push(arr[n]);
+            // 删除添加的重复项，防止添加的项是重复的
+            arrNew.splice(n, 1);
+
+        }
+        console.log(arrNew);
+
+
+        // 冒泡排序
+        // 此处为趟数
+        for (var i = 1; i < arr.length - 1; i++) {
+            // 内层循环负责两两比较
+            // 难点就在于这个地方，为什么倒着写，因为是从下面往上面冒泡的
+            for (var j = arr.length-1; j >= i; j--) {
+                // 第一项比第二项小的，就进行交换
+                if (arr[j - 1] > arr[j]) {
+                    var tem = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = tem;
+                }
+            }
+            console.log('第' + i + '趟的答案为：' + arr);
+        }
+        console.log('冒泡排序的答案为：' + arr);
+
+
+        // 深克隆和浅克隆之间的区别
+        // 浅克隆演示，思路：使用遍历数组中每一项得到基本类型数值push到新的克隆载体中
+        var num = [1, 2, 3, 4, 5, [1, 2, 3, 3, 3, 4]];
+        var numNew = [];
+
+        for (var i = 0; i < num.length; i++) {
+            numNew.push(num[i]);
+        }
+
+        console.log(numNew);
+
+        console.log(num == numNew); //我们期望的是false，因为这样就代表我们在内存中创建了两个不同的数组，引用类型比较的时候使用的址的比较
+
+        console.log(num[6] == numNew[6]); //这样就实现了数据不断的浅克隆，原数组的不断变化，也会影响新数组，这样就形成了外部是引用克隆，但是内部是基本类型的克隆
+    </script>
+</body>
+
+</html>

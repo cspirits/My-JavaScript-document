@@ -1,0 +1,25 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第一次做答对了很聪明
+        var a = 10;
+
+        function fun() {
+            a++; //a为undefined ,a++为NaN
+            var a = 5;
+            console.log('内部为:' + a); //5
+        }
+        fun();
+        console.log('外部为:' + a); //10
+    </script>
+</body>
+
+</html>

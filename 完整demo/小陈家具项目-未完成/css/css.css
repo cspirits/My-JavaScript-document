@@ -1,0 +1,384 @@
+/* 顶部区 */
+/* 顶部区 */
+/* 顶部区 */
+
+.header {
+    height: 40px;
+    background-color: #ffff;
+}
+
+.header .tel {
+    float: right;
+    font-family: Helvetica;
+    font-size: 18px;
+    color: #000;
+    line-height: 40px;
+}
+
+/* 导航区 */
+/* 导航区 */
+/* 导航区 */
+.nav-part {
+    height: 121px;
+    background-color: #0058AA;
+    padding-top: 19px;
+    padding-bottom: 11px;
+}
+
+/* h1部分 */
+.nav-part h1 {
+    width: 192px;
+    height: 91px;
+    font-family: Helvetica;
+    font-size: 64px;
+    color: #ffff;
+    line-height: 91px;
+    float: left;
+    margin-right: 116px;
+}
+
+/* ul图标部分 */
+.nav-part .nav-part-logo {
+    float: left;
+    width: 564px;
+    height: 91px;
+    margin-right: 77px;
+    padding-top: 20px;
+}
+
+.nav-part .nav-part-logo>li {
+    float: left;
+    /* background-color: #0058AA; */
+    margin-right: 60.9px;
+    text-align: center;
+}
+
+.nav-part .nav-part-logo>li:hover img {
+    background: green;
+    border-radius: 50%;
+    transition: background .5s ease 0s;
+}
+
+.nav-part .nav-part-logo>li:last-child {
+    margin-right: 0;
+}
+
+.nav-part .nav-part-logo>li>img {
+    width: 33px;
+    height: 33px;
+}
+
+.nav-part .nav-part-logo p {
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #ffff;
+    margin-top: 28px;
+
+}
+
+/* 搜索框部分 */
+.nav-part .nav-part-search {
+    float: left;
+    width: 251px;
+    height: 91px;
+    /* background-color: aqua; */
+    padding-top: 30px;
+}
+
+.nav-part .nav-part-search>input {
+    float: left;
+    width: 198px;
+    height: 37px;
+    border: 1px solid #D3D3D3;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+}
+
+.nav-part .nav-part-search>div {
+    width: 48px;
+    height: 39px;
+    float: left;
+    background: #0058AA;
+    text-align: center;
+    border-radius: 0 2px 2px 0;
+}
+
+.nav-part .nav-part-search>div>img {
+    width: 33px;
+    height: 33px;
+}
+
+/* banner区 */
+/* banner区 */
+/* banner区 */
+.banner {
+    height: 650px;
+    background-color: blue;
+}
+
+
+/* 轮播图部分未完成 */
+/* 轮播图部分未完成 */
+/* 轮播图部分未完成 */
+
+
+
+
+
+/* 商品区和了解我们区 */
+/* 商品区和了解我们区 */
+/* 商品区和了解我们区 */
+
+.goods-and-understand-part {
+    height: 760px;
+    /* background-color: fuchsia; */
+    padding-top: 38.3px;
+    position: relative;
+
+}
+
+/* 商品区部分 */
+
+/* 设置下边缘线条 */
+
+.goods {
+    border-bottom: 1px solid #808080;
+    overflow: hidden;
+    padding-bottom: 75px;
+}
+
+/* 设置按钮部分 */
+.goods-and-understand-part .btn,
+.goods-and-understand-part .goods-show,
+.goods-and-understand-part .goods-ul>li {
+    float: left;
+}
+
+.goods-and-understand-part .btn {
+    line-height: 235px;
+    width: 48px;
+}
+
+
+/* 设置所有图标部分 */
+.goods-and-understand-part .btn>img {
+    width: 48px;
+    /* height: 235px; */
+    height: 48px;
+}
+
+/* 设置图片展示部分 */
+.goods-and-understand-part .goods-show {
+    height: 235px;
+    width: 1056px;
+    overflow: hidden;
+    position: relative;
+}
+
+.goods-and-understand-part .goods-ul {
+    width: 2210px;
+    position: absolute;
+    /* left:-100px; */
+    transition: all .5s linear 0s;
+}
+
+.goods-and-understand-part .goods-ul>li {
+    width: 171px;
+    height: 235px;
+    margin-right: 50px;
+}
+
+.goods-and-understand-part .goods-ul>li>img {
+    width: 171px;
+    height: 175.7px;
+}
+
+/* 与商品区的中间的显示部分 */
+.font-descript {
+    overflow: hidden;
+    width: 140px;
+    height: 70px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-left: -70px;
+    background: #FFFFFF;
+    text-align: center;
+    border-bottom: 1px solid #0058AA;
+}
+
+.font-descript>p {
+    padding-bottom: 2px;
+}
+
+.font-descript>p:first-child {
+    font-family: Helvetica;
+    font-size: 32px;
+    color: #696868;
+}
+
+.font-descript>p:last-child {
+    font-family: Helvetica;
+    font-size: 18px;
+    color: #9B9B9B;
+}
+
+/* 了解我们区部分 */
+
+.goods-and-understand-part .understand-part {
+    padding-top: 73px;
+    /* background-color: red; */
+    overflow: hidden;
+}
+
+/* 设置所有的图片 */
+.goods-and-understand-part .understand-part img {
+    width: 40px;
+    height: 34px;
+}
+
+/* 各个部分进行浮动 */
+.goods-and-understand-part .understand-part aside,
+.goods-and-understand-part .understand-part .pic-show {
+    float: left;
+    margin-right: 147px;
+}
+
+/* 设置文字部分 */
+.goods-and-understand-part .understand-part .font>p:first-child {
+    font-family: Helvetica;
+    font-size: 26px;
+    color: #0058AA;
+    margin-bottom: 2px;
+}
+
+.goods-and-understand-part .understand-part .font>p:nth-child(2) {
+    font-family: Helvetica;
+    font-size: 21px;
+    color: #5A5A5A;
+    line-height: 41px;
+
+}
+
+.goods-and-understand-part .understand-part .font>div:nth-of-type(1) {
+    background: #0058AA;
+    height: 4px;
+    width: 142px;
+    margin-bottom: 20px;
+}
+
+.goods-and-understand-part .understand-part .font>p:nth-of-type(3) {
+    font-family: Helvetica;
+    font-size: 18px;
+    color: #7B7C7C;
+    line-height: 26px;
+}
+
+.goods-and-understand-part .understand-part .font>div:last-child {
+    width: 130px;
+    height: 38px;
+    background: #0058AA;
+    text-align: center;
+    line-height: 38px;
+    margin-top: 34px;
+    font-family: Helvetica;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.goods-and-understand-part .understand-part .font>div:last-child:hover {
+    background: red;
+    transition: all .1s linear 0s;
+}
+
+/* 中间图片展示部分 */
+.goods-and-understand-part .understand-part .pic-show>img {
+    width: 384px;
+    height: 256px;
+    margin-right: 50px;
+    background-color: gold;
+}
+
+/* 右边按钮链接部分 */
+.goods-and-understand-part .understand-part .btn-links {
+    margin-right: 0;
+    width: 231px;
+    height: 200px;
+    /* background-color: fuchsia; */
+}
+
+.goods-and-understand-part .understand-part .btn-links>ul>li>div,
+.goods-and-understand-part .understand-part .btn-links>ul>li>img {
+    float: left;
+}
+
+.goods-and-understand-part .understand-part .btn-links>ul>li {
+    overflow: hidden;
+    width: 201px;
+    height: 52px;
+    margin-bottom: 10px;
+    background: #CCCCCC;
+    padding: 14px 0 0px 30px;
+}
+
+.goods-and-understand-part .understand-part .btn-links>ul>li:hover {
+    transition: all .5s linear 0s;
+    background: #0058AA;
+}
+
+
+.goods-and-understand-part .understand-part .btn-links>ul>li>div {
+    margin-left: 19px;
+}
+
+.goods-and-understand-part .understand-part .btn-links>ul>li>div>p:first-child {
+    font-family: Helvetica;
+    font-size: 22px;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+.goods-and-understand-part .understand-part .btn-links>ul>li>div>p:last-child {
+    font-family: Helvetica;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+/* 联系信息区和版权区 */
+/* 联系信息区和版权区 */
+/* 联系信息区和版权区 */
+
+/* 联系信息区 */
+.footer .information-part {
+    height: 180px;
+    background: #06142F;
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #FFFFFF;
+    line-height: 40px;
+    padding-top: 53px;
+}
+
+.footer .information-part .center>p,
+.footer .information-part .center>div {
+    float: left;
+    margin-right: 101px;
+}
+
+.footer .information-part .center>p {
+    font-family: Helvetica;
+    font-size: 48px;
+    color: #FFFFFF;
+    line-height: 120px;
+}
+
+/* 版权区 */
+.footer .copyright-part {
+    height: 30px;
+    background: #202C46;
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 30px;
+}

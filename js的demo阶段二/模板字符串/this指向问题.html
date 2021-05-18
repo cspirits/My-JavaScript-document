@@ -1,0 +1,98 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 输出window对象
+        console.log(this);
+        console.log(window);
+        // 两种方法均可
+
+        // 一般函数的this指向问题
+        // 一般函数的this指向问题
+        // 一般函数的this指向问题
+        console.log('一般函数的this指向问题');
+
+        function add() {
+            console.log(this); //我写完的时候，这个地方的this是无法知道的
+        }
+
+        add(); //按理说没有人调用它，但是为什么会指定window呢？因为在非严格模式下面，会转换为window指向，在严格模式下面，会显示出undefined
+        window.add();
+        console.log(add() === window.add());
+        // 只要在函数的调用的时候， 才能知道this的最终指向，不掉用的时候是无法知道的
+        // this指向和函数在哪里没有关系， 只和谁在调用有关系（最终解释了）
+
+        // 箭头函数中的this
+        // 箭头函数中的this
+        // 箭头函数中的this
+        console.log('箭头函数中的this');
+        // 箭头函数是没有自己的this的
+        const calc = {
+            add: () => {
+                console.log(this);
+            }
+        }
+
+        calc.add(); //window{}神奇了
+        // 由于箭头函数没有自己的this，输出的时候，它会按照作用域链去外层找，calc中没有this，那么就会找到外部的window对象，this就会指向window对象
+
+        // 练习
+        const nana = {
+            add: function () {
+                const adder = () => {
+                    console.log(this);
+                }
+                adder();
+            }
+        }
+        nana.add(); //看到的是nana调用的
+        var add1 = nana.add; //我将nana中的add函数代码块给了add1这个变量
+        window.add1(); //使用window对象进行调用，发现依然可以使用，并且输出的还是window对象，始终记住一句话谁调用的，this指向谁
+
+
+        // 不适用箭头函数的场景
+        // 不适用箭头函数的场景
+        // 不适用箭头函数的场景
+        // 构造函数中不能使用箭头函数
+        // const Person = () => {};
+        // new Person(); //TypeError: Person is not a constructor报错，不是一个构造函数
+        // ？为什么？因为构造函数中最重要的就是this来创建属性，但是箭头函数中是没有this的，这个就是关键啊
+
+        // 需要this指向调用对象的时候
+        document.addEventListener('click', function () {
+            console.log(this);
+        }, false); //点击浏览器document部分会弹出对象为#document
+        // 简化为箭头函数之后看看效果
+        document.addEventListener('click', () => {
+            console.log(this);
+        }, false); //点击浏览器document部分会弹出对象为window对象，因为没有本身的this，会按照作用域王外层去找，最终找到了window对象
+
+        // 需要使用arguments的时候
+        // 箭头函数中是没有arguments的,因为没有这个arguments量，后面可以使用剩余参数来进行判断
+        function count() {
+            console.log(arguments.length);
+        }
+        count(1, 2, 3, 4);
+
+        // const count1 = () => console.log(arguments);
+        // count1(); //ReferenceError: arguments is not defined
+    </script>
+</body>
+
+</html>

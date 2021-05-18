@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="./大厂面试题.jpg" alt="显示大厂面试题" style="width: 100;">
+    <script>
+        // 实现大厂面试题
+        // 获取用户输入的范围值
+        // 创建累加器sum = 0
+        // 创建累乘器p = n / (2n + 1)
+        // 循环进行累加累乘
+        // 最后得到的（sum+1）*2
+        var num = Number(prompt('请输入进行测算的圆周率的范围值：'));
+        var sum = 0,
+            p = 1; //因为是累乘器所以不能为0，不然任何数乘以0都为0
+        // 这个地方我出现了一个问题，我怎么才能快速反应出来应该用几层循环才能实现呢？
+        for (var i = 1; i <= num; i++) {
+            p *= i / (2 * i + 1);
+            sum += p;
+        }
+        alert((sum + 1) * 2);
+    </script>
+</body>
+
+</html>

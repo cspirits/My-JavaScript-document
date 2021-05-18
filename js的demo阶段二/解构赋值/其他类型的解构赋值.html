@@ -1,0 +1,48 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 字符串的解构赋值
+        // 字符串的解构赋值
+        // 字符串的解构赋值
+        // 按照数组形式进行解构赋值
+        let [a, b] = '123456';
+        console.log(a, b);
+        // 按照对象的形式进行解构赋值，但是是按照数值的下标进行标记的
+        let {
+            1: c,
+            2: d,
+            length //取出字符串的长度
+        } = '123456';
+        console.log(c, d, length);
+
+        // 数值和布尔值的解构赋值
+        // 数值和布尔值的解构赋值
+        // 数值和布尔值的解构赋值
+        // 先将等号右边的数值或者布尔值转换为对象，然后按照对象进行解构赋值，但是你会什么都得不到的
+        // 实际意义不大，这个我学的时候就感觉压根就用不到
+
+        // undefined和null的解构赋值
+        // undefined和null的解构赋值
+        // undefined和null的解构赋值
+        // 由于undefined和null无法转换为对象，所以对它进行解构赋值都会报错的
+        // 怎么理解呢？就是目前所用到的所有的解构赋值的方式都是数组和对象的解构赋值的翻版而已，所以这个类型的值必须能转换为对象或者数组，不然就失去了意义
+    </script>
+</body>
+
+</html>

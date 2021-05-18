@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var rootElement = document.documentElement;
+
+        window.outerHeight = 1000; //并不能实现去控制浏览器的大小
+
+        // onresize可以实时显示你改变外部的浏览器大小的数值变化
+        window.onresize = function () {
+            console.log(rootElement.clientHeight);
+            console.log(window.outerHeight);
+            console.log(window.outerHeight);
+        };
+
+        // onscroll可以实时显示你的移动的滚动条的数值变化
+        window.onscroll = function () {
+            console.log(window.scrollY);
+
+        };
+    </script>
+</body>
+
+</html>

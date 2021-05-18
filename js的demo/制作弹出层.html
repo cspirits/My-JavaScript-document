@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            margin: 0 auto;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 制作一个弹出层:点击按钮显示弹出层，点击网页任意地方，弹出层关闭 -->
+    <button id="btn">点击我显示弹出层</button>
+    <div id="box"></div>
+
+    <script>
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+
+        // 在写嵌套盒子的监听事件的时候务必要注意事件传播，务必使用合适的事件进行设计，或阻止默认事件或阻止默认出传播
+        btn.onclick = function (e) {
+            //这个地方我少写了e形参
+            e.stopPropagation();
+            box.style.display = 'block';
+        }
+
+        // 这个地方之所以只写传播阻止就行的原因是点击它的时候只要传播到document中的事件触发即可，保持原状即可，这样我们只要阻止传播即可，当然内部写一个显示为block也是不错的
+        box.onclick = function (e) {
+            e.stopPropagation();
+            // box.style.display = 'block';
+        }
+
+        // 这个之所以出错的逻辑是这样的：当你点击btn的时候，会显示，但是马上传播到document中的事件也会触发，这样就造成瞬间显示和隐藏，就没有完成效果设计，但是我们阻止了事件传播，这样就能显示出来了，但是外部冒泡事件是不向内部传播的，这样就能很好的实现功能了
+        document.onclick = function () {
+            box.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

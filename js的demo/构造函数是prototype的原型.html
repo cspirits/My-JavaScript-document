@@ -1,0 +1,72 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function People(name, age) {
+            this.name = name;
+            this.age = age;
+            // 这是在函数中，不是在对象中定义，所以里面每个算是语句。当然使用分号进行结尾
+        }
+
+        People.prototype.sayHello = function () {
+            console.log('我是' + this.name);
+        }
+
+        var xiaoqiang = new People('xiaoqiang', '23');
+
+        console.log(xiaoqiang);
+        console.log(People.prototype);
+        console.log(xiaoqiang.__proto__ === People.prototype);
+
+        People.prototype.nationality = '中国';
+        // 往原型上面添加了国籍的属性
+        console.log(xiaoqiang.nationality);
+        console.log(xiaoqiang.prototype);
+
+        var tom = new People('tom', '20');
+        tom.nationality = '美国';
+        console.log(tom.nationality);
+        // 这个地方体现了遮蔽效应，因为查找是由实例向原型查找的，如果实例中有这个属性的话，就不会再去查找这个原型了，直接得到该属性
+
+        // hasOwnProperty方法的使用
+        console.log(xiaoqiang.hasOwnProperty('name'));
+        //这个地方的属性要用引号进行包裹，因为是属性名称的样式，不包裹的话就会认为是变量了
+        console.log(xiaoqiang.hasOwnProperty('nationality'));
+
+        // in方法的使用
+        console.log('name' in tom);
+        console.log('nationality' in xiaoqiang);
+
+        //调用property中的函数，还能节约内存
+        xiaoqiang.sayHello();
+        tom.sayHello();
+        // 测试一下两个对象中的函数是一个函数吗？
+        console.log(xiaoqiang.sayHello === tom.sayHello);
+
+
+
+        // 原型链的终点
+        console.log(Object.prototype);
+        console.log(xiaoqiang.__proto__.__proto__ === Object.prototype); // true 可以看出实例的原型的原型就是object的原型
+        console.log(Object.prototype.__proto__); //  null 证明了object是没有上一层的原型的，是原型链的终点
+        // 下面两句证明了hasOwnProperty和toString都是在实例的原型的原型中保存着
+        console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); //true
+        console.log(Object.prototype.hasOwnProperty('toString')); //true
+
+
+        // 关于数组的原型链的问题
+        var arr = [123, 3, 4, 5, 6, 7, 8];
+
+        console.log(arr.__proto__.__proto__ === Object.prototype); //true
+        console.log(arr.__proto__); //查看数组的提供了哪些方法
+    </script>
+</body>
+
+</html>

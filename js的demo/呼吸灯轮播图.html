@@ -1,0 +1,103 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 160px;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 60px auto;
+            position: relative;
+        }
+
+        #box ul {
+            width: 160px;
+            height: 200px;
+            list-style: none;
+
+        }
+
+        #box ul li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity .5s linear 0s;
+            opacity: 0;
+        }
+
+        #box ul li:nth-child(1) {
+            opacity: 1;
+        }
+
+        #box ul li img {
+            width: 160px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul id="ul">
+            <li><img src="../../../../个人信息/我的爱情/你是我的文艺复兴.jpg" alt=""></li>
+            <li><img src="../../../../个人信息/我的爱情/黑猫揽月.jpg" alt=""></li>
+            <li><img src="../../../../个人信息/我的爱情/你是我的文艺复兴.jpg" alt=""></li>
+            <li><img src="../../../../个人信息/我的爱情/黑猫揽月.jpg" alt=""></li>
+        </ul>
+    </div>
+    <button id="le">左</button>
+    <button id="ri">右</button>
+
+    <script>
+        var le = document.getElementById('le');
+        var ri = document.getElementById('ri');
+        var lis = document.getElementsByTagName('li');
+        var ul = document.getElementById('ul');
+
+        // 设置变量查看第几张
+        var index = 0;
+
+        var lock = true;
+
+        ri.onclick = function () {
+            if (!lock) return;
+
+            lis[index].style.opacity = 0;
+            index++;
+            if (index > 3) index = 0;
+            lis[index].style.opacity = 1;
+
+            lock = false;
+
+            setTimeout(function () {
+                lock = true;
+            }, 500);
+        }
+
+        le.onclick = function () {
+            if (!lock) return;
+
+            lis[index].style.opacity = 0;
+            index--;
+            if (index < 0) index = 3;
+            lis[index].style.opacity = 1;
+
+            lock = false;
+
+            setTimeout(function () {
+                lock = true;
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>

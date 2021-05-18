@@ -1,0 +1,215 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            // resolve({
+            //     name: 'xiaochen'
+            // });
+            // reject(new Error('因为是垃圾代码'));
+        });
+        // Promise的三种状态： 一开始是panding(未完成等待状态)， 执行的是resolve变成fulfill(resolved)，已成功
+        // 执行reject之后， 就会变成rejected，已失败
+        // Promise一旦完成变化就不会再改变了
+        console.log(p);
+
+        // then方法
+        // then方法
+        // then方法
+        p.then(
+            (date) => {
+                console.log(date.name);
+            },
+            (err) => {
+                console.log('failed', err);
+            }
+        );
+
+        // 什么时候执行？
+        // pending->fulfilled时，执行then的第一个回调方法
+        // pending->rejected时，执行then的第二个回调方法
+        // 执行之后的返回值
+        // then方法执行后返回一个新的Promise对象
+        const p1 = new Promise((resolve, reject) => {
+            resolve();
+            // reject();
+        });
+
+        const p2 = p1.then(() => {
+                console.log('我是第一个then的成功回调');
+                return 1; //我传输过去一个1，应该会使用Promise进行包裹传输，如果想要使用不成功的函数，那就写return的完整形式，里面进行reject的调用
+                // return undefined;
+                // <=>
+                // return new Promise( resolve =>{  //默认情况下调用reslove，默认返回的永远都是成功状态的Promise
+                //  resolve(undefined);
+                // })
+            },
+            () => {}).
+        then((data) => {
+            console.log('我是第二个then的成功回调', data);
+        }, () => {
+            console.log('我是第二个then的失败回调')
+        }); //可以无限调用then，因为会不断返回新的Promise对象
+        console.log(p1, p2 === p1) //因为then会返回新的Promise对象，所以两个的不相同的
+        // 在then的回调函数中，return后面的东西会用Promise包装一下
+
+
+        // catch()
+        // catch()
+        // catch()
+        new Promise((resolve, reject) => {
+            reject(`\tcatch的传值方式`)
+        }).then(data => {
+            console.log(`成功${data}`);
+        }).catch(err => {
+            console.log(`失败${err}`);
+            throw new Error('因为你是垃圾'); //这个方式要比你前面写的new Promise方式书写下一个错误要方便很多，这个地方是直接抛出一个错误
+        });
+        // 前面如果发生了错误，那么如果有多个catch的话就会被第一个catch所捕获，除非再次发生错误
+
+        // finally()
+        // finally()
+        // finally()
+
+        new Promise((resolve, reject) => {
+                resolve();
+                reject();
+            })
+            .catch(err => {})
+            .finally(data => {
+                console.log(`我是finally中的data值：${data}`);
+            })
+        //本质也是then方法的特例
+        // fianlly方法等同于
+        new Promise((resolve, reject) => {
+                // resolve();
+                reject('我故意犯错，就是玩');
+            })
+            .catch(err => {
+                console.log(`你的错误是${err}`);
+            })
+            .then(data => {
+                    return data;
+                },
+                err => {
+                    throw new Error(err);
+                }) //这种then就是finally的本质，实质就是说将你给的东西原样返回，然后相当于不往下面的then进行传输了，这样就终结了then的传输链，完成了finally的功能
+
+        // Promise.resolve()和 Promise.reject()
+        // Promise.resolve()和 Promise.reject()
+        // Promise.resolve()和 Promise.reject()
+        // 成功状态
+        // new Promise(resolve => resolve());
+        // new Promise(reject => reject());
+        // 简写
+        Promise.resolve();
+        Promise.reject();
+        // 参数:
+        // 一般参数
+        Promise.resolve('我是简写版本的成功').then(data => {
+            console.log(`我是简写的then中输出的成功${data}`)
+        });
+        //当resolve函数接收的是Promise对象的时候，后面的then会根据传递的Promise对象的状态变化决定执行哪一个回调（简单了解一下即可）
+
+        //具有then方法的对象作为参数(用的更少)
+        let obj = {
+            then() {
+                console.log('我是含有then方法的对象');
+            }
+        }
+
+        Promise.resolve(obj).then(
+            data => {
+                console.log(`succed`)
+            },
+            err => {
+                console.log(`failed`);
+            }
+        )
+
+        // then之间不断向下传值,return data就会不断将值传递到后面的then中
+        Promise.resolve(`我是要不断往下传的的值`)
+            .then(data => data)
+            .then(data => data)
+            .then(data => console.log(`${data}`));
+
+        // Promise.all()
+        // Promise.all()
+        // Promise.all()常使用于原生js实现对ajax的实现中对装填的监控
+        // 关注多个Promise对象的状态变化
+        // 传入多个Promise实例， 包装成一个新的Promise对象返回
+        // Promise.all()的状态变化与所有传入的Promise实例对象的状态相关，所有的状态均为resolved的时候，最终的状态就会变成resolved，，只要有一个变成了rejected，状态就会变成rejected，当第一个参数的状态判定为rejected的时候，就会直接执行all()中的rejected状态，然后再去执行后面的的参数的Promise状态
+
+        const Promise1 = Promise.resolve(`我是Promise1的状态`)
+            .then(data => console.log(data));
+        const Promise2 = Promise.reject(`我是Promise2的状态`)
+            .then(data => console.log(data), err => {
+                console.log('我是Promise2失败的状态')
+            });
+
+        Promise.all([Promise1, Promise2]) //使用数组进行对Promise对象的传值
+            .then(data => {
+                console.log('我是all状态成功时的显示');
+            }, err => {
+                console.log('我是all状态失败的显示')
+            })
+
+        // Promise.race()和 Promise.allSettled()
+        // Promise.race()和 Promise.allSettled()
+        // Promise.race()和 Promise.allSettled()
+        // Promise.race() 的状态取决于第一个完成的Promise 实例对象，如果第一个完成的成功了， 那最终的就成功;如果第一个完成的失败了， 那最终的就失败
+        // Promise.allSettled()的状态与传入的Promise状态无关，永远都是成功的，它只会忠实的记录下各个Promise的表现
+
+        // 注意事项
+        // 注意事项
+        // 注意事项
+        // 1.reject或者resolve之后的代码执行情况
+        new Promise((resolve, reject) => {
+            return resolve();
+            reject();
+            console.log(
+                '我是Promise代码中多余代码显示，用于查看reject和resolve之后的代码输出情况的'
+            ); //是可以输出的，但是视频中介绍说不建议那么使用，Promise的中函数的使命就是完成状态的情况，额外再去写其他代码一般没有这个要求
+            //推荐在前面两个必要函数之前，加上return，让后面不执行，防止出现错误
+        })
+        // 2.Promise.all()/.race()/.allSettled的参数问题
+        // 参数如果不是Promise 数组，会将不是Promise的数组元素转变成 Promise 对象
+        // 例子：
+        Promise.all([1, 2, 3]).then(datas => console.log(`我是第一个不是Promise对象的参数测试${datas}`));
+        // 上面等价于下面
+        Promise.all([
+            Promise.resolve(1),
+            Promise.resolve(2),
+            Promise.resolve(3)
+        ]).then(datas => console.log(`我是第二个不是Promise对象的参数测试${datas}`));
+        //这个地方不一定是数组，任何可遍历的都可以作为参数
+
+        // 3.Promise.all()/.race()/.allSettled的错误处理
+        // 可以将每个添加进去的Promise对象自己去定义错误，自己处理自己的错误
+        Promise.all([
+            Promise.resolve(1),
+            Promise.resolve(2),
+            Promise.reject(3)
+        ]).then(datas => console.log(`我是第二个不是Promise对象的参数测试${datas}`)).catch(err => console.log(
+            `我是all的错误统一处理方式${err}`));
+        //错误既可以单独处理，也可以统一处理
+        //但是一旦被处理，就不会在其他地方被处理了
+    </script>
+</body>
+
+</html>

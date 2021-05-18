@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 父类，人类
+        function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        People.prototype.sayHello = function () {
+            console.log('我叫' + this.name + '我今年' + this.age + '岁，我是' + this.sex + '生');
+        }
+
+        // 子类，学生类
+        function Student(name, age, sex, scholl) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.scholl = scholl;
+        }
+
+        // 实现继承的关键语句.通过这个语句完成继承
+        Student.prototype = new People();
+
+        Student.prototype.study = function () {
+            console.log(this.name + '开始学习');
+        }
+
+        // 重写People的sayHello方法也称复写 override
+        Student.prototype.sayHello = function () {
+            console.log('老师好啊啊！！！！！我叫' + this.name + '我今年' + this.age + '岁，我是' + this.sex + '生');
+        }
+
+        // 创建实例
+        var xiaoqiang = new Student('xiaoqiang', '23', '男', '淮南师范学院');
+        var laozhang = new People('laozhang', '50', '男')
+
+        laozhang.sayHello();
+        // laozhang.study(); Uncaught TypeError: laozhang.study is not a function 父类无法调用子类的方法，因为子类继承父类，而父类无法继承子类的方法
+
+        xiaoqiang.sayHello(); //成功使用了People中的方法,并且完成了复写
+        xiaoqiang.study();
+    </script>
+</body>
+
+</html>

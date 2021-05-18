@@ -1,0 +1,147 @@
+<!--
+ * @Author: labixiaochen
+ * @LastEditors: Tt's me too
+ * @FirstEditTime: new Data()
+ * @sayings: 质量编码,解决问题
+ * @ObjectDescript: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <script>
+        const m = new Map();
+        var xinjianMap = () => {
+            m.set('name', 'xiaochen').set(new Set([1, 23, 4]), '一个set作为了键').set(undefined, '我是undefined').set(
+                function () {},
+                function () {});
+        }
+        xinjianMap();
+        // Map可以把基本数据类型和引用数据类型全部作为map的键
+        console.log(m);
+
+        // get()来获取成员，只能通过键来获取值，不能通过值来获取键的
+        console.log(m.get('name'));
+        console.log(m.get(undefined));
+
+        // has()判断成员是否在map中
+        console.log(m.has('name'));
+        console.log(m.has(undefined));
+
+        // delete()删除map中的成员
+        m.delete('name');
+        console.log(m);
+
+        // clear()清空map中所有成员
+        m.clear();
+        console.log(m);
+
+        // forEach()
+        xinjianMap(); //我调用一次上面常见map的函数而已，不必大惊小怪的
+        m.forEach(function (value, key) {
+            console.log(`键:${key},值:${value}`);
+        })
+
+        // size
+        console.log(`m这个map长度为${m.size}`);
+
+        // Map中构造函数的参数
+        // 数组作为参数传递
+        // 数组传递的时候必须使用二维数组，而且必须体现出键值对
+        console.log(new Map([
+            ['name', 'xiaochen'],
+            ['age', '20'],
+            [undefined, undefined]
+        ]));
+
+        // 使用set和map都基本也是使用二维数组的方式进行传递的，其中最重要的是体现出键值对的方式即可
+
+        // 使用map作为参数=>功能等同于复制一个map
+        let map1 = new Map([
+            ['name', 'xiaoli'],
+            ['age', '11']
+        ]);
+        let map2 = new Map(map1);
+        console.log(map1 == map2);
+
+        // Map中怎么判断键名相同的的方式
+        // 基本遵循严格相等===
+        // 例外NaN在map中也是保持相等的
+        let map3 = new Map([
+            [NaN, NaN],
+            [NaN, undefined]
+        ]); //键名相同，覆盖前面，而且NaN保持了相等
+        console.log(map3);
+
+        // 什么时候使用map？
+        // 1 如果想要kv对的结构的话， 或者需要字符串以外的值作为键，使用map合适一些
+        // 为什么那么说？ 因为map提供了循环遍历， 但是对象要使用for in才能进行遍历
+        // 2 对象的具体使用： 只有模拟现实世界的实体的时候，使用对象，对象体现了一种语义的理念在里面
+
+
+        // 批量对dom元素进行操作
+        let [p1, p2, p3] = document.querySelectorAll('p');
+        let mapp = new Map([
+            [p1, {
+                color: 'red',
+                fontSize: '24px'
+            }],
+            [p2, {
+                color: 'green',
+                fontSize: '10px'
+            }],
+            [p3, {
+                color: 'pink',
+                fontSize: '20px'
+            }]
+        ]);
+
+        mapp.forEach((color, elem) => {
+            for (item in color) {
+                elem.style[item] = color[item];
+            }
+        });
+
+
+        //使用map进行编写的
+        // 批量对dom元素进行操作
+        // let [p1, p2, p3] = document.querySelectorAll('p');
+
+        // let p11 = new Map([
+        //     ['color', 'red'],
+        //     ['fontSize', '24px'] //对象里面使用的字符串进行属性标记的
+        // ]);
+        // // console.log(p11);
+        // let p21 = new Map([
+        //     ['color', 'green'],
+        //     ['fontSize', '10px']
+        // ]);
+        // let p31 = new Map([
+        //     ['color', 'pink'],
+        //     ['fontSize', 'pink']
+        // ]);
+        // let mapp = new Map([
+        //     [p1, p11],
+        //     [p2, p21],
+        //     [p3, p31]
+        // ]);
+
+        // mapp.forEach((value, elem) => {
+        //     value.forEach((v, k) => {
+        //         elem.style[k] = v;
+        //     })
+        // });
+    </script>
+</body>
+
+</html>

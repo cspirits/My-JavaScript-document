@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 这个地方使用发现一个live server插件的问题，图片插入必须是同级或者下级文件夹中的文件，不能是其他文件夹中的文件 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            width: 1000px;
+            height: 300px;
+            margin: 100px auto;
+            list-style: none;
+        }
+
+        ul li {
+            width: 300px;
+            height: 300px;
+            margin-left: 10px;
+            float: left;
+            position: relative;
+        }
+
+        ul li img {
+            width: 300px;
+            height: 300px;
+        }
+
+        ul li div {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: aliceblue;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            opacity: 0;
+            background-color: rgba(255, 255, 255, .1);
+            transition: opacity 1s linear 0s;
+            text-align: center;
+        }
+
+        ul li:hover div {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>
+                <img src="./img.jpg" alt="城市">
+                <div>未来城市</div>
+            </li>
+            <li>
+                <img src="./img.jpg" alt="城市">
+                <div>未来城市</div>
+            </li>
+            <li>
+                <img src="./img.jpg" alt="城市">
+                <div>未来城市</div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

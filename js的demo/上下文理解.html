@@ -1,0 +1,34 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            name: 'li',
+            age: '12',
+            say: function () {
+                console.log('name为:' + this.name + '年龄为:' + this.age);
+            }
+        };
+        // 对象打点直接调用，上下文理解为obj对象
+        obj.say();
+
+        // 赋值给另一个变量，然后进行调用，上下文理解为window对象
+        var say = obj.say;
+        say(); //这个地方是将对象中的键的属性名赋值给一个变量，然后通过变量+括号的方式对函数进行调用
+
+        // 这个地方是先函数运行了一遍，得到了返回值，然后进行一个调用，但是里面的值是按照在obj对象中的返回值进行调用显示的
+        var say1 = obj.say();
+        say1;
+
+        // 由此可见，函数的上下文是用这个函数的调用方式决定的，this就会去找不同的对象作为上下文
+    </script>
+</body>
+
+</html>
