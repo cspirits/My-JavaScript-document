@@ -1,0 +1,104 @@
+.box {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 200% 100%;
+    flex-wrap: wrap;
+
+}
+div{
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+     margin: 0 10px;
+}
+.leaf-border{
+    border: 0;
+    border-radius: 10px;
+    background: #2ec3b6;
+    width: 100px;
+    height: 50px;
+    color: white;
+    padding: 15px 30px;
+    position: relative;
+    transition: border-radius 1s;
+}
+.leaf-border:hover {
+    border-bottom-right-radius: 80px;
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.border-effect{
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 160px;
+    height: 80px;
+    position: relative;
+    box-sizing: border-box;
+}
+.border-effect::before,.border-effect::after {
+    box-sizing: inherit;
+    position: absolute;
+    content: '';
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+}
+.border-effect::after {
+    bottom: 0;
+    right: 0;
+}
+.border-effect::before {
+    top: 0;
+    left: 0;
+}
+.border-effect:hover::before, .border-effect:hover::after{
+    width: 100%;
+    height: 100%;
+}
+.border-effect:hover::before{
+    border-top-color: #4361ee;
+    border-right-color:  #4361ee;
+    transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
+}
+.border-effect:hover::after{
+    border-bottom-color: #4361ee;
+    border-left-color:  #4361ee;
+    transition: border-color 0s ease-out,width 0.3s ease-out 0.6s, height 0.3s ease-out 1s;
+}
+/* 圆形 */
+.circle-effect {
+     border: 0;
+    border-radius: 50px;
+    padding: 10px 20px;
+    width: 100px;
+    height: 50px;
+    position: relative;
+    color: white;
+    background: #5f55af;
+    background: linear-gradient(to right, #f72585,#5f55af);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 2s ease;
+}
+.circle-effect-container {
+    position: relative;
+}
+svg {
+    background: #F72585;
+    padding: 8px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+    
+    position: absolute
+}
+.circle-effect:hover {
+    background-position: left bottom;
+}
