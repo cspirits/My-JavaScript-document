@@ -1,8 +1,8 @@
 <!--
  * @Date: 2021-05-25 21:44:24
  * @LastEditors: LaBiXiaoChen
- * @LastEditTime: 2021-05-25 21:45:21
- * @FilePath: \webpack插件HtmlWebpackPlugin\README.md
+ * @LastEditTime: 2021-05-25 22:07:10
+ * @FilePath: \github项目\js的demo阶段二\HtmlWebpackPlugin插件\README.md
 -->
 ## 1.npm install
 
