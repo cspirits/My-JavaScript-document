@@ -1,6 +1,6 @@
 <!--
  * @Author: labixiaochen
- * @LastEditors: Tt's me too
+ * @LastEditors: LaBiXiaoChen
  * @FirstEditTime: new Data()
  * @sayings: 质量编码,解决问题
  * @ObjectDescript: 点击开始，在div中不断显示content文本，点击关闭立即关闭即可
@@ -41,7 +41,6 @@
                 }
             },
             end: function () {
-                // TODO
                 //这个地方我先开始设置为了箭头函数，导致函数本身也没了this，就会去全局？什么是全局啊？
                 endBtn.onclick = () => {
                     console.log(this.timer);

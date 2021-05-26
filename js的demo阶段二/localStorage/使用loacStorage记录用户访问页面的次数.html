@@ -1,0 +1,32 @@
+<!--
+ * @Date: 2021-05-26 17:27:51
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-26 17:36:25
+ * @FilePath: \作业\3-4.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用localStorage记录用户访问页面的次数
+        let time = localStorage.getItem('time');
+        if (!time) {
+            localStorage.setItem('time', '1');
+        } else {
+            console.log((Number(localStorage.getItem('time')) + 1));
+            localStorage.setItem('time', `${(Number(localStorage.getItem('time')) + 1)}`);
+        }
+
+        document.write(`你已经访问了${localStorage.getItem('time')}`);
+    </script>
+</body>
+
+</html>

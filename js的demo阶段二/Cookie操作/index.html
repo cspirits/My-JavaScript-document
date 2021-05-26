@@ -1,0 +1,44 @@
+<!--
+ * @Date: 2021-05-26 15:17:53
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-26 16:01:40
+ * @FilePath: \Cookie操作\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 写入cookie
+        document.cookie = 'name=xiaochen';
+        document.cookie = 'age=21';
+        // 不能放在一起设置的，cookie必须一个一个设置
+        // document.cookie = 'name=xiaochen;age=21';是错误的
+        // 写入包含中文的cookie,含有中文的cookie的编码必须使用encodeURIComponent进行转码，这样在服务端就能看见正常的中文cookie了
+        document.cookie = `${encodeURIComponent('用户名')}=${encodeURIComponent('小陈同学')}`;
+        // 一般建议不要使用中文的name和value进行编码
+
+        // 读取cookie
+        // 含有中文的cookie的话就需要使用decodeURIComponent进行解码
+        console.log(decodeURIComponent(document.cookie)); //name=xiaochen; age=21
+        // 读取的是一个由名值对构成的字符串，每个名值对之间由“;”(一个分号和一个空格）隔开
+
+        // 设置cookie的寿命，设置cookie的Expires或Max-Age
+        // 设置一个有寿命限制的cookie值,值为date类型，设置属性expires
+        document.cookie = `sex=man;expires=${new Date('2021-5-27 00:00:00')}`;
+        // 设置一个有寿命限制的cookie值,值为数值类型，表示当前时间+多少秒之后过期，单位是秒，设置属性max-age
+        document.cookie = `language=Chinese;max-age=5`;
+        // 使用输出语句在控制台进行测试，输出cookie之后，确实消失了
+
+        // 如果max - age的值为负数或者0，则cookie就会被删除，可以利用此功能来删除cookie
+    </script>
+</body>
+
+</html>

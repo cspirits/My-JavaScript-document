@@ -1,0 +1,35 @@
+<!--
+ * @Date: 2021-05-26 17:11:29
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-26 17:15:04
+ * @FilePath: \js的demo阶段二\localStorage\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // localStorage的基本操作
+        // setItem设置key和value值
+        localStorage.setItem('username', 'labixiaochen');
+        console.log(localStorage.length);
+
+        // getItem获取
+        localStorage.getItem('username');
+
+        // removeItem删除
+        localStorage.removeItem('username');
+
+        // 一键删除
+        localStorage.clear();
+    </script>
+</body>
+
+</html>
