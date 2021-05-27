@@ -1,0 +1,66 @@
+<!--
+ * @Date: 2021-05-27 13:50:54
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-27 14:41:24
+ * @FilePath: \js的demo阶段二\Ajax\ajax实现前后端通信.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const url1 = `https://www.imooc.com/api/http/search/suggest?words=${encodeURIComponent('前端')}`;
+        const url2 = `https://www.imooc.com/api/http/search/suggest?words=js`;
+
+        const xhr1 = new XMLHttpRequest();
+        const xhr2 = new XMLHttpRequest();
+
+        // 先监听再去创建准备发送请求
+        xhr1.onreadystatechange = () => {
+            if (xhr1.readyState !== 4) return;
+            if ((xhr1.status >= 200 && xhr1.status <= 300) || xhr1.status === 304) {
+                console.log(xhr1.responseText);
+                console.log(typeof xhr1responseText);
+            }
+        }
+        xhr2.onreadystatechange = () => {
+            if (xhr2.readyState !== 4) return;
+            if ((xhr2.status >= 200 && xhr2.status <= 300) || xhr2.status === 304) {
+                console.log(xhr2.responseText);
+                console.log(typeof xhr2.responseText);
+            }
+        }
+
+        xhr1.open('GET', url1, true);
+        xhr1.send(null);
+        xhr2.open('POST', url2, true);
+        xhr2.send('username=xiaochen&age=18'); //携带数据在请求体中,一般为字符串，不能直接传递对象，不然会被转换成字符串
+        // xhr2.send({name:xiaochen,age:10})//返回[object object]这种是错误的写法
+
+        // 浏览器返回：
+        // {
+        //     "code": 200,
+        //     "data": [{
+        //         "word": "jsp"
+        //     }, {
+        //         "word": "js"
+        //     }, {
+        //         "word": "json"
+        //     }, {
+        //         "word": "js \u5165\u95e8"
+        //     }, {
+        //         "word": "jstl"
+        //     }]
+        // }
+        // string
+    </script>
+</body>
+
+</html>

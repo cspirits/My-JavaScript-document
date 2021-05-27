@@ -1,0 +1,66 @@
+<!--
+ * @Date: 2021-05-27 13:04:19
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-27 14:30:13
+ * @FilePath: \js的demo阶段二\Ajax\ajax基本用法..html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 因为Ajax想要实习浏览器和服务器之间的异步通信， 需要依靠XMLHttpRequest,它是一个构造函数，需要创建对象来实现功能
+        // 1.创建xhr对象
+        const xhr = new XMLHttpRequest();
+
+        // 2. 准备发送请求open()
+        // 伪代码
+        // xhr.open(
+        //     'HTTP方法 GET POST PUSH DELETE',
+        //     '地址 网络URL https://www.imooc.com/api/http/search/suggest?words=js 本地路径也可以 ./index.html或者其他路径',
+        //     true(true异步通信 false同步通信 一般直接写成异步， 都是用ajax了， 还是用同步不太好吧， 哈哈)
+        // );
+        // open并不会真正发送请求，而是做好了发送请求的准备
+
+        // 3.发送请求send()
+        // xhr.send(null);//如果是GET的话，带上null防止兼容性的问题
+        // 通过请求体来携带数据即可完成发送,因为使用请求体进行携带数据，所以前面如果选择的是GET的话，send()中就不能传数据进行
+
+        // 4.监听事件，处理响应,最好是在创建xhr对象之后就直接监听,放在open之前
+        // 当获取到响应之后，会触发xhr的readyStatechange事件，可以在该事件中对响应进行处理
+        // 这样写兼容性最好
+        xhr.onreadystatechange = () => {
+            // 判断状态
+            if (xhr.readyState !== 4) return;
+            // 判断HTTP状态码，获得响应之后响应内容会自动填充到xhr对象的属性中
+            // xhr.status: HTTP 200=>ok 404=>Not Found
+            // xhr.statusText:HTTP状态说明
+            if ((xhr.status >= 200 && xhr <= 300) || xhr.status === 304) {
+                // console.log('正常显示数据')
+                console.log(xhr.responseText); //数据会作为文本形式进行显示
+            }
+        };
+
+        // xhr.addEventListener('readystatechange', () => {}, false);
+        // readystatechange也可以配合addEventListener进行使用, 但是兼容性较差, IE6~8不支持addEventListener
+        // xhr的readyStatechange事件监听readyState状态的变化
+        // 值从0~4，一共五个状态
+        // 0:初始化。尚未调用open()
+        // 1:启动。已经调用open()，但尚未调用send()
+        // 2:发送。已经调用send()，但尚未接收到响应
+        // 3:接收。已经接收到部分响应数据
+        // 4:完成。已经接收全部的数据，而且可以在浏览器中使用
+
+        // 数据编码： 如果发送的数据是非英文字母的数据， 比如汉字，就需要编码在发送给后端，不然就会显示乱码问题
+        // 使用encodeURIComponent()进行编码
+    </script>
+</body>
+
+</html>
