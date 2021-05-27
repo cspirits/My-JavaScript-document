@@ -1,0 +1,10 @@
+{
+    "name": "xiaochen",
+    "age": 11,
+    "habby": ["足球", "篮球", "乒乓球", "保龄球"],
+    "family": {
+        "mam": "wang",
+        "dad": "chen",
+        "sister": "xiaomeimei"
+    }
+}
