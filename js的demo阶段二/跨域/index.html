@@ -1,0 +1,38 @@
+<!--
+ * @Date: 2021-05-27 23:05:42
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-27 23:39:04
+ * @FilePath: \js的demo阶段二\跨域\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用CORS跨域的过程
+        // 1.浏览器发动请求
+        // 2.后端在请求头中添加Access-Control-Allow-Origin的头信息
+        // 3.浏览器接收响应
+        // 4.如果在同域下的请求，浏览器不会做什么，前后端完成通信
+        // 5.如果是跨域请求，浏览器会从请求头中查找是否允许跨域访问
+        // 6.如果允许跨域访问，通信完成
+        // 7.如果没找到或者不允许跨域访问，就会丢弃响应结果
+        // CORS的兼容性问题:IE10及以上版本的浏览器可以正常访问CORS
+
+        // JSONP跨域方案
+        // JSONP的原理：script标签跨域不会被浏览器阻止，JSONP就是利用这一点加载跨域文件
+        // 手动加载JSONP接口或者动态加载JSONP接口，下面是动态加载JSONP的方法
+        // const script = document.createElement('script');
+        // script.src = 'url'//防止和后端约定好的加载数据
+        // document.body.appendChild(script);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!--
+ * @Date: 2021-05-28 11:33:14
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-28 12:43:15
+ * @FilePath: \js的demo阶段二\XHR\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // XHR的属性
+
+        const xhr = new XMLHttpRequest();
+        // responseText和response属性
+        // responseText和response属性
+        // responseText和response属性
+        // xhr.responseText文本形式的响应内容，只能在没有设置responseType或者responseType=''或者responseType='text'的时候使用
+        // responseType一般在xhr.open()进行设置，返回的响应内容的类型
+        // response可以替代responseText，无论是否设置了类型都是可以使用response来进行接收显示使用的
+
+        // timeout属性
+        // timeout属性
+        // timeout属性
+        // 设置响应的时间（单位：ms）
+        // 也是在open()后面使用
+        // ie6~7不支持，ie8开始支持
+
+        // withCredentials
+        // withCredentials
+        // withCredentials
+        // 指定了ajax发送过程中是否携带Cookie
+        // 使用ajax发送请求的时候，同域的情况下，是携带cookie的，但是跨域是不会携带的
+        // xhr.withCredentials = true;
+        // 最终能否携带cookie发送成功，还需要看服务器端能否同意
+        // ie10开始支持
+
+        // XHR的方法
+        // abort()
+        // abort()
+        // abort()
+        // 终止当前请求，一般配合abort时间来进行使用，一般在send()之后使用来取消请求
+
+        // setRequestHeader()
+        // setRequestHeader()
+        // setRequestHeader()
+        // 可以设置请求头的信息
+        // xhr.setRequestHeader(头部字段的名称,头部字段的值)
+        // 在open()后面进行使用，而且只能在使用post方法的时候使用，而且需要发送内容
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');这个是'username=xiaochen&age=10'格式，可以伪装成from表单发送的形式
+        // xhr.setRequestHeader('Content-Type', 'application/json');这个是json格式，这个也需要后端提供相对应的接口
+        // 请求头中设置这个字段， 就是为了告诉服务器， 浏览器发送的数据是什么格式的，目前这个方法最主要的功能就是设置这个字段，其他的字段浏览器出于安全考虑都会限制不让设置或者使用。这个就是通过程序进行约定，而不是通过口头进行约定了
+
+
+        // XHR事件
+        // load事件
+        // load事件
+        // load事件
+        // 响应数据可用的时候进行触发,使用load事件代替了readystatechange事件，在浏览器兼容性满足的情况下，建议使用load事件，ie6~8不支持
+
+        const url1 = `https://www.imooc.com/api/http/search/suggest?words=js`;
+
+        const xhr1 = new XMLHttpRequest();
+
+        // xhr1.onload = () => {
+        //     // if (xhr1.readyState !== 4) return;//因为是在响应数据可用的情况下，所以就不需要这一步进行响应情况是否成功的判断了
+        //     if ((xhr1.status >= 200 && xhr1.status <= 300) || xhr1.status === 304) {
+        //         console.log(xhr1.responseText);
+        //         console.log(typeof xhr1.responseText);
+        //     }
+        // }
+
+        // 这种写法最高级，也最好看
+        xhr1.addEventListener('load', () => {
+            if ((xhr1.status >= 200 && xhr1.status <= 300) || xhr1.status === 304) {
+                console.log(xhr1.responseText);
+                console.log(typeof xhr1.responseText);
+            }
+        }, false);
+
+        xhr1.open('POST', url1, true);
+        xhr1.send('username=xiaochen&age=18');
+
+        // error事件
+        // error事件
+        // error事件
+        // 请求发送错误的时候会触发，ie10开始支持的
+
+        const url2 = `https://www.百度傻逼.com`; //我提供一个错误的域名，测试一下error事件
+
+        const xhr2 = new XMLHttpRequest();
+
+        // 监听成功的情况
+        xhr2.addEventListener('load', () => {
+            if ((xhr2.status >= 200 && xhr2.status <= 300) || xhr2.status === 304) {
+                console.log(xhr2.responseText);
+                console.log(typeof xhr2.responseText);
+            }
+        }, false);
+
+        // 监听失败的情况
+        xhr2.addEventListener('error', () => {
+            throw new Error('你的请求好像失败了，你可以查看一下是否是域名书写错误导致的问题');
+            //Error对象是大写的首字母，先开始写错了，而且原生js提供的对象好像都是首字母大写
+        }, false);
+
+        // 监听请求取消的情况
+        xhr2.addEventListener('abort', () => {
+            console.log('因为检测到你的请求错误，所以你的请求取消了')
+        }, false);
+
+        // 监听timeout的情况
+        xhr2.addEventListener('timeout', () => {
+            console.log('请求超时了')
+        }, false);
+
+
+
+        xhr2.open('POST', url2, true);
+        xhr2.timeout = 10; //timeout是一个属性，在open后面进行使用
+        xhr2.send(null);
+
+        xhr2.abort(); //一旦启动abort事件之后，连错误都不会再次出现了，直接就取消了
+
+
+        // abort事件
+        // abort事件
+        // abort事件
+        // 当你调用abort方法终止请求的时候会触发，一定需要搭配abort()才能使用，不然无法调用完成，ie10之后支持
+        // 测试代码在error时间的演示代码中进行测试了，返回查看
+
+        // timeout事件
+        // timeout事件
+        // timeout事件
+        // 当你设置了timeout属性之后，超时就会触发，一定需要搭配timeout()进行使用，ie8开始支持
+        // 测试代码在error时间的演示代码中进行测试了，返回查看
+    </script>
+</body>
+
+</html>
