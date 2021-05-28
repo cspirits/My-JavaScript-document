@@ -1,0 +1,74 @@
+<!--
+ * @Date: 2021-05-28 13:23:20
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-28 15:03:54
+ * @FilePath: \js的demo阶段二\FromData\使用ajax进行表单的提交.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="login" action="https://www.imooc.com/api/http/search/suggest?words=js" method="POST"
+        enctype="multipart/form-data">
+        <!-- 表单提交的方式一共有三种，直接决定了js中的xhr的发送数据格式 -->
+        <input type="text" name="username" placeholder="用户名" />
+        <input type="password" name="password" placeholder="密码" />
+        <input id="submit" type="submit" value="登录" />
+    </form>
+    <script>
+        const login = document.getElementById('login');
+        // 获取表单中的字段,通过获取from之后进行打点name的方式来获取里面的字段
+        // console.log(login.username);
+        // console.log(login.password);
+        const {
+            username,
+            password
+        } = login;
+        const btn = document.getElementById('submit');
+        const url = `https://www.imooc.com/api/http/search/suggest?words=js`;
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); //阻止表单自动提交
+
+            //表单的数据验证（这里就不写了，前面练习中写过了，忘记了可以去查看，正则表达式中详解）
+
+            //ajax发送请求
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.addEventListener('load', () => {
+                if ((xhr.status >= 200 && xhr.status <= 300) || xhr.status === 304) {
+                    console.log(xhr.responseText);
+                }
+            }, false);
+
+            xhr.open('POST', url, true);
+
+            // 旧式写法
+            // const data = `username=${username.value}&password=${password.value}`;
+            // 这种写法只能适用于较少数据量中，要是数据量十分大的情况就会很繁琐，使用FromData就能很好的解决这种问题
+
+            // 使用FromData进行数据发送，这种连数据发送格式类型都不需要设置，就可以直接发送了，from表单处理好手啊
+            const data = new FormData(login);
+            data.append('name', 'xiaochen'); //在原本的login数据之后又添加了一些想要携带的数据
+            xhr.send(data);
+        }, false);
+
+        // FromData的用法，IE10及以上可以使用
+        // 通过html表单元素创建FormData对象
+        // const fd = new FormData();
+        // xhr.send(fd);
+
+        // 通过append() 进行数据的添加
+        // fd.append('name', 'xiaochen');
+    </script>
+</body>
+
+</html>
