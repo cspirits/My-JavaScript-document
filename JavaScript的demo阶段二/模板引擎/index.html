@@ -1,0 +1,78 @@
+<!--
+ * @Date: 2021-05-31 15:58:22
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-05-31 16:24:41
+ * @FilePath: \JavaScript的demo阶段二\模板引擎\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>学生信息表</h1>
+    <ul id="list"></ul>
+
+    <!-- 1.引入保存好的本地art-template的js文件 -->
+    <script src="./art-template-web.js"></script>
+
+    <!-- 2.准备好模板 -->
+    <script id="tpl-students" type="text/html">
+        {{each students}}
+        <br>
+        姓名为{{$value.name}}
+        年龄为{{$value.age}}
+        性别为{{$value.sex}}
+        </li>
+        {{/each}}
+    </script>
+
+    <script>
+        const students = [{
+            name: 'xiaochen',
+            age: 19,
+            sex: 'man'
+        }, {
+            name: 'xiaoli',
+            age: 20,
+            sex: 'man'
+        }, {
+            name: 'xiaowang',
+            age: 23,
+            sex: 'feman'
+        }];
+
+        // 3.获取模板
+        let a = template('tpl-students', {
+            // 'students': students
+            // 实现简写
+            students
+        })
+
+        console.log(a);
+        // 输出：
+        // <li>
+        //     xiaochen19man
+        // </li>
+        // <li>
+        //     xiaoli20man
+        // </li>
+        // <li>
+        //     xiaowang23feman
+        // </li>
+
+        // 将获取到的模板放进去
+        document.getElementById('list').innerHTML = a;
+        // html显示为： 
+        // 姓名为xiaochen 年龄为19 性别为man
+        // 姓名为xiaoli 年龄为20 性别为man
+        // 姓名为xiaowang 年龄为23 性别为feman
+    </script>
+</body>
+
+</html>
