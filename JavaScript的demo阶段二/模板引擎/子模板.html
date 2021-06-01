@@ -1,0 +1,51 @@
+<!--
+ * @Date: 2021-06-01 12:15:34
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-01 13:10:15
+ * @FilePath: \JavaScript的demo阶段二\模板引擎\子模板.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="content"></div>
+
+    <!-- 引入js文件 -->
+    <script src="./art-template-web.js"></script>
+
+    <!-- 主模板 -->
+    <script id="tpl" type="text/html">
+        <!-- 标准语法 -->
+        {{include 'tpl-header'}}
+    <!-- 原始语法进行传参 -->
+    <% include('tpl-header',{who:'首页'})%>
+    <!-- 通过id进行查找添加 -->
+    <!-- 想要向子模板传参，需要使用原始语法 -->
+    <p>首页</p>
+    {{include 'tpl-footer'}}
+    <% include('tpl-footer',{who:'首页'})%>
+    </script>
+
+    <!-- 子模板 -->
+    <script id="tpl-header" type="text/html">
+        <header>我是{{who}}公共header</header>
+    </script>
+    <script id="tpl-footer" type="text/html">
+        <header>我是{{who}}公共footer</header>
+    </script>
+
+    <!-- 这一步是必写的 -->
+    <script>
+        const content = document.getElementById('content');
+        content.innerHTML = template('tpl', {}); //就算什么都不传也需要传递一个空对象{}
+    </script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-05-31 15:58:22
  * @LastEditors: LaBiXiaoChen
- * @LastEditTime: 2021-05-31 16:24:41
+ * @LastEditTime: 2021-06-01 12:06:52
  * @FilePath: \JavaScript的demo阶段二\模板引擎\index.html
 -->
 <!DOCTYPE html>
@@ -15,6 +15,8 @@
 </head>
 
 <body>
+
+    <h1><a href="http://aui.github.io/art-template/zh-cn/index.html">art-template官网</a></h1>
     <h1>学生信息表</h1>
     <ul id="list"></ul>
 
@@ -22,33 +24,55 @@
     <script src="./art-template-web.js"></script>
 
     <!-- 2.准备好模板 -->
+    <!-- 优先使用标准语法，标准语法不能解决的，在使用原始语法 -->
     <script id="tpl-students" type="text/html">
+        <h3>性别为男性，且年龄大于12岁的</h3>
         {{each students}}
-        <br>
+        <!-- 循环语法,也要有结束符号 -->
+        {{if $value.sex==='man'}}
+        {{if $value.age>=12}}
+        <!-- 条件判断要有结束符号，写这个有点shell脚本的味道 -->
+
+        {{$index}}
+        <!-- $index功能为设置索引 -->
         姓名为{{$value.name}}
+        <!-- $value就是获取每一次循环的值,$value是对象,通过打点访问里面的值 -->
         年龄为{{$value.age}}
         性别为{{$value.sex}}
+        {{@$value.text}}
+        <!-- 前面加上@就不会实现转义,原文输出，不会对html内容进行处理的 -->
         </li>
+        <br>
+        <!-- 换行 -->
+
+        {{/if}}
+        {{/if}}
         {{/each}}
+        <!-- {{$data}} -->
+        <!-- $data为获取的所有数据 -->
     </script>
 
     <script>
         const students = [{
             name: 'xiaochen',
-            age: 19,
-            sex: 'man'
+            age: 12,
+            sex: 'man',
+            text: '<strong>重点1</strong>'
         }, {
-            name: 'xiaoli',
+            name: 'xiaochen',
+            age: 10,
+            sex: 'feman',
+            text: '<strong>重点2</strong>'
+        }, {
+            name: 'wangqiang',
             age: 20,
-            sex: 'man'
-        }, {
-            name: 'xiaowang',
-            age: 23,
-            sex: 'feman'
+            sex: 'man',
+            text: '<strong>重点3</strong>'
         }];
 
         // 3.获取模板
         let a = template('tpl-students', {
+            // 参数要放在对象中， 即使没有参数， 也需要传一个空对象
             // 'students': students
             // 实现简写
             students
@@ -68,7 +92,7 @@
 
         // 将获取到的模板放进去
         document.getElementById('list').innerHTML = a;
-        // html显示为： 
+        // html显示为：
         // 姓名为xiaochen 年龄为19 性别为man
         // 姓名为xiaoli 年龄为20 性别为man
         // 姓名为xiaowang 年龄为23 性别为feman
