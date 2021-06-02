@@ -1,0 +1,40 @@
+<!--
+ * @Date: 2021-06-02 21:36:53
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-02 22:13:32
+ * @FilePath: \移动端开发学习\媒体查询\index.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 最基础的媒体查询 */
+        @media screen and (min-width:1000px) {
+
+            /* 满足媒体screen和min-width为900px的两个条件，执行代码块中的逻辑 */
+            body {
+                background-color: aqua;
+            }
+        }
+
+        /* 媒体特征表达式 */
+        /* width/max-width/min-width/-webkit-device-pixel-ratio/-webkit-max-device-pixel-ratio/-webkit-min-device-pixel-ratio */
+        @media (max-width:1000px) and (min-width:100px) {
+            body {
+                background-color: blue;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
