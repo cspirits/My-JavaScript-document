@@ -5,6 +5,7 @@
 
 </div>
 <hr>
+
 #### 项目描述：前端学习者的笔记doc，提供学习笔记文件和讲解、自我理解，主要内容是以慕课网前端视频学习配合部分github中精品文档为主
 #### 文档推荐：[现代 JavaScript教程](https://zh.javascript.info/)
 
