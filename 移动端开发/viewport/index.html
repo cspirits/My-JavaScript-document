@@ -1,0 +1,143 @@
+<!--
+ * @Date: 2021-06-02 11:53:45
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-02 12:27:06
+ * @FilePath: \移动端开发\viewport\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content=" initial-scale=1"> -->
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1,minimum-scale=1">
+    <!-- user-scalable=no效果等于maximum-scale=1,minimum-scale=1，都是为了防止用户自己调整缩放，从而打破了排版 -->
+    <!-- 单独写上面的属性值都是可以的，但是为了兼容性，都写上最好 -->
+    <!-- initial-scale=1.0初始的缩放比例是1 -->
+    <!-- height=device-height几乎不会用，应该不会对高度进行设置的 -->
+    <!-- 视口的添加是自动的 -->
+    <title>Document</title>
+    <style>
+        /*css reset*/
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #eee;
+            font-size: 12px;
+            color: #5d655b;
+        }
+
+        a {
+            font-size: 12px;
+            color: #686868;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        img {
+            vertical-align: top;
+            border: none;
+            width: 100%;
+        }
+
+        /*recommend*/
+        .recommend-item {
+            width: 200px;
+            background-color: #fff;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .recommend-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .recommend-pic {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .recommend-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .recommend-name,
+        .recommend-origPrice,
+        .recommend-info {
+            padding: 0 10px;
+            margin-bottom: 8px;
+        }
+
+        .recommend-origPrice {
+            color: #ccc;
+        }
+
+        .recommend-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .recommend-price {
+            color: #e61414;
+        }
+
+        .recommend-price-num {
+            font-size: 20px;
+        }
+
+        .recommend-count {
+            color: #999;
+        }
+
+        .text-ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="recommend-item">
+        <a href="###" class="recommend-link">
+            <p class="recommend-pic">
+                <img src="../img/2.2-1.jpg" alt="recommend" class="recommend-img">
+            </p>
+            <p class="recommend-name text-ellipsis">欧派整体橱柜定制简约现代</p>
+            <p class="recommend-origPrice">
+                <del>¥2000.00</del>
+            </p>
+            <p class="recommend-info">
+                <span class="recommend-price">¥<strong class="recommend-price-num">1000</strong></span>
+                <span class="recommend-count">985件已售</span>
+            </p>
+        </a>
+    </div>
+    <script>
+        // 获取用户当前使用的设备的宽度
+        console.log(window.innerWidth);
+        console.log(document.documentElement.clientWidth);
+        console.log(document.documentElement.getBoundingClientRect().width);
+
+        // 为了兼容性，最保险的写法,基本上三个属性写上去，第一个属性就能获取到宽度了
+        let viewWidth = window.innerWidth || document.documentElement.clientWidth || document.documentElement
+            .getBoundingClientRect().width;
+        console.log(viewWidth);
+
+        // 获取dpr,设备像素比,物理像素比css像素
+        console.log(window.devicePixelRatio);
+
+        // 兼容性存在一定的问题， 获取的数值可能是设备宽度，也可能是分辨率宽度，尽量不要使用
+        console.log(screen.width);
+    </script>
+</body>
+
+</html>
