@@ -1,6 +1,7 @@
+
 <div align="center">
-  
-# myJavaScripDoc
+
+# myJavaScriptDoc
 <img src="https://pic.imgdb.cn/item/60b70bc039f6859bc284d8dc.jpg">
 
 </div>
