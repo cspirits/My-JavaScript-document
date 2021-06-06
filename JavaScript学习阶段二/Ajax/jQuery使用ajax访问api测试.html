@@ -21,7 +21,7 @@
                 source: 'pc',
                 city: '曹县'
             },
-            dataType: 'jsonp',
+            dataType: 'jsonp', //使用jquery封装好的jsonp格式发送ajax请求，相比于原生js，ES6要简单很多
             success: function (res) {
                 if (res.status == 200 && res.data) {
                     console.log(res.data);
