@@ -1,0 +1,90 @@
+<!--
+ * @Date: 2021-06-06 14:07:43
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-06 14:11:47
+ * @FilePath: \移动端开发学习\移动端适配\通用适配方案\通用适配方案.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-container {
+            height: 2.5rem;
+            /* 1rem=1个html的font-size */
+            background-color: royalblue;
+            top: 0;
+
+        }
+
+        .main-container {
+            padding: 2.5rem 0;
+            background-color: #eee;
+        }
+
+        .slider-container {
+            height: 9.15rem;
+            background-color: aqua;
+        }
+
+        .nav-container {
+            height: 8.475rem;
+            background-color: blueviolet;
+        }
+
+        .recommend-container {
+            height: 50rem;
+            background-color: brown;
+        }
+
+        .tabbar-container {
+            height: 2.5rem;
+            background-color: pink;
+            bottom: 0;
+        }
+
+        .header-container,
+        .tabbar-container {
+            position: fixed;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header-container"></header>
+    <div class="main-container">
+        <div class="slider-container"> </div>
+        <nav class="nav-container"></nav>
+        <!-- 商品推荐 -->
+        <div class="recommend-container"></div>
+    </div>
+    <div class="tabbar-container"></div>
+
+
+
+
+    <script src="./setAllRemUnit.js"></script>
+    <!-- 测试了一下写的js脚本能否正常执行 -->
+</body>
+
+</html>
