@@ -38,6 +38,7 @@
     }
 }
 
+// 生成结果
 // @media screen and (max-width: 1000px) {
 //     .section {
 //       font-size: 100px;
@@ -46,3 +47,26 @@
 // 由此可见@content先生成，然后再生成传值属性
 //     }
 //   }
+
+//通过选择器继承继承样式
+.error {
+    border: 1px solid red;
+    background-color: #fdd;
+}
+.seriousError {
+    @extend .error;
+    border-width: 3px;
+}
+
+// 生成结果
+
+// .error,
+// .seriousError {
+//     border: 1px solid red;
+//     background-color: #fdd;
+// }
+
+// .seriousError {
+//     border-width: 3px;
+// }
+// 先生成共有属性，然后在生成单独的属性值
