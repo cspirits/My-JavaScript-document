@@ -1,0 +1,48 @@
+// 对其他scss文件进行引入来进行使用，使用此种格式进行引入，不需要写后缀名，也不需要写文件前面的下划线,同级目录的话，甚至都需要写./但是我建议你还是写吧，显示出目录结构,将不同模块的代码进行分离，这样就很好根据文件名的语义进行维护代码了，组件化分离思想体现
+
+@import "./variable";
+@import "./header";
+@import "./main";
+@import "./mixin";
+
+// 此时通过不断引入其他的scss文件，变成了一个入口文件了
+// 通过对scss文件的模块化分离编程，这样就可以生成一个文件，但是却可以很好的组件化维护
+
+.footer {
+    p {
+        @include item;
+        background-origin: padding-box;
+        @include fz(1000px, 12px);
+    }
+
+    span {
+        @include item;
+        @include fz(100rem, 12px);
+    }
+}
+
+// 关于media中sass的使用
+@mixin screen1000px($width) {
+    @media screen and (max-width: 1000px) {
+        @content; //理解为占位符
+        width: $width;
+    }
+}
+
+.section {
+    font-size: 100px;
+    // 想要实现在1000px以下的屏幕中不同的显示
+    @include screen1000px(1000px) {
+        font-size: 100px;
+        width: 100000px;
+    }
+}
+
+// @media screen and (max-width: 1000px) {
+//     .section {
+//       font-size: 100px;
+//       width: 100000px;
+//       width: 1000px;
+// 由此可见@content先生成，然后再生成传值属性
+//     }
+//   }

@@ -1,0 +1,12 @@
+// 属性的集合
+@mixin item {
+    content: none;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+// 还可以给mixin进行传值,可以传多值进行动态维护
+@mixin fz($width, $fz) {
+    width: $width;
+    font-size: $fz;
+}

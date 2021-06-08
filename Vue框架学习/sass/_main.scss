@@ -1,0 +1,20 @@
+@import "./mixin";
+
+.main {
+    &:link {
+        font-size: 12px;
+    }
+    span {
+        font-size: $fz;
+    }
+    p {
+        font-size: $fz;
+        &:hover {
+            font-size: 10px;
+        }
+        &:link {
+            background-color: $bgc-x;
+            @include item;
+        }
+    }
+}

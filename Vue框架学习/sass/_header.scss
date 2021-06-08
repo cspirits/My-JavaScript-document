@@ -1,0 +1,15 @@
+// 组件分离
+.header {
+    span {
+        background-color: $bgc;
+        font-size: $fz;
+    }
+    &:active {
+        background-color: $bgc;
+    }
+    &:hover {
+        background-color: $bgc;
+    }
+}
+
+// 进行组件化分离

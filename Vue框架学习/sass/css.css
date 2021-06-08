@@ -1,0 +1,68 @@
+.header span {
+  background-color: #636;
+  font-size: 26px;
+}
+
+.header:active {
+  background-color: #636;
+}
+
+.header:hover {
+  background-color: #636;
+}
+
+.main:link {
+  font-size: 12px;
+}
+
+.main span {
+  font-size: 26px;
+}
+
+.main p {
+  font-size: 26px;
+}
+
+.main p:hover {
+  font-size: 10px;
+}
+
+.main p:link {
+  background-color: blue;
+  content: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+.footer p {
+  content: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  background-origin: padding-box;
+  width: 1000px;
+  font-size: 12px;
+}
+
+.footer span {
+  content: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  width: 100rem;
+  font-size: 12px;
+}
+
+.section {
+  font-size: 100px;
+}
+
+@media screen and (max-width: 1000px) {
+  .section {
+    font-size: 100px;
+    width: 100000px;
+    width: 1000px;
+  }
+}
+/*# sourceMappingURL=css.css.map */
