@@ -1,0 +1,81 @@
+<!--
+ * @Date: 2021-06-09 13:59:48
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-09 14:23:13
+ * @FilePath: \Vue框架学习\字符串换行和内容隐藏\index.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="root1"></div>
+</body>
+<script>
+    // 反转显示的内容
+    Vue.createApp({
+        data() {
+            return {
+                content: "我是一个爱你到天荒地老的男人！哈哈哈哈，我十分的爱你！"
+            }
+        },
+        methods: {
+            btnReaver() {
+                const newContent = this.content.split('').reverse().join('');
+                this.content = newContent;
+            }
+        },
+        template: `<div >
+            {{content}}
+            <hr>
+            <button v-on:click="btnReaver">反转</button>
+            </div>
+        `
+    }).mount('#root');
+
+    // 将显示的内容进行展示或者隐藏
+    Vue.createApp({
+        data() {
+            return {
+                show: true,
+                content: "我是一个爱你到天荒地老的男人！哈哈哈哈，我十分的爱你！",
+                btnContent: '隐藏'
+            }
+        },
+        methods: {
+            btn() {
+                if (this.show) {
+                    this.show = false;
+                    this.btnContent = '显示'
+                } else {
+                    this.show = true;
+                    this.btnContent = '隐藏'
+                }
+            }
+
+            // 如果只是单纯的想要实现真假互换
+            // btn() {
+            //     this.show = !this.show;
+            // }
+        },
+        template: `
+        <div>
+            <span v-if="show">{{content}}</span>
+            <hr>
+            <button v-on:click="btn">{{btnContent}}</button>
+        </div>
+        `
+    }).mount('#root1');
+</script>
+
+</html>

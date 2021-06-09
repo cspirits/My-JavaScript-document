@@ -1,0 +1,74 @@
+<!--
+ * @Date: 2021-06-09 14:40:11
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-09 15:46:53
+ * @FilePath: \Vue框架学习\循环展示TodoList功能\index.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    // createApp表示创建一个Vue应用
+    //传入的参数表示，这个应用最外层的组件，应该如何展示
+    const app = Vue.createApp({
+        data() {
+            return {
+                list: [],
+                inputVlaue: ''
+            }
+        },
+
+        methods: {
+            addItem() {
+                this.list.push(this.inputVlaue);
+            },
+
+            delectLastItem() {
+                this.list.pop();
+            },
+            clearItems() {
+                this.list = [];
+            }
+        },
+
+        template: `
+        <div>
+            <input v-model="inputVlaue" />
+            <button v-bind:titie="inputVlaue" v-on:click="addItem">增加一项</button>
+            <button v-on:click="delectLastItem">删除最后项</button>
+            <button v-on:click="clearItems">清空所有项</button>
+        <todo-item v-for="(item,index) of list" v-bind:content="item" v-bind:index="index" />
+        </div>
+        `
+    });
+
+    // 使用v-model来实现了模板中的数据和data()中的数据进行双向绑定
+    // 一个标签的属性想要和一个data()中的数据进行绑定的话就得使用v-bind
+
+    // 组件化思想进行开发
+    app.component('todo-item', {
+        props: ['content', 'index'],
+        template: `
+        <div>{{index}}----{{content}}</div>
+        `
+    });
+    // component和app之间通过v-bind一个属性值进行传值通信
+
+    app.mount('#root');
+</script>
+
+</html>

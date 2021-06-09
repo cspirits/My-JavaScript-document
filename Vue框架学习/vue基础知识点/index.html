@@ -1,0 +1,53 @@
+<!--
+ * @Date: 2021-06-09 15:47:42
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-09 15:55:21
+ * @FilePath: \Vue框架学习\vue基础知识点\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script>
+        // vue的逻辑参考了mvvm设计模式，m -> model数据，v -> view视图，vm -> viewModel视图数据连接层
+
+
+        // createApp表示创建一个Vue应用
+        //传入的参数表示，这个应用最外层的组件，应该如何展示
+        const app = Vue.createApp({
+            data() {
+                return {
+                    firstData: ''
+                }
+            },
+
+            methods: {
+                addItem() {
+                    console.log(firstData);
+                }
+            },
+
+            template: `
+            <div>{{firstData}}</div>
+            `
+        });
+
+        const vm = app.mount('#root');
+        // vm就是拿到的对象就是vue应用的根组件
+        console.log(vm); //Proxy {addItem: ƒ, delectLastItem: ƒ, clearItems: ƒ, …}//返回的是一个代理对象
+    </script>
+</body>
+
+</html>
