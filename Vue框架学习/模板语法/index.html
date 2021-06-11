@@ -1,0 +1,51 @@
+<!--
+ * @Date: 2021-06-11 15:47:26
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-11 17:08:47
+ * @FilePath: \Vue框架学习\模板语法\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'i love you ',
+                    show: false,
+                    name: "title",
+                    event: "click"
+                }
+            },
+
+            methods: {
+                headleClick() {
+                    console.log('nothing');
+                }
+            },
+            // 使用v-html来渲染具有html语法到页面中
+            // 使用[]动态绑定
+            // 使用事件的.prevent事件来阻止一些事情的运行，下面代码中就不会完成跳转了
+            template: `
+            <div @[event].prevent='headleClick' :[name]='show' >
+                <a href="http://www.baidu.com">提交</a>
+            </div>
+            `
+        });
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>
