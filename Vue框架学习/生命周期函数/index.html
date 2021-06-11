@@ -1,0 +1,77 @@
+<!--
+ * @Date: 2021-06-11 14:21:49
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-11 15:31:51
+ * @FilePath: \Vue框架学习\生命周期函数\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // 钩子就是生命周期函数
+        // 生命周期函数：在某一时刻会自动执行的函数
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'I love you!'
+                }
+            },
+            // 在实例创建之前会自动执行的函数
+            beforeCreate() {
+                console.log('初始化之前beforeCreate()');
+            },
+            // 在实例完成创建之后会执行的函数
+            created() {
+                console.log('完成创建created()');
+            },
+            // 在组件内容会渲染到页面之前会执行的函数
+            beforeMount() {
+                console.log(`组件挂载之前的页面内容为${document.getElementById('box').innerHTML}`); //为空是我的预期
+                console.log('挂载之前beforeMount()');
+            },
+            // 在组件内容会渲染到页面之后自动执行的函数
+            mounted() {
+                console.log(
+                    `组件挂载之后的页面内容为${document.getElementById('box').innerHTML}`
+                ); //组件挂载之后的页面内容为<div>I love you!</div>
+                console.log('挂载完成后mounted()');
+            },
+            // 当页面中的data发生变化之前执行的函数
+            beforeUpdate() {
+                console.log('页面内容被更新之前执行beforeUpdate()');
+            },
+            // 当页面中的data发生变化，同时页面中的内容发送更新后，执行的函数
+            updated() {
+                console.log('页面内容被更新的时候执行update()');
+            },
+            // 当Vue应用失效之前执行的函数
+            beforeUnmount() {
+                console.log('当页面中app中的模板被取消挂载之前执行的函数beforeUnmount()');
+            },
+            // 当Vue应用失效，且dom被完全销毁之后，自动执行的函数
+            unmounted() {
+                console.log('当页面中app中的模板被取消挂载之后执行的函数unmounted()');
+            },
+            template: `
+            <div>{{message}}</div>
+            `
+        });
+
+        // 想要正常调用unmount()函数
+        const vm = app.mount('#box');
+        app.unmount();
+    </script>
+</body>
+
+</html>
