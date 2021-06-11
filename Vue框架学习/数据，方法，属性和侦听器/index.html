@@ -1,0 +1,61 @@
+<!--
+ * @Date: 2021-06-11 17:13:19
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-11 18:39:51
+ * @FilePath: \Vue框架学习\数据，方法，属性和侦听器\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+
+    <script>
+        // data & methods & computed & watch
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'hello world',
+                    count: 2,
+                    price: 12
+                }
+            },
+
+            // 监听器：用于监听一些数据的变化,做一些异步操作
+            watch: {
+                price(current, prev) { //这个地方的price就是你准备监听的数据变量名
+                    setTimeout(() => {
+                        console.log(`当前的参数变化为${current},原来的参数值是${prev}`)
+                        console.log('price changed');
+                    }, 1000)
+                }
+            },
+            // 都能用computed和methods实现的方法，建议使用computed实现，因为有缓存，
+            // 当一个操作较为简单，使用watch和computed实现的时候，建议使用computed实现，因为更加简洁
+            computed: {
+                // 当计算的属性发生变化的时候， 才会重新执行
+                total() {
+                    return Date.now() + this.count; //将值返回给total，不以函数的方式执行，而是返回值的形式
+                }
+            },
+            methods: {
+                // 当页面中重新渲染的时候，才会重新执行
+                getTotal() {
+                    return this.count + this.price;
+                }
+            },
+
+            template: `<div>{{getTotal()}}</div><div>{{total}}</div>{{count+price}}`
+        }).mount("html");
+    </script>
+</body>
+
+</html>
