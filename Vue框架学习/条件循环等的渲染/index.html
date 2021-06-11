@@ -1,0 +1,59 @@
+<!--
+ * @Date: 2021-06-11 19:23:41
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-11 19:37:30
+ * @FilePath: \Vue框架学习\条件循环等的渲染\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    vif: false,
+                    velseif: true,
+                    cycleList: ['我', '爱', '你', 'la ', 'nothing', 'xixix', 'laoqhbzxc ', 'poi', 9, 10],
+                    cycleObject: {
+                        name: 'xiaochen',
+                        age: 12,
+                        school: 'ustc',
+                        hobby: 'play games'
+                    }
+                }
+            },
+            methods: {},
+            template: `
+            <div v-if='vif'>if</div>
+            <div v-else-if='velseif'>else-if</div>
+            <div v-else>else</div>
+
+            <div v-for="(item,index) in cycleList">
+                {{item}}------------{{index}}
+            </div>
+
+            <div v-for="(value,key,index) in cycleObject" :key="item">
+                {{value}}-----{{key}}-----{{index}}
+            </div>
+            `
+        });
+        //上面的for中的:key我简直不要太熟悉了，我写小程序的时候遇到过这个经典的优化写法,是用来告诉vue哪些是需要重新渲染的，哪些是不需要的，要使用唯一的值来进行标记
+
+        const vm = app.mount('#box');
+
+        // 结果显示：else-if
+    </script>
+</body>
+
+</html>
