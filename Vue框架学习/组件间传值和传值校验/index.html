@@ -1,0 +1,58 @@
+<!--
+ * @Date: 2021-06-15 16:28:27
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-15 18:08:29
+ * @FilePath: \Vue框架学习\组件间传值和传值校验\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    num: 12311 //动态传参的方式
+                }
+            },
+
+            template: `<div><test1 :content='num' /><test2 :content='num' /></div>`
+        });
+
+
+        app.component('test1', {
+            props: ["content"], //这个地方需要加上引号
+            template: `<div>{{typeof content}}</div>`
+        });
+        // 对传参过来的数据进行校验
+        app.component('test2', {
+            props: {
+                content: {
+                    type: Number, //设置参数的类型，Boolean，Number，String,Function,Array等均可
+                    required: true, //设置此参数必须传递
+                    default: function () { //设置默认值
+                        return 789;
+                    },
+                    validator: function (value) { //传值进行校验
+                        return value < 1000;
+                    }
+                } //通过props对象模式来进行数据校验，传过来的值如果不匹配的话，能正常运行，但是会在控制台中报错
+            }, //这个地方需要加上引号
+            template: `<div>{{content}}</div>`
+        });
+
+        const vm = app.mount('#root');
+    </script>
+</body>
+
+</html>
