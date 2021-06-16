@@ -1,0 +1,67 @@
+<!--
+ * @Date: 2021-06-16 16:04:54
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-16 16:51:27
+ * @FilePath: \Vue框架学习\父子组件间的通过方法通信\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // 思路：父组件中创建的数据number，通过:number="number"传递给子组件，
+        // 子组件通过在子组件的模板中绑定一个方法，方法中使用this.$emit('methodName',paramNum,...)暴露出去
+        //在父模板中使用@自定义的函数名称绑定到父组件中的methods中的方法，进行加一操作
+        // 通过父组件来进行操作，完成之后再次传递给子组件来完成子组件无法完成的操作
+        // 这个地方为什么子组件无法自己加一操作，主要是这个count是父组件传递过去的，this.count找不到，所以使用这种方法
+        const app = Vue.createApp({
+            data() {
+                return {
+                    number: 1
+                }
+            },
+            methods: {
+                handleClick(param1, param2) {
+                    let sum = param1 + param2;
+                    this.number += sum;
+                }
+            },
+            template: `<div><count :number="number" @add='handleClick' /></div>`
+        });
+
+        app.component('count', {
+            props: ["number"],
+            // emits: ['add'],
+            //使用emits进行方法暴露出去的列表
+            emits: {
+                add: (count) => {
+                    if (count > 0) return true;
+                    return false;
+                }
+                //使用对象方式进行对暴露出去的参数进行校验
+            },
+            methods: {
+                addOne() {
+                    this.$emit('add', 2, 3); //使用this.$emit()暴露出去
+                }
+            },
+            template: `
+            <div @click='addOne'>{{number}}</div>
+            `
+        });
+
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>

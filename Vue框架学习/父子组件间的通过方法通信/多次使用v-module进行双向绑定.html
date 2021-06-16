@@ -1,0 +1,53 @@
+<!--
+ * @Date: 2021-06-16 16:04:54
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-16 17:08:55
+ * @FilePath: \Vue框架学习\父子组件间的通过方法通信\多次使用v-module进行双向绑定.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        //通过v-model:变量名称的方式进行传值就可以传递多个值了
+        const app = Vue.createApp({
+            data() {
+                return {
+                    number1: 1,
+                    number2: 2
+                }
+            },
+            template: `<div><son v-model:number1="number1" v-model:number2="number2"/></div>`
+        });
+
+        app.component('son', {
+            props: ["number1", "number2"],
+            methods: {
+                addOne1() {
+                    this.$emit('update:number1', this.number1 + 2);
+                },
+                addOne2() {
+                    this.$emit('update:number2', this.number2 + 2);
+                }
+            },
+            template: `
+            <div @click='addOne1'>{{number1}}</div>
+            <div @click='addOne2'>{{number2}}</div>
+            `
+        });
+
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>

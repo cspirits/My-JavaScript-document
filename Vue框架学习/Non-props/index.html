@@ -1,0 +1,47 @@
+<!--
+ * @Date: 2021-06-16 16:04:54
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-16 16:19:17
+ * @FilePath: \Vue框架学习\Non-props\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const app = Vue.createApp({
+
+            template: `<div>
+            <count msg="hello" msg1='hello1'/>
+            </div>`
+        });
+
+        app.component('count', {
+            mounted() {
+                console.log(this.$attrs.msg1);
+                //Proxy {msg: "hello", msg1: "hello1", __vInternal: 1}
+                //获得相关的代理函数
+            },
+            template: `
+            <div :msg='$attrs.msg'></div>
+            <div v-bind='$attrs'></div>
+            <div :msg1='$attrs.msg1'></div>
+            `
+            // 上面三种写法，代表了不同的对于传参的不同取值的情况,通过$attrs属性集合的打点进行选取，前面使用v-bind进行绑定
+        });
+
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>

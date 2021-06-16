@@ -1,0 +1,48 @@
+<!--
+ * @Date: 2021-06-16 16:04:54
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-16 17:04:15
+ * @FilePath: \Vue框架学习\父子组件间的通过方法通信\使用v-module进行简写.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // 使用v-model来替换index.html中方法要十分方便，在子组件中就能完成对父组件传递过来的值的修改
+        const app = Vue.createApp({
+            data() {
+                return {
+                    number: 1
+                }
+            },
+            template: `<div><son v-model="number"/></div>`
+        });
+
+        app.component('son', {
+            props: ["modelValue"], //这个地方必须使用modelValue这个值，约定俗成的
+            methods: {
+                addOne() {
+                    this.$emit('update:modelValue', this.modelValue + 2); //这个地方必须使用update:modelValue
+                }
+            },
+            template: `
+            <div @click='addOne'>{{modelValue}}</div>
+            `
+        });
+
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>
