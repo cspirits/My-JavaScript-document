@@ -1,0 +1,128 @@
+<!--
+ * @Date: 2021-06-17 19:14:00
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-17 20:44:15
+ * @FilePath: \Vue框架学习\slot插槽\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // < slot > 中变量的作用域的问题
+        // 父模板中调用的数据属性都是父模板中的数据
+        // 子模板中调用的数据属性都是子模板中的数据
+        const app = Vue.createApp({
+            data() {
+                return {
+                    text: "提交"
+                }
+            },
+            template: `
+            <div>
+                <myFrom>
+                <div>{{text}}</div>
+                </myFrom>
+
+                <myFrom>
+                <button>{{text}}</button>
+                </myFrom>
+
+                <myFrom>
+                <test />
+                </myFrom>
+
+                <myFrom>
+                </myFrom>
+
+                <Vslot>
+                    <template #header>
+                        <div>顶部部分</div>
+                    </template>
+                    <template #footer>
+                        <div>底部部分</div>
+                    </template>
+                </Vslot>
+
+                <list  v-slot = 'slotValue'>
+                    <div>{{slotValue.item}}</div>
+                </list>
+
+            </div>`
+        });
+
+
+        // 作用域插槽,使用:item='item'将item的值传递到父组件中
+        // 父组件在子组件上面直接使用v-slot='valueName'这样的数据对象进行接收，然后使用valueName打点调用item值
+        app.component('list', {
+            data() {
+                return {
+                    list: [1, 2, 3, 4]
+                }
+            },
+            template: `
+            <div >
+                <slot v-for= 'item in list ' :item='item'></slot>
+            </div>
+            `
+        })
+
+
+        // 具名插槽，将传递过来的内容进行name进行标记，然后分别使用，父组件中必须使用<template v-slot:name>的形式进行标记
+        //父组件中使用<template #name>进行简写
+        app.component('Vslot', {
+            template: `
+            <div>
+                <slot name='header'></slot>
+                <div>中间部分</div>
+                <slot name='footer'></slot>
+            </div>
+            `
+        })
+
+        app.component('test', {
+            data() {
+                return {
+                    text: "我爱你"
+                    //从这里就能看出来调用的是子模板中的数据属性，所以使用的也是子模板中的数据
+                }
+            },
+            template: `
+            <div>{{text}}</div>
+            `
+        })
+
+        app.component('myFrom', {
+            methods: {
+                handleClick() {
+                    alert('点击事件完成')
+                }
+            },
+            // slot中不能直接绑定事件，所以需要在外面包裹一个标签进行绑定事件
+            template: `
+            <div>
+            <input />
+            <span @click = 'handleClick'>
+            <slot><button>默认值</button></slot>
+            </span>
+            </div>
+            `
+            // 在slot中设置一个内容，在你有内容替换的时候会被取代，但是当你没有内容的时候，就会使用默认值
+        });
+
+        const vm = app.mount('#box');
+    </script>
+
+</body>
+
+</html>
