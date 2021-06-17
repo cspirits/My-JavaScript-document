@@ -1,0 +1,90 @@
+<!--
+ * @Date: 2021-06-17 22:08:17
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-17 23:33:41
+ * @FilePath: \Vue框架学习\vue实现动画效果\实现基础的css动画和过渡.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        /* 动画 */
+        @keyframes leftToRight {
+            0% {
+                transform: translateX(100px);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        .animation {
+            animation: leftToRight 1s;
+        }
+
+        /* 过渡 */
+        .trasition {
+            transition: 2s background-color ease;
+        }
+
+        .bule {
+            background-color: blue;
+        }
+
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    // 通过将css属性进行:class的方式就像在写开关一样，通过对数据的控制就能很好的针对css进行操作了
+                    cssShow: {
+                        trasition: true,
+                        bule: true,
+                        red: false,
+                        animation: false
+                    },
+                }
+            },
+            methods: {
+                change() {
+                    this.cssShow.animation = !this.cssShow.animation
+                },
+                changebg() {
+                    this.cssShow.bule = !this.cssShow.bule;
+                    this.cssShow.red = !this.cssShow.red;
+                    //这个地方那么简单，我居然还写的那么复杂，当点击的时候，真假互换即可，但是不要忘记赋值了
+                }
+            },
+            template: `
+            <div>
+                <div :class='cssShow'>动画效果</div>
+                <button @click = 'change'>开启/关闭动画</button>
+                <button @click = 'changebg'>改变背景颜色</button>
+            </div>`
+            //写了两个:class，报警告重复属性
+        });
+
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>
