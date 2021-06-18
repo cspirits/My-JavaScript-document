@@ -1,0 +1,80 @@
+<!--
+ * @Date: 2021-06-18 15:13:58
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-18 16:03:51
+ * @FilePath: \Vue框架学习\vue实现动画效果\使用js来完成动画过渡效果.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入本地的Vue3文件 -->
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show: false
+                }
+            },
+            methods: {
+                handleClick() {
+                    this.show = !this.show;
+                },
+
+                // js的动画在性能方面不一定有原生的css动画好，但是实现一些可控的操作是必要的
+                handleBeforeEnter(el) {
+                    el.style.color = 'red';
+                },
+                // el对于的是指定的dom元素，done是通知结束钩子
+                handleEnterActive(el, done) {
+                    const animation = setInterval(() => {
+                        const color = el.style.color;
+                        if (color == 'red') {
+                            el.style.color = 'green';
+                        } else {
+                            el.style.color = 'red';
+                        }
+                    }, 100);
+                    setTimeout(() => {
+                        clearInterval(animation);
+                        done(); //调用这个函数主要作用就是为了告诉后面钩子，动画或者过渡等操作结束了，可以调用结束钩子了
+                    }, 3000);
+                },
+                // 这个钩子想要感知到动画结束，必须前面调用了done()
+                handleEnterEnd() {
+                    alert('动画结束了');
+                }
+            },
+            template: `
+            <transition
+            :css=false
+
+            @before-enter="handleBeforeEnter"
+            @enter="handleEnterActive"
+            @after-enter='handleEnterEnd'
+            @before-leave=""
+            @leave=""
+            @after-leave=""
+            >
+            <div v-if='show'>我是实现效果的单元素</div>
+            </transition>
+            <button @click='handleClick'>开启/关闭</button>
+            `
+            // 这种自定义类名的方式可以很方便我们与第三方css进行绑定使用,十分不错,先开始还小瞧了这个功能
+            // :css=false使用这个标签放置在transition中就会自动屏蔽掉css的使用
+        });
+
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>

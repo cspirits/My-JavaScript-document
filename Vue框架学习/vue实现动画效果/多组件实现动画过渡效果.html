@@ -1,0 +1,121 @@
+<!--
+ * @Date: 2021-06-18 16:25:22
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-18 16:46:13
+ * @FilePath: \Vue框架学习\vue实现动画效果\多组件实现动画过渡效果.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 制作动画 */
+        /* 动画只需要配合enter-active和leave-active即可完成效果 */
+        @keyframes shake {
+            0% {
+                transform: translateX(100px);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        .v-enter-from {
+            opacity: 0;
+        }
+
+        /* 因为入场和出场动画的active效果是一样的，可以通过css两个选择器放在一起的写法来实现简写 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: opacity 2s linear;
+            animation: shake 1s;
+        }
+
+        .v-enter-to {
+            opacity: 1;
+        }
+
+        /* 这个地方实际上可以不写，因为在入场开始的时候，透明度就是1 */
+        .v-leave-from {
+            opacity: 1;
+        }
+
+        .v-leave-to {
+            opacity: 0;
+        }
+    </style>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // 单组件的写法
+        const componentA = {
+            template: `<div>实现组件切换A<div>`
+        }
+        const componentB = {
+            template: `<div>实现组件切换B<div>`
+        }
+
+        // 单元素的写法
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show: false
+                }
+            },
+            methods: {
+                handleClick() {
+                    this.show = !this.show;
+                }
+            },
+
+            components: {
+                'component-A': componentA,
+                'component-B': componentB
+            },
+            template: `
+            <transition
+            mode = 'out-in'
+            appear
+            >
+            <div v-if='show'>元素one</div>
+            <div v-else='show'>元素two</div>
+            </transition>
+            <button @click='handleClick'>开启/关闭</button>
+
+            <hr>
+
+            <transition
+            mode = 'in-out'
+            appear
+            >
+            <component-A v-if='show' />
+            <component-B v-else='show' />
+            </transition>
+            <button @click='handleClick'>开启/关闭</button>
+            `
+            // 使用mode='out-in'实现先出后进的组件切换逻辑
+            // appear在初次加载的时候也会带上编写或者引入的动画效果
+            // 我tm每次注册的时候都忘记写这个components少写一个s
+            // 因为两个button控制的都是这个show变量，所以会同时点一个按钮，两个组件都会起效果
+        });
+
+        const vm = app.mount('#box');
+        //这个地方有个坑：如果直接挂载到html上面的话就无法使用<transition>这个标签的效果
+    </script>
+</body>
+
+</html>

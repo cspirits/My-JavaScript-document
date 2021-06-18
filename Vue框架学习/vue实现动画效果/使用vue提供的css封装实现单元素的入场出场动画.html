@@ -1,0 +1,93 @@
+<!--
+ * @Date: 2021-06-18 13:39:41
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-18 14:30:00
+ * @FilePath: \Vue框架学习\vue实现动画效果\使用vue提供的css封装实现单元素的入场出场动画.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 制作动画 */
+        /* 动画只需要配合enter-active和leave-active即可完成效果 */
+        @keyframes shake {
+            0% {
+                transform: translateX(100px);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+
+        .v-enter-from {
+            opacity: 0;
+        }
+
+        /* 因为入场和出场动画的active效果是一样的，可以通过css两个选择器放在一起的写法来实现简写 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: opacity 2s linear;
+            animation: shake 1s;
+        }
+
+        .v-enter-to {
+            opacity: 1;
+        }
+
+        /* 这个地方实际上可以不写，因为在入场开始的时候，透明度就是1 */
+        .v-leave-from {
+            opacity: 1;
+        }
+
+        .v-leave-to {
+            opacity: 0;
+        }
+    </style>
+    <!-- 引入Vue3的CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show: false
+                }
+            },
+            methods: {
+                handleClick() {
+                    this.show = !this.show;
+                }
+            },
+            template: `
+            <transition>
+            <div v-if='show'>我是实现效果的单元素</div>
+            </transition>
+            <button @click='handleClick'>开启/关闭</button>
+            `
+            // 我们可以给<transition name='name'>添加一个name
+            // 这样在style中就不需要使用v-enter或者v-leave这样的v-开头
+            // 以直接使用name-enter或者name-leave进行元素自己的标注
+            // 我们可以对style中类名进行定义<transition enter-active-class='enterActive'>
+            // 这样在style中直接使用.enterActive{}方式进行样式动画过渡等的定义，其他选择器与此相同
+        });
+
+        const vm = app.mount('#box');
+        //这个地方有个坑：如果直接挂载到html上面的话就无法使用<transition>这个标签的效果
+    </script>
+</body>
+
+</html>

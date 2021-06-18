@@ -1,0 +1,55 @@
+<!--
+ * @Date: 2021-06-18 14:34:15
+ * @LastEditors: LaBiXiaoChen
+ * @LastEditTime: 2021-06-18 15:13:10
+ * @FilePath: \Vue框架学习\vue实现动画效果\使用animate库实现动画效果.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 这个网址不是animate官方的cdn，因为太慢了，我使用的是 https://www.bootcdn.cn/animate.css/ 速度快一点 -->
+    <!-- <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.compat.css"> -->
+    <!-- 下载本地进行直接引用了 -->
+    <link rel="stylesheet" href="./animate.compat.css">
+    <!-- 引入本地的Vue3文件 -->
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show: false
+                }
+            },
+            methods: {
+                handleClick() {
+                    this.show = !this.show;
+                }
+            },
+            template: `
+            <transition 
+            enter-active-class='animated fadeInUp'
+            leave-active-class='animated rotateOutDownLeft'
+            >
+            <div v-if='show'>我是实现效果的单元素</div>
+            </transition>
+            <button @click='handleClick'>开启/关闭</button>
+            `
+            // 这种自定义类名的方式可以很方便我们与第三方css进行绑定使用,十分不错,先开始还小瞧了这个功能
+            // :css=false使用这个标签放置在transition中就会自动屏蔽掉css的使用
+        });
+
+        const vm = app.mount('#box');
+    </script>
+</body>
+
+</html>
